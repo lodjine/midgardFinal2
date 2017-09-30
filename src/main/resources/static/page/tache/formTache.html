@@ -1,0 +1,103 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">Nouvelle tache</h1>
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<!-- /.row -->
+	<div class="row">
+		<div class="col-lg-11">
+
+			
+			<!-- /.panel-body -->
+			<div class="panel panel-default">
+				<div class="panel-heading">Information tache</div>
+				<div class="panel-body">
+					<div class="row">
+
+
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label>Intervenant</label> <select ng-change="selectOperateur()" ng-model="tache.operateur.id"   class="form-control">
+					<option  ng-repeat="x in users"  ng-value="x.id" >{{x.nom}}</option>
+				</select>
+							</div>
+						</div>
+
+						<div class="col-lg-6" ng-show="user.ingenieur && selectedUser">
+							<div class="form-group">
+								<label>Hj ing</label> <input class="form-control" 
+							ng-model="tache.hjIng" placeholder="Nom" type="text" />
+							</div>
+						</div>
+						<div class="col-lg-6" ng-show="!user.ingenieur && selectedUser">
+							<div class="form-group">
+								<label>Hj tech</label> <input class="form-control" 
+							ng-model="tache.hjTech" placeholder="Nom" type="text" />
+							</div>
+						</div>
+							<div class="col-lg-6" ng-show="!selectedUser">
+							<div class="form-group">
+								<br/><br/><br/>
+							</div>
+						</div>
+						
+							<div class="col-lg-6">
+							<div class="form-group">
+								<label>Description</label> <input class="form-control" 
+							ng-model="tache.description" placeholder="description " type="text" />
+							</div>
+						</div>
+						
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label>Evenement</label> <select ng-change="selectEvent()" ng-model="tache.event.idEvenement"   class="form-control">
+					<option  ng-repeat="x in events"  ng-value="x.idEvenement" >{{x.idEvent}}</option>
+				</select>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group">
+							
+								<label>Liaison tache</label> <select  ng-model="tache.tacheLie.idBd"   class="form-control">
+					<option  ng-repeat="x in tachesLies"  ng-value="x.idBd" >{{x.idTache}}</option>
+				</select>
+							
+							</div>
+							 </div>   
+							<div class="col-lg-2" ng-show="tache.tacheLie.idBd">
+							
+							 <div class="radio">
+							 
+                                                <label>
+                                                    <input type="radio" ng-model="tache.avantTache" name="optionsRadios" id="optionsRadios3" value="true">Avant
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio"   ng-model="tache.apresTache"  name="optionsRadios" id="optionsRadios3" value="true">Apres
+                                                </label>
+                                            </div>
+                                            </div>
+                                            
+                                           
+                              
+						
+						</div>
+						
+						
+				</div>
+</div>
+</div>
+
+</div>
+
+				
+				<button type="button" class="btn btn-success"
+					ng-click="saveTache()">Success</button>
+
+				<!-- /.panel -->
+			</div>
+			<!-- /.col-lg-12 -->
+		</div>

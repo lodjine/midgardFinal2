@@ -1,0 +1,47 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">List utilisateurs</h1>
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<!-- /.row -->
+	<div class="col-lg-2">
+		<button type="nouveau" class="btn btn-primary btn-block"
+			ui-sref="formProjet">
+
+			<i class="fa fa-times-circle" aria-hidden="true"></i> nouvel utilisateur
+		</button>
+	</div>
+	<br /> <br />
+
+	<table class="table table-bordered" width="100%" id="dataTable"
+		cellspacing="0">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Prenom</th>
+				<th>Login</th>
+				<th>Role</th>
+				<th>Options</th>
+
+
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr ng-repeat="item in users">
+				<td>{{item.nom}}</td>
+				<td>{{item.prenom}}</td>
+				<td>{{item.userName}}</td>
+				<td>{{item.role}}</td>
+
+				<td><button type="submit" class="btn btn-primary btn-block" ui-sref="detailProjet({id:item.idbd})">
+						<i class="fa fa-search  " aria-hidden="true"></i> Consulter
+					</button></td>
+			</tr>
+		</tbody>
+	</table>
+
+
+</div>
