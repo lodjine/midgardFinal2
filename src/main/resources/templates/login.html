@@ -3,25 +3,27 @@
 	xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Spring Security Tutorial</title>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+<title>Authentification Midgard</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+<link rel='stylesheet prefetch'
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" />
 </head>
 
 <body>
-	<div class="container">
+	<div class="container" style="margin-top: 15%;">
 		<form th:action="@{/login}" method="post" class="form-signin">
-			<h3 class="form-signin-heading" th:text="Welcome"></h3>
-			<br/>
-			 
-			<input type="text" id="email" name="username"  th:placeholder="Email"
-				class="form-control" /> <br/> 
-			<input type="password"  th:placeholder="Password"
-				id="password" name="password" class="form-control" /> <br /> 
-				
+			<h3 class="form-signin-heading" style="margin-left: 5%;">Authentification Midgard</h3>
+			<br /> <input type="text" id="email" name="username"
+				placeholder="Identifiant utilisateur" class="form-control" /> <br /> <input
+				type="password" placeholder="Mot de passe" id="password" name="password"
+				class="form-control" /> <br />
+
 			<div align="center" th:if="${param.error}">
-				<p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+				<p style="font-size: 20; color: #FF1C19;">User name ou mot de passe
+					invalide, veuillez vérifier</p>
 			</div>
-			<button  value="Login" type="Submit" th:text="Login"></button>
+			<button type="Submit" class="btn btn-lg btn-primary btn-block">Se
+				connecter</button>
 		</form>
 	</div>
 </body>
