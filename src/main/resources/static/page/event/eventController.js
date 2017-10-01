@@ -50,5 +50,9 @@
 			alert(id);
 			
 		};
+		$scope.retour = function() {
+			
+			$state.go('event');
+		};
 	}
 })();

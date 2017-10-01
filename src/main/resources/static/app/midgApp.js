@@ -57,6 +57,11 @@ midgApp.config(function($stateProvider, $urlRouterProvider) {
     		templateUrl : 'page/user/listUser.html',
     		controller : 'userCtrl'
     			
+        }).state('adduser', {
+    		url : '/AjouterUtilisateur',
+    		templateUrl : 'page/user/adduser.html',
+    		controller : 'adduser'
+    			
         }).state('listTache', {
     		url : '/listTache',
     		templateUrl : 'page/tache/listTache.html',

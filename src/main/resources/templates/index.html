@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Midgard</title>
+
+<!-- Bootstrap Core CSS -->
+<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+<!-- MetisMenu CSS -->
+<link href="/vendor/metisMenu/metisMenu.min.css" rel="stylesheet" />
+
+<!-- Custom CSS -->
+<link href="/css/sb-admin-2.css" rel="stylesheet" />
+
+<!-- Custom Fonts -->
+<link href="/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css" />
+<script src="/bower_components/angular/angular.min.js"></script>
+<script
+	src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="/bower_components/angular-resource/angular-resource.min.js"></script>
+<script src="/app/midgApp.js"></script>
+<script src="/service/projetService.js"></script>
+<script src="/service/entrepriseService.js"></script>
+<script src="/service/phaseService.js"></script>
+<script src="/service/documentService.js"></script>
+<script src="/service/tacheService.js"></script>
+
+
+<script src="/service/eventService.js"></script>
+
+<script src="/service/userService.js"></script>
+
+
+<script src="/page/projet/projetCtrl.js"></script>
+<script src="/page/event/eventController.js"></script>
+<script src="/page/projet/modifProjetCtrl.js"></script>
+<script src="/page/phase/phaseCtrl.js"></script>
+<script src="/page/user/userCtrl.js"></script>
+<script src="/page/tache/tacheCtrl.js"></script>
+<script src="/page/event/detailEvent.js"></script>
+</head>
+<body ng-app="midgApp">
+
+	<nav class="navbar navbar-inverse" role="navigation">
+		<div class="navbar-header">
+			<a class="navbar-brand" ui-sref="projet">Midgard</a>
+		</div>
+		<ul class="nav navbar-nav" style="width: 90%;">
+
+			<li><a ui-sref="projet"><i class="fa fa-book   fa-fw"></i>
+					Projets</a></li>
+			<li><a ui-sref="listPhase"><i class="fa fa-th-list fa-fw"></i>
+					Phases</a></li>
+			<li><a ui-sref="event"><i class="fa fa-dashboard fa-fw"></i>
+					Events</a></li>
+
+
+			<li><a ui-sref="listTache"><i class="fa fa-edit   fa-fw"></i>
+					Taches</a></li>
+
+			<li><a ui-sref="listUser"><i class="fa  fa-users fa-fw"></i>
+					Users</a></li>
+			<li><a> </a></li>
+			<li><a> </a></li>
+			<li><a> </a></li>
+			<li><a> </a></li>
+			<li><a> </a></li>
+			<li><a> </a></li>
+			<li><a> </a></li>
+			<li><a> </a></li>
+			<li><a> </a></li>
+			<li><a> </a></li>
+			<li><a> </a></li>
+			<li><a> </a></li>
+			<li><a> </a></li>
+			<li><a> </a></li>
+			<li><a> </a></li>
+
+			<li><a th:href="@{/logout}"><i class="fa fa-sign-out fa-fw"></i>
+					Se d&eacute;connecter</a></li>
+		</ul>
+
+	</nav>
+
+	<!-- MAIN CONTENT -->
+	<div class="container">
+
+		<!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
+		<div ui-view=""></div>
+
+	</div>
+	<!-- /#wrapper -->
+
+	<!-- jQuery -->
+	<script src="/vendor/jquery/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="/vendor/metisMenu/metisMenu.min.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+	<script src="/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>

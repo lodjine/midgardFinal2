@@ -8,6 +8,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
 public void addViewControllers(ViewControllerRegistry viewControllerRegistry){
 	viewControllerRegistry.addViewController("/login").setViewName("login");
 	viewControllerRegistry.addViewController("/logout").setViewName("login");
+	viewControllerRegistry.addViewController("/index").setViewName("index");
 }
 
 }
