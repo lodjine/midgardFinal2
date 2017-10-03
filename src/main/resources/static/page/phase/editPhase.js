@@ -1,18 +1,18 @@
 angular.module('midgApp').controller('editPhase', editPhase);
 
-editPhase.$inject = [ '$scope', '$state', '$rootScope',
-	'eventService', 'projetService', 'phaseService', '$stateParams' ];
+editPhase.$inject = [ '$scope', '$state', '$rootScope', 'eventService',
+		'projetService', 'phaseService', '$stateParams' ];
 
-function editPhase($scope, $state,
+function editPhase($scope, $state, $rootScope, eventService,
 		projetService, phaseService, $stateParams) {
-console.log($stateParams.id);
-	var idPhase=$stateParams.id;
-	$scope.isTrue=false;
+	var idPhase = $stateParams.id;
+	$scope.isTrue = false;
 
-	
-	if(idPhase != null){
+	if (idPhase != null) {
 
-		$scope.phase = phaseService.get({id:idPhase});
+		$scope.phase = phaseService.get({
+			id : idPhase
+		});
 
 	}
 	$scope.change = function() {
@@ -26,7 +26,3 @@ console.log($stateParams.id);
 	};
 };
 
-
-	
-	
-	
