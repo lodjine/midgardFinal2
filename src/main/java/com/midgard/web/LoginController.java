@@ -16,10 +16,12 @@ public class LoginController {
 	public String login() {
 		return "login";
 	}
+
 	@RequestMapping("/index")
 	public String index() {
 		return "index";
 	}
+
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		Authentication aut = SecurityContextHolder.getContext().getAuthentication();
