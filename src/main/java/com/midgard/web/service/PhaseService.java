@@ -10,12 +10,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.midgard.web.dao.PhaseDao;
+import com.midgard.web.dao.ProjetDao;
 import com.midgard.web.model.Phase;
+import com.midgard.web.model.Projet;
 
 @RestController
 public class PhaseService {
 	@Autowired
 	PhaseDao phaseDao;
+	@Autowired
+	ProjetDao projetDao;
 
 	@RequestMapping(value = "/phase", method = RequestMethod.POST)
 	public Phase savePhase(@RequestBody Phase phase) {
@@ -47,5 +51,15 @@ public class PhaseService {
 	@RequestMapping(value = "/getByIdProjet/{id}", method = RequestMethod.GET)
 	public List<Phase> getByIdProjet(@PathVariable Long id) {
 		return phaseDao.getPhaseByProjet(id);
+	}
+	
+	@RequestMapping(value = "/savePhaseAux", method = RequestMethod.POST)
+	public Phase savePhaseAux(@RequestBody Phase phase) {
+		
+		
+		Projet projet=projetDao.getProjetByIdFunct(phase.getProjet().getIdProjet());
+		phase.setProjet(projet);
+		phaseDao.save(phase);
+		return phase;
 	}
 }

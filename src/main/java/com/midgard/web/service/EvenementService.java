@@ -43,5 +43,22 @@ public class EvenementService {
 	public void deleteEvents(@PathVariable Long id) {
 		evenementDao.delete(id);
 	}
-
+	@RequestMapping(value = "/getHeurTech/{id}", method = RequestMethod.GET)
+	public Long getHeurTech(@PathVariable Long id) {
+		return evenementDao.getheurTech(id);
+	}
+	@RequestMapping(value = "/getHeurIng/{id}", method = RequestMethod.GET)
+	public Long getHeurIng(@PathVariable Long id) {
+		return evenementDao.getheurIng(id);
+	}
+	
+	@RequestMapping(value = "/getHeurTechCumul/{id}", method = RequestMethod.GET)
+	public Long getHeurTechCumul(@PathVariable Long id) {
+		return evenementDao.getheurTechCumul(id);
+	}
+	@RequestMapping(value = "/getHeurIngCumul/{id}", method = RequestMethod.GET)
+	public Long getHeurIngCumul(@PathVariable Long id) {
+		return evenementDao.getheurIngCumul(id);
+	}
+	
 }

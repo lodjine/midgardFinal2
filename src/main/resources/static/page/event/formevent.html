@@ -24,7 +24,7 @@
 								class="form-control">
 								<option ng-selected="true" ng-value="">Selectionner un
 									projet</option>
-								<option ng-repeat="x in projets" ng-value="x.idbd">{{x.nomProjet}}</option>
+								<option ng-repeat="x in projets" ng-value="x.idbd">{{x.idProjet}}</option>
 							</select>
 						</div>
 						<div class="col-md-1">
@@ -33,16 +33,16 @@
 						<div class="col-md-2">
 							<select ng-change="selectPhase()" ng-model="selectedPhase"
 								required class="form-control">
-								<option ng-selected="true" ng-value="">Selectionner un
+								<option ng-selected="true" ng-value="">Selectionner une
 									phase</option>
-								<option ng-repeat="x in phases" ng-value="x.idphas">{{x.phase}}</option>
+								<option ng-repeat="x in phases" ng-value="x.idphas">{{x.idPhase}}</option>
 							</select>
 						</div>
 						<div class="col-md-1">
 							<label>Evenement:</label>
 						</div>
 						<div class="col-md-3">
-							<input class="form-control" ng-model="evenement.idEvent"
+							<input class="form-control" ng-model="evenement.idEvent" ng-disabled="true"
 								required name="ing" placeholder="N Evenement " type="text" />
 						</div>
 					</div>
@@ -125,16 +125,23 @@
 					<label>Date D&eacute;but : </label>
 				</div>
 				<div class="col-md-2">
-					<input class="form-control" ng-model="evenement.dateDebut" required
-						placeholder="date debut" type="date" />
+					<input class="form-control" ng-model="evenement.dateDebut" 	ng-change="change()"
+								ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}"
+								placeholder="date debut"
+								type="date" /> <span ng-show="isTrue" style="color: red">Date
+								debut Invalid</span>
+					
 				</div>
 
 				<div class="col-md-2">
 					<label>Date Fin : </label>
 				</div>
 				<div class="col-md-2">
-					<input class="form-control" ng-model="evenement.dateFin" required
-						placeholder="date fin" type="date" />
+						<input class="form-control" ng-model="evenement.dateFin" 	ng-change="change()"
+								ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}"
+								placeholder="date fin"
+								type="date" /> <span ng-show="isTrue" style="color: red">Date
+								fin Invalid</span>
 				</div>
 				<div class="col-md-2">
 					<label>Date Ech&eacute;ance : </label>

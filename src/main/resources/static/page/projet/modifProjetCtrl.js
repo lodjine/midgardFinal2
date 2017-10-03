@@ -26,7 +26,15 @@ function modifProjetCtrl($scope,entrepriseService,projetService, $window,$state,
 		$scope.flagModif=true;
 	}
 	
-	
+	$scope.change = function() {
+		var dateFin = new Date($scope.projet.dateFin);
+		var dateDebut = new Date($scope.projet.dateDebut);
+		if (dateDebut > dateFin) {
+			$scope.isTrue=true;
+		}else {
+			$scope.isTrue=false;
+		}
+	};
 };
 
 

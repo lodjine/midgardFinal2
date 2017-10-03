@@ -13,6 +13,9 @@
 
 	function detailEvent($scope, $state, $rootScope, eventService,
 			projetService, phaseService, $stateParams) {
+		
+		
+		
 		var idEvent=$stateParams.id;
 		if(idEvent != null){
 			$scope.evenement= eventService.get({id:idEvent});
