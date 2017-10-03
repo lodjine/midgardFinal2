@@ -7,21 +7,24 @@
 	</div>
 	<!-- /.row -->
 	<div class="col-lg-2">
-	<button type="submit" class="btn btn-primary btn-block" ng-show="flagModif" ng-click="activerModification()">
-						<i class="fa" aria-hidden="true"></i> Modifier
-					</button>
-					</div>
-					<div class="col-lg-2">
-	<button type="submit" class="btn btn-success btn-block" ng-show="!flagModif" ng-click="updateProjet()">
-						<i class="fa" aria-hidden="true"></i> Valider
-					</button>
-					</div>
-					<div class="col-lg-2">
-					
-					<button type="submit" class="btn btn btn-danger btn-block" ng-show="!flagModif" ng-click="deleteProjet(projet.idBd)">
-						<i class="fa" aria-hidden="true"></i> Supprimer
-					</button>
-					</div>
+		<button type="submit" class="btn btn-primary btn-block"
+			ng-show="flagModif" ng-click="activerModification()">
+			<i class="fa" aria-hidden="true"></i> Modifier
+		</button>
+	</div>
+	<div class="col-lg-2">
+		<button type="submit" class="btn btn-success btn-block"
+			ng-show="!flagModif" ng-click="updateProjet()">
+			<i class="fa" aria-hidden="true"></i> Valider
+		</button>
+	</div>
+	<div class="col-lg-2">
+
+		<button type="submit" class="btn btn btn-danger btn-block"
+			ng-show="!flagModif" ng-click="deleteProjet(projet.idBd)">
+			<i class="fa" aria-hidden="true"></i> Supprimer
+		</button>
+	</div>
 	<div class="row">
 		<div class="col-lg-11">
 
@@ -30,38 +33,46 @@
 					<div class="col-lg-2">
 
 						<div class="form-group">
-							<label>Id projet</label> <input class="form-control" ng-disabled="true"
-								ng-model="projet.idProjet" placeholder="id" type="text" />
+							<label>Id projet</label> <input class="form-control"
+								ng-disabled="true" ng-model="projet.idProjet" placeholder="id"
+								type="text" />
 
 						</div>
 
 					</div>
-					<div class="col-lg-5">
+					<div class="col-lg-4">
 
 
-						<label>Nom Projet</label> <input class="form-control" ng-disabled="flagModif"
-							ng-model="projet.nomProjet" placeholder="Nom" type="text" />
+						<label>Nom Projet</label> <input class="form-control"
+							ng-disabled="flagModif" ng-model="projet.nomProjet"
+							placeholder="Nom" type="text" />
 
 
 
 					</div>
-					<div class="col-lg-2">
+					<div class="col-lg-3">
 
 						<div class="form-group">
-							<label>Date debut</label> <input class="form-control" ng-disabled="flagModif"
-
-								ng-model="projet.dateDebut | date" placeholder="date debut"  />
-
+							<label>Date debut</label> <input class="form-control"
+								ng-disabled="flagModif" ng-model="projet.dateDebut" format-date
+								placeholder="date debut" type="date" ng-change="change()"
+								ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}" />
+							<span ng-show="isTrue" style="color: red">Date debut
+								Invalid</span>
 
 						</div>
 
 					</div>
-					<div class="col-lg-2">
+					<div class="col-md-3">
 
 						<div class="form-group">
 
-							<label>Date fin</label> <input class="form-control" ng-disabled="flagModif"
-								ng-model="projet.dateFin | date" placeholder="date fin" />
+							<label>Date fin</label> <input ng-model="projet.dateFin"
+								class="form-control" ng-disabled="flagModif" format-date
+								placeholder="date debut" type="date" ng-change="change()"
+								ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}" />
+							<span ng-show="isTrue" style="color: red">Date fin
+								Invalid</span>
 
 						</div>
 
@@ -70,19 +81,22 @@
 					<!-- /.col-lg-6 (nested) -->
 				</div>
 				<div class="row">
-		<div class="col-lg-6">
-<label>Entreprise</label>				
-				<select ng-model="projet.entreprise.id"  class="form-control" ng-disabled="flagModif">
-				<option ng-selected="projet.entreprise.nom"  ng-value="projet.entreprise.id" >{{projet.entreprise.nom}} </option>
-									<option  ng-repeat="x in entreprises"  ng-value="x.id" >{{x.nom}} </option>
-				</select>
-				
-			
-				
-				
+					<div class="col-lg-6">
+						<label>Entreprise</label> <select ng-model="projet.entreprise.id"
+							class="form-control" ng-disabled="flagModif">
+							<option ng-selected="projet.entreprise.nom"
+								ng-value="projet.entreprise.id">{{projet.entreprise.nom}}
+							</option>
+							<option ng-repeat="x in entreprises" ng-value="x.id">{{x.nom}}
+							</option>
+						</select>
+
+
+
+
+					</div>
 				</div>
-				</div>
-				
+
 				<!-- /.row (nested) -->
 			</div>
 			<!-- /.panel-body -->
@@ -94,91 +108,98 @@
 
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label>Date projet</label> <input class="form-control" ng-disabled="flagModif"
-									ng-model="projet.dateProjetMoe | date:'dd-MM-yyyy' " placeholder="date debut"
+								<label>Date projet</label> <input
+									ng-model="projet.dateProjetMoe" class="form-control"
+									ng-disabled="flagModif" format-date placeholder="date debut"
+									type="date" />
+
+							</div>
+						</div>
+
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label>Maitre d'ouvrage</label> <input class="form-control"
+									ng-disabled="flagModif" ng-model="projet.maitreDouvrage"
+									placeholder="Nom" type="text" />
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label>Maitre d'oeuvre</label> <input class="form-control"
+									ng-disabled="flagModif" ng-model="projet.maitreDoeuvre"
+									placeholder="Nom" type="text" />
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label>Architecte</label> <input class="form-control"
+									ng-disabled="flagModif" ng-model="projet.architect"
+									placeholder="Nom" type="text" />
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label>Geotechnicien</label> <input class="form-control"
+									ng-disabled="flagModif" ng-model="projet.geotechnicien"
+									placeholder="Nom" type="text" />
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label>CT</label> <input class="form-control"
+									ng-disabled="flagModif" ng-model="projet.ct" placeholder="Nom"
 									type="text" />
 
 							</div>
 						</div>
-
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label>Maitre d'ouvrage</label> <input class="form-control" ng-disabled="flagModif"
-									ng-model="projet.maitreDouvrage" placeholder="Nom" type="text" />
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label>Maitre d'oeuvre</label> <input class="form-control" ng-disabled="flagModif"
-									ng-model="projet.maitreDoeuvre" placeholder="Nom" type="text" />
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label>Architecte</label> <input class="form-control" ng-disabled="flagModif"
-									ng-model="projet.architect" placeholder="Nom" type="text" />
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label>Geotechnicien</label> <input class="form-control" ng-disabled="flagModif"
-									ng-model="projet.geotechnicien" placeholder="Nom" type="text" />
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label>CT</label> <input class="form-control" ng-disabled="flagModif"
-									ng-model="projet.ct" placeholder="Nom" type="text" />
-
-							</div>
-						</div>
 					</div>
 				</div>
 
-</div>
-
-				<div class="panel panel-default">
-					<div class="panel-heading">Descriptif structure</div>
-					<div class="panel-body">
-						<div class="row">
-
-							<div class="col-lg-8">
-
-								<div class="form-group">
-									<label>Infrastructure</label> <input class="form-control" ng-disabled="flagModif"
-										ng-model="projet.modeInfra" placeholder="Infrastructure"
-										type="text" />
-
-								</div>
-
-
-
-								<div class="form-group">
-									<label>Superstructure</label> <input class="form-control" ng-disabled="flagModif"
-										ng-model="projet.modeSuperstructure"
-										placeholder="Superstructure" type="text" />
-								</div>
-
-
-								<div class="form-group">
-									<label>informations additionnel</label> <input
-										class="form-control" ng-model="phase.projet.infoHypoSupp" ng-disabled="flagModif"
-										placeholder="Informations additionnel" type="text" />
-								</div>
-
-
-							</div>
-
-						</div>
-					</div>
-				</div>
-
-		
-		
-
-				
-
-				<!-- /.panel -->
 			</div>
-			<!-- /.col-lg-12 -->
+
+			<div class="panel panel-default">
+				<div class="panel-heading">Descriptif structure</div>
+				<div class="panel-body">
+					<div class="row">
+
+						<div class="col-lg-8">
+
+							<div class="form-group">
+								<label>Infrastructure</label> <input class="form-control"
+									ng-disabled="flagModif" ng-model="projet.modeInfra"
+									placeholder="Infrastructure" type="text" />
+
+							</div>
+
+
+
+							<div class="form-group">
+								<label>Superstructure</label> <input class="form-control"
+									ng-disabled="flagModif" ng-model="projet.modeSuperstructure"
+									placeholder="Superstructure" type="text" />
+							</div>
+
+
+							<div class="form-group">
+								<label>informations additionnel</label> <input
+									class="form-control" ng-model="phase.projet.infoHypoSupp"
+									ng-disabled="flagModif" placeholder="Informations additionnel"
+									type="text" />
+							</div>
+
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+			<!-- /.panel -->
 		</div>
+		<!-- /.col-lg-12 -->
+	</div>

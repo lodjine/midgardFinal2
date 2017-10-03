@@ -8,7 +8,9 @@
 
 		var resourceUrl = '/projet/:id';
 		return $resource(resourceUrl, {}, {
-
+			
+			
+			
 		});
 
 	}

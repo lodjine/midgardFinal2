@@ -72,6 +72,11 @@ midgApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'page/tache/formTache.html',
 			controller: 'tacheCtrl'
 
+        }).state('detailPhase', {
+            url: '/detailPhase/:id',
+            templateUrl: 'page/phase/formPhase.html',
+			controller: 'editPhase'
+
         });
     
 });

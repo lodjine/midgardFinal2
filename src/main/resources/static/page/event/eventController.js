@@ -24,7 +24,15 @@
 				id : $scope.selected
 			});
 		};
-
+		$scope.change = function() {
+			var dateFin = new Date($scope.evenement.dateFin);
+			var dateDebut = new Date($scope.evenement.dateDebut);
+			if (dateDebut > dateFin) {
+				$scope.isTrue = true;
+			} else {
+				$scope.isTrue = false;
+			}
+		};
 		$scope.selectPhase = function() {
 			var idp = Number($scope.selectedPhase);
 			angular.forEach($scope.phases, function(ph) {
@@ -35,7 +43,16 @@
 					if (nbr < 10) {
 						$scope.phase.nbrEvent="0"+$scope.phase.nbrEvent;
 					}
-					$scope.evenement.idEvent=$scope.phase.projet.idProjet+$scope.phase.phase+"x"+$scope.phase.nbrEvent;
+					var phaseChar = "";
+					if ($scope.phase.phase == "EXE")
+						phaseChar = "E";
+					if ($scope.phase.phase == "PRE")
+						phaseChar = "P";
+					if ($scope.phase.phase == "DCE")
+						phaseChar = "D";
+					if ($scope.phase.phase == "DIAG")
+						phaseChar = "DI";
+					$scope.evenement.idEvent=$scope.phase.projet.idProjet+phaseChar+"x"+$scope.phase.nbrEvent;
 				}
 			});
 		};

@@ -14,7 +14,13 @@
                 method: 'GET',
                 isArray: true,
                 url: '/getByIdProjet/:id'
-              }
+              },
+    	
+    	'savePhaseAux': {
+            method: 'POST',
+            url: '/savePhaseAux',
+            params: {'Idphase':1,'idProjet':2}
+          }
     	});
     	
     

@@ -7,7 +7,7 @@ var phaseCtrl=midgApp.controller('phaseCtrl', function($scope,$window,phaseServi
 	$scope.phases=phaseService.query();
 	
 
-    
-    
+	
+
 	
 	});

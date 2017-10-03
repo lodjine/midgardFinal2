@@ -191,17 +191,25 @@
 							</div>
 							<div class="col-lg-6">
 								<div class="form-group">
-									<label>Date debut</label> <input class="form-control"
-										ng-model="phase.dateDebut"
-										placeholder="Informations additionnel" type="date" />
+									<label>Date debut</label> 
+										
+										<input class="form-control"
+								ng-change="change2()"
+								ng-style="isTrue2 && {'border-color':'red'} || {'background-color': 'none'}"
+								ng-model="phase.dateDebut" placeholder="date debut"
+								type="date" /> <span ng-show="isTrue2" style="color: red">Date
+								debut Invalid</span>
 								</div>
 
 							</div>
 							<div class="col-lg-6">
 								<div class="form-group">
 									<label>Date Fin</label> <input class="form-control"
-										ng-model="phase.dateFin"
-										placeholder="Informations additionnel" type="date" />
+								ng-change="change2()"
+								ng-style="isTrue2 && {'border-color':'red'} || {'background-color': 'none'}"
+								ng-model="phase.dateFin" placeholder="date debut"
+								type="date" /> <span ng-show="isTrue2" style="color: red">Date
+								fin Invalid</span>
 								</div>
 							</div>
 							<div class="col-lg-6">

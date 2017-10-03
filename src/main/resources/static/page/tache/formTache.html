@@ -20,26 +20,16 @@
 						<div class="col-lg-6">
 							<div class="form-group">
 								<label>Intervenant</label> <select ng-change="selectOperateur()" ng-model="tache.operateur.id"   class="form-control">
-					<option  ng-repeat="x in users"  ng-value="x.id" >{{x.nom}}</option>
+					<option  ng-repeat="x in users"  ng-value="x.id" >{{x.name}}</option>
 				</select>
 							</div>
 						</div>
 
-						<div class="col-lg-6" ng-show="user.ingenieur && selectedUser">
+						<div class="col-lg-6">
 							<div class="form-group">
-								<label>Hj ing</label> <input class="form-control" 
-							ng-model="tache.hjIng" placeholder="Nom" type="text" />
-							</div>
-						</div>
-						<div class="col-lg-6" ng-show="!user.ingenieur && selectedUser">
-							<div class="form-group">
-								<label>Hj tech</label> <input class="form-control" 
-							ng-model="tache.hjTech" placeholder="Nom" type="text" />
-							</div>
-						</div>
-							<div class="col-lg-6" ng-show="!selectedUser">
-							<div class="form-group">
-								<br/><br/><br/>
+								<label>Evenement</label> <select ng-change="selectEvent()" ng-change="selectEvent()" ng-model="tache.event.idEvenement"   class="form-control">
+					<option  ng-repeat="x in events"  ng-value="x.idEvenement" >{{x.idEvent}}</option>
+				</select>
 							</div>
 						</div>
 						
@@ -50,11 +40,21 @@
 							</div>
 						</div>
 						
-						<div class="col-lg-6">
+					
+						
+							<div class="col-lg-6" ng-show="user.ingenieur && selectedUser && tache.event.idEvenement">
 							<div class="form-group">
-								<label>Evenement</label> <select ng-change="selectEvent()" ng-model="tache.event.idEvenement"   class="form-control">
-					<option  ng-repeat="x in events"  ng-value="x.idEvenement" >{{x.idEvent}}</option>
-				</select>
+								<label>Hj ing</label> <input class="form-control" 
+							ng-model="tache.hjIng" placeholder="nombre" type="number" ng-change="nombreHIng()" min=0 />
+							<span ng-show="maxIngD" style="color: red">max heures ingenieur pour cet evenement est de {{event.delaiHjIng}} dont {{event.delaiHjIngCumul}} deja affecte</span>
+							</div>
+						</div>
+						
+						<div class="col-lg-6" ng-show="!user.ingenieur && selectedUser && tache.event.idEvenement">
+							<div class="form-group">
+								<label>Hj tech</label> <input class="form-control" ng-change="nombreHTech()" min=0
+							ng-model="tache.hjTech" placeholder="nombre" type="text" />
+							<span ng-show="maxTechD" style="color: red">max heures ingenieur pour cet evenement est de {{event.delaiHjTech}} dont {{event.delaiHjTechCumul}} deja affecte</span>
 							</div>
 						</div>
 						<div class="col-lg-6">
@@ -82,7 +82,8 @@
                                             </div>
                                             
                                            
-                              
+                    <input class="form-control" 
+							ng-model="tache.statut.id"  type="hidden" />          
 						
 						</div>
 						

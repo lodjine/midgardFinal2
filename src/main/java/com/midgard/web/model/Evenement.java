@@ -21,6 +21,8 @@ public class Evenement {
 
 	private Long delaiHjIng;
 	private Long delaiHjTech;
+	private Long delaiHjIngCumul;
+	private Long delaiHjTechCumul;
 	private String idEvent;
 	private String docAtransm;
 
@@ -207,6 +209,22 @@ public class Evenement {
 
 	public void setDelaiHjTech(Long delaiHjTech) {
 		this.delaiHjTech = delaiHjTech;
+	}
+
+	public Long getDelaiHjIngCumul() {
+		return delaiHjIngCumul;
+	}
+
+	public void setDelaiHjIngCumul(Long delaiHjIngCumul) {
+		this.delaiHjIngCumul = delaiHjIngCumul;
+	}
+
+	public Long getDelaiHjTechCumul() {
+		return delaiHjTechCumul;
+	}
+
+	public void setDelaiHjTechCumul(Long delaiHjTechCumul) {
+		this.delaiHjTechCumul = delaiHjTechCumul;
 	}
 
 }
