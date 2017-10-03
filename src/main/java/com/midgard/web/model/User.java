@@ -99,13 +99,7 @@ public void setId(Long id) {
 		this.active = active;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	
 
 	public Set<Role> getRoles() {
 		return roles;
@@ -115,20 +109,21 @@ public void setId(Long id) {
 		this.roles = roles;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
+	
 	public Boolean getIngenieur() {
 		return ingenieur;
 	}
 
 	public void setIngenieur(Boolean ingenieur) {
 		this.ingenieur = ingenieur;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }
