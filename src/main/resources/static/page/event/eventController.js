@@ -15,7 +15,7 @@
 		$scope.showTache = true;
 		$scope.showevent = false;
 		$scope.checked = false;
-		$scope.evenement = {
+		$scope.event = {
 			idEvenement : null,
 			idPhase : {
 				idphas : null
@@ -70,15 +70,15 @@
 						phaseChar = "D";
 					if ($scope.phase.phase == "DIAG")
 						phaseChar = "DI";
-					$scope.evenement.idEvent = $scope.phase.projet.idProjet
+					$scope.event.idEvent = $scope.phase.projet.idProjet
 							+ phaseChar + "x" + $scope.phase.nbrEvent;
 				}
 			});
 		};
 		$scope.saveEvenement = function() {
-			$scope.evenement.idPhase = $scope.phase;
-			console.log($scope.evenement);
-			eventService.save($scope.evenement);
+			$scope.event.idPhase = $scope.phase;
+			console.log($scope.event);
+			eventService.save($scope.event);
 			phaseService.save($scope.phase);
 			$state.go('event');
 		};
@@ -90,6 +90,7 @@
 				$scope.maxIngD = false;
 				$scope.maxTechD = false;
 				$scope.users = userService.query();
+				$scope.tache.event=$scope.event;
 			} else {
 				$scope.showTache = true;
 				$scope.showevent = false;
