@@ -76,6 +76,12 @@
 			});
 		};
 		$scope.saveEvenement = function() {
+			
+			
+			$scope.evenement.delaiHjIngCumul=0;
+			$scope.evenement.delaiHjTechCumul=0;
+			$scope.evenement.nbTaches=1;
+			
 			$scope.evenement.idPhase = $scope.phase;
 			console.log($scope.evenement);
 			eventService.save($scope.evenement);
@@ -178,6 +184,11 @@
 				$scope.maxIngD = false;
 
 		}
+		
+		$scope.progressionTotal = function(id) {
 
+			return eventService.progressionEvent({id:id});
+		}
+		
 	}
 })();

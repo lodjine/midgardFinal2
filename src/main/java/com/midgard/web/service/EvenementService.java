@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.midgard.web.dao.EvenementDao;
+import com.midgard.web.dao.TacheDao;
 import com.midgard.web.model.Evenement;
 
 @RestController
@@ -17,6 +18,9 @@ public class EvenementService {
 	@Autowired
 	EvenementDao evenementDao;
 
+	
+	@Autowired
+	TacheDao tacheDao;
 	@RequestMapping(value = "/evenement", method = RequestMethod.POST)
 	public Evenement saveEvent(@RequestBody Evenement evenement) {
 		evenementDao.save(evenement);
@@ -59,6 +63,17 @@ public class EvenementService {
 	@RequestMapping(value = "/getHeurIngCumul/{id}", method = RequestMethod.GET)
 	public Long getHeurIngCumul(@PathVariable Long id) {
 		return evenementDao.getheurIngCumul(id);
+	}
+	
+	@RequestMapping(value = "/progressionEvent/{id}", method = RequestMethod.GET)
+	public void progressionEvent(@PathVariable Long id) {
+		
+		Long progressionTotal=tacheDao.progressionEvent(id);
+		
+	Evenement event=evenementDao.findOne(id);
+	event.setEtatAvancement(progressionTotal/event.getNbTaches());
+	
+	evenementDao.save(event);
 	}
 	
 }

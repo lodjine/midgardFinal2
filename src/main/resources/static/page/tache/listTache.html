@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-init="initFunc()">
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">List des taches</h1>
@@ -58,7 +58,7 @@
 				
 				</td>
 				<td>{{item.operateur.nom}} {{item.operateur.prenom}}</td>
-				<td><button type="submit" class="btn btn-primary btn-block" ui-sref="detailProjet({id:item.idbd})">
+				<td><button type="submit" class="btn btn-primary btn-block" ui-sref="detailTache({id:item.idBd})">
 						<i class="fa fa-search  " aria-hidden="true"></i> Consulter
 					</button></td>
 			</tr>

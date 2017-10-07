@@ -81,6 +81,11 @@ midgApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'page/tache/formTache.html',
 			controller: 'tacheCtrl'
 
+        }).state('detailTache', {
+    		url : '/detailTache/:id',
+    		templateUrl: 'page/tache/modifTache.html',
+    		controller : 'detailTacheCtrl'
+    			
         }).state('detailPhase', {
             url: '/detailPhase/:id',
             templateUrl: 'page/phase/formPhase.html',
@@ -97,5 +102,7 @@ midgApp.config(function($stateProvider, $urlRouterProvider) {
 			controller: 'entrepriseController'
 
         });
+    
+    
     
 });

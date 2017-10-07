@@ -31,7 +31,14 @@
               method: 'GET',
               isArray: false,
               url: '/getHeurTech/:id'
-            }
+            },
+      		'progressionEvent': {
+                method: 'GET',
+                isArray: false,
+                url: '/progressionEvent/:id'
+              }
+                
+                
 		});
 
 	}
