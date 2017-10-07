@@ -42,7 +42,7 @@
 							<label>Evenement:</label>
 						</div>
 						<div class="col-md-3">
-							<input class="form-control" ng-model="evenement.idEvent"
+							<input class="form-control" ng-model="event.idEvent"
 								ng-disabled="true" required name="ing"
 								placeholder="N Evenement " type="text" />
 						</div>
@@ -71,17 +71,17 @@
 						<div class="form-group">
 							<label>Docs &agrave; transmettre </label> <br /> <label
 								class="checkbox-inline"> <input
-								ng-model="evenement.plans" type="checkbox">Plans
+								ng-model="event.plans" type="checkbox">Plans
 							</label> <label class="checkbox-inline"> <input
-								ng-model="evenement.noteCalcul" type="checkbox">Note de
+								ng-model="event.noteCalcul" type="checkbox">Note de
 								calculs
 							</label> <label class="checkbox-inline"> <input
-								ng-model="evenement.quantitif" type="checkbox">Quantitatifs
+								ng-model="event.quantitif" type="checkbox">Quantitatifs
 							</label> <label class="checkbox-inline"> <input
-								ng-model="evenement.modele3d" type="checkbox">Mod&egrave;le
+								ng-model="event.modele3d" type="checkbox">Mod&egrave;le
 								3D
 							</label> <label class="checkbox-inline"> <input
-								ng-model="evenement.rapport" type="checkbox">Rapport
+								ng-model="event.rapport" type="checkbox">Rapport
 							</label>
 						</div>
 					</div>
@@ -96,7 +96,7 @@
 
 
 					<select required="required" class="form-control"
-						ng-model="evenement.etat">
+						ng-model="event.etat">
 						<option>choisir un &eacute;tat</option>
 						<option>Non trait&eacute;</option>
 						<option>En cours</option>
@@ -111,12 +111,12 @@
 				</div>
 				<div class="col-md-2">
 
-					<input class="form-control" ng-model="evenement.delaiHjIng"
+					<input class="form-control" ng-model="event.delaiHjIng"
 						required name="ing" placeholder="JH Ing" type="text" />
 				</div>
 				<div class="col-md-2">
 
-					<input class="form-control" ng-model="evenement.delaiHjTech"
+					<input class="form-control" ng-model="event.delaiHjTech"
 						required name="tech" placeholder="JH Tech" type="text" />
 				</div>
 			</div>
@@ -126,7 +126,7 @@
 					<label>Date D&eacute;but : </label>
 				</div>
 				<div class="col-md-2">
-					<input class="form-control" ng-model="evenement.dateDebut"
+					<input class="form-control" ng-model="event.dateDebut"
 						ng-change="change()"
 						ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}"
 						placeholder="date debut" type="date" /> <span ng-show="isTrue"
@@ -138,7 +138,7 @@
 					<label>Date Fin : </label>
 				</div>
 				<div class="col-md-2">
-					<input class="form-control" ng-model="evenement.dateFin"
+					<input class="form-control" ng-model="event.dateFin"
 						ng-change="change()"
 						ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}"
 						placeholder="date fin" type="date" /> <span ng-show="isTrue"
@@ -148,7 +148,7 @@
 					<label>Date Ech&eacute;ance : </label>
 				</div>
 				<div class="col-md-2">
-					<input class="form-control" ng-model="evenement.echeance" required
+					<input class="form-control" ng-model="event.echeance" required
 						placeholder="date Ech&eacute;ance" type="date" />
 				</div>
 
@@ -159,7 +159,7 @@
 					<label>Priorit&eacute; : </label>
 				</div>
 				<div class="col-md-2">
-					<input class="form-control" ng-model="evenement.priorite" required
+					<input class="form-control" ng-model="event.priorite" required
 						placeholder="1 &agrave; 10 " type="text" />
 				</div>
 			</div>
@@ -180,7 +180,7 @@
 </form>
 
 
-<form ng-submit="form.$valid && saveEvenement()" name="form"
+<form ng-submit="form.$valid && saveTache()" name="form"
 	ng-show="showevent">
 	<div class="panel panel-default">
 		<div class="panel-heading">Information Evenement</div>
@@ -215,7 +215,7 @@
 							<label>Evenement:</label>
 						</div>
 						<div class="col-md-3">
-							<input class="form-control" ng-model="evenement.idEvent"
+							<input class="form-control" ng-model="tache.event.idEvent"
 								ng-disabled="true" required name="ing"
 								placeholder="N Evenement " type="text" />
 						</div>
@@ -246,15 +246,15 @@
 								class="checkbox-inline"> <input
 								ng-model="evenement.plans" type="checkbox">Plans
 							</label> <label class="checkbox-inline"> <input
-								ng-model="evenement.noteCalcul" type="checkbox">Note de
+								ng-model="tache.event.noteCalcul" type="checkbox">Note de
 								calculs
 							</label> <label class="checkbox-inline"> <input
-								ng-model="evenement.quantitif" type="checkbox">Quantitatifs
+								ng-model="tache.event.quantitif" type="checkbox">Quantitatifs
 							</label> <label class="checkbox-inline"> <input
-								ng-model="evenement.modele3d" type="checkbox">Mod&egrave;le
+								ng-model="tache.event.modele3d" type="checkbox">Mod&egrave;le
 								3D
 							</label> <label class="checkbox-inline"> <input
-								ng-model="evenement.rapport" type="checkbox">Rapport
+								ng-model="tache.event.rapport" type="checkbox">Rapport
 							</label>
 						</div>
 					</div>
@@ -269,7 +269,7 @@
 
 
 					<select required="required" class="form-control"
-						ng-model="evenement.etat">
+						ng-model="tache.event.etat">
 						<option>choisir un &eacute;tat</option>
 						<option>Non trait&eacute;</option>
 						<option>En cours</option>
@@ -284,12 +284,12 @@
 				</div>
 				<div class="col-md-2">
 
-					<input class="form-control" ng-model="evenement.delaiHjIng"
+					<input class="form-control" ng-model="tache.event.delaiHjIng"
 						required name="ing" placeholder="JH Ing" type="text" />
 				</div>
 				<div class="col-md-2">
 
-					<input class="form-control" ng-model="evenement.delaiHjTech"
+					<input class="form-control" ng-model="tache.event.delaiHjTech"
 						required name="tech" placeholder="JH Tech" type="text" />
 				</div>
 			</div>
@@ -299,7 +299,7 @@
 					<label>Date D&eacute;but : </label>
 				</div>
 				<div class="col-md-2">
-					<input class="form-control" ng-model="evenement.dateDebut"
+					<input class="form-control" ng-model="tache.event.dateDebut"
 						ng-change="change()"
 						ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}"
 						placeholder="date debut" type="date" /> <span ng-show="isTrue"
@@ -311,7 +311,7 @@
 					<label>Date Fin : </label>
 				</div>
 				<div class="col-md-2">
-					<input class="form-control" ng-model="evenement.dateFin"
+					<input class="form-control" ng-model="tache.event.dateFin"
 						ng-change="change()"
 						ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}"
 						placeholder="date fin" type="date" /> <span ng-show="isTrue"
@@ -321,7 +321,7 @@
 					<label>Date Ech&eacute;ance : </label>
 				</div>
 				<div class="col-md-2">
-					<input class="form-control" ng-model="evenement.echeance" required
+					<input class="form-control" ng-model="tache.event.echeance" required
 						placeholder="date Ech&eacute;ance" type="date" />
 				</div>
 
@@ -332,7 +332,7 @@
 					<label>Priorit&eacute; : </label>
 				</div>
 				<div class="col-md-2">
-					<input class="form-control" ng-model="evenement.priorite" required
+					<input class="form-control" ng-model="tache.event.priorite" required
 						placeholder="1 &agrave; 10 " type="text" />
 				</div>
 			</div>
