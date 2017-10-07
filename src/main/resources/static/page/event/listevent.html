@@ -1,3 +1,5 @@
+
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-12">
@@ -5,20 +7,41 @@
 		</div>
 		<!-- /.col-lg-12 -->
 	</div>
+	<div class="col-lg-12">
 	<div class="col-lg-2">
 		<button type="nouveau" class="btn btn-primary btn-block" style=" width: 117%;"
 			ui-sref="nouveauEvent">
 
 			<i class="fa fa-times-circle" aria-hidden="true"></i> Ajouter Evenement
 		</button>
-		<br>
+	</div>
+	</div>
+	<div class="col-lg-12">
+	<div class="col-lg-3">
+	<label>Recherche par projet</label> <select  ng-model="idProjetRecherche" ng-change="selectProjetRecherche()"
+		class="form-control">
+		<option ng-value=""></option>
+		<option ng-repeat="x in projetsRecherche" ng-value="x.idbd">{{x.idProjet}}
+		</option>
+	</select>
+
+	</div> 
+	<div class="col-lg-3">
+	<label>Recherche par phase</label> <select  ng-model="idPhase"
+		class="form-control">
+		<option ng-value=""></option>
+		<option ng-repeat="x in phasesRecherhe" ng-value="x.idPhase">{{x.idPhase}}
+		</option>
+	</select>
+	<br>
+	</div> 
 	</div>
 	<table class="table table-bordered" width="100%" id="dataTable"
 		cellspacing="0">
 		<thead>
 			<tr>
-				<th>id</th>
-				<th>Projet</th>
+			<th>Id phase</th>
+				<th>Id</th>
 				<th>Entreprise</th>
 				<th>Phase</th>
 				<th>dateDebut</th>
@@ -29,9 +52,9 @@
 		</thead>
 
 		<tbody>
-			<tr ng-repeat="item in events">
+			<tr ng-repeat="item in events | filter:idPhase ">
+			<td>{{item.idPhase.idPhase}}</td>
 				<td>{{item.idEvent}}</td>
-				<td>{{item.idPhase.projet.nomProjet}}</td>
 				<td>{{item.idPhase.projet.entreprise.nom}}</td>
 				<td>{{item.idPhase.phase}}</td>
 				<td>{{item.dateDebut}}</td>

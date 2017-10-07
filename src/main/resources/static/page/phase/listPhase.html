@@ -35,7 +35,7 @@
 
 		<tbody>
 			<tr ng-repeat="item in phases| filter:idProjet">
-			<td >{{item.idphas}}</td>
+			<td ng-show="false">{{item.idphas}}</td>
 				<td>{{item.projet.idProjet}}</td>
 				<td>{{item.phase}}</td>
 				<td>{{item.dateDebut| date}}</td>

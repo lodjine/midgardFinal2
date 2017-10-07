@@ -36,12 +36,12 @@ public class UserService {
 	}
 
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-	public User getUser(@PathVariable Integer id) {
+	public User getUser(@PathVariable Long id) {
 		return userDao.findOne(id);
 	}
 
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
-	public void deleteUser(@PathVariable Integer id) {
+	public void deleteUser(@PathVariable Long id) {
 		userDao.delete(id);
 	}
 

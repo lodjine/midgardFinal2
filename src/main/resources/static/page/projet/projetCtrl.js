@@ -1,6 +1,6 @@
 var midgApp = angular.module('midgApp');
 
-var projetCtrl = midgApp.controller('projetCtrl', function($scope, $window,
+var projetCtrl = midgApp.controller('projetCtrl', function($scope, $window,$state,
 		projetService, entrepriseService, phaseService, documentService) {
 	$scope.phase = {
 		id : null,
@@ -15,17 +15,17 @@ var projetCtrl = midgApp.controller('projetCtrl', function($scope, $window,
 			}
 		};
 	$scope.phase3 = {
-			idProjet : null,
+			idPhase : null,
 			phase : null,
-projet : {
-	idbd : null
+			projet : {
+				idProjet : null
 			}
 		};
 	$scope.phase4 = {
-			idProjet : null,
+			idPhase : null,
 			phase : null,
-projet : {
-	idbd : null
+			projet : {
+				idProjet : null
 			}
 		};
 	
@@ -70,12 +70,12 @@ projet : {
 			phaseService.savePhaseAux($scope.phase2);
 			
 			$scope.phase3.idPhase=$scope.phase.projet.idProjet+"D";
-			$scope.phase2.phase="DCE"
+			$scope.phase3.phase="DCE"
 			$scope.phase3.projet.idProjet=$scope.phase.projet.idProjet;
 			phaseService.savePhaseAux($scope.phase3);
 			
 			$scope.phase4.idPhase=$scope.phase.projet.idProjet+"Di";
-			$scope.phase2.phase="DIAG"
+			$scope.phase4.phase="DIAG"
 			$scope.phase4.projet.idProjet=$scope.phase.projet.idProjet;
 			phaseService.savePhaseAux($scope.phase4);
 		}
@@ -87,12 +87,12 @@ projet : {
 			phaseService.savePhaseAux($scope.phase2);
 			
 			$scope.phase3.idPhase=$scope.phase.projet.idProjet+"D";
-			$scope.phase2.phase="DCE"
+			$scope.phase3.phase="DCE"
 			$scope.phase3.projet.idProjet=$scope.phase.projet.idProjet;
 			phaseService.savePhaseAux($scope.phase3);
 			
 			$scope.phase4.idPhase=$scope.phase.projet.idProjet+"Di";
-			$scope.phase2.phase="DIAG"
+			$scope.phase4.phase="DIAG"
 			$scope.phase4.projet.idProjet=$scope.phase.projet.idProjet;
 			phaseService.savePhaseAux($scope.phase4);
 		}
@@ -104,12 +104,12 @@ projet : {
 			phaseService.savePhaseAux($scope.phase2);
 			
 			$scope.phase3.idPhase=$scope.phase.projet.idProjet+"P";
-			$scope.phase2.phase="PRE"
+			$scope.phase3.phase="PRE"
 			$scope.phase3.projet.idProjet=$scope.phase.projet.idProjet;
 			phaseService.savePhaseAux($scope.phase3);
 			
 			$scope.phase4.idPhase=$scope.phase.projet.idProjet+"Di";
-			$scope.phase2.phase="DIAG"
+			$scope.phase4.phase="DIAG"
 			$scope.phase4.projet.idProjet=$scope.phase.projet.idProjet;
 			phaseService.savePhaseAux($scope.phase4);
 		}
@@ -121,16 +121,18 @@ projet : {
 			phaseService.savePhaseAux($scope.phase2);
 			
 			$scope.phase3.idPhase=$scope.phase.projet.idProjet+"P";
-			$scope.phase2.phase="PRE"
+			$scope.phase3.phase="PRE"
 			$scope.phase3.projet.idProjet=$scope.phase.projet.idProjet;
-			phaseService.savePhaseAux($scope.phase4);
+			phaseService.savePhaseAux($scope.phase3);
 			
 			$scope.phase4.idPhase=$scope.phase.projet.idProjet+"D";
-			$scope.phase2.phase="DCE"
+			$scope.phase4.phase="DCE"
 			$scope.phase4.projet.idProjet=$scope.phase.projet.idProjet;
 			phaseService.savePhaseAux($scope.phase4);
 		}
 		console.log($scope.phase);
+		
+		$state.go('projet');
 
 	};
 

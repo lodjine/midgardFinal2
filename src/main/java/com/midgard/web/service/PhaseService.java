@@ -53,13 +53,30 @@ public class PhaseService {
 		return phaseDao.getPhaseByProjet(id);
 	}
 	
+	public boolean saveRecurcive(Phase phase){
+		if(phase.getProjet()!=null&&phase.getProjet().getIdbd()!=null){
+			phaseDao.save(phase);
+			return true;
+		}else
+			return false;
+	}
+
 	@RequestMapping(value = "/savePhaseAux", method = RequestMethod.POST)
 	public Phase savePhaseAux(@RequestBody Phase phase) {
-		
-		
-		Projet projet=projetDao.getProjetByIdFunct(phase.getProjet().getIdProjet());
+
+		Projet projet = projetDao.getProjetByIdFunct(phase.getProjet().getIdProjet());
+		long idProjet=phase.getProjet().getIdProjet();
 		phase.setProjet(projet);
-		phaseDao.save(phase);
+
+		boolean test=false;
+		while(!test){
+			 projet = projetDao.getProjetByIdFunct(idProjet);
+
+			phase.setProjet(projet);
+			test=saveRecurcive(phase);
+			
+		}
+
 		return phase;
 	}
 }

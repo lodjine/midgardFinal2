@@ -46,7 +46,7 @@
 							<div class="form-group">
 								<label>Hj ing</label> <input class="form-control" 
 							ng-model="tache.hjIng" placeholder="nombre" type="number" ng-change="nombreHIng()" min=0 />
-							<span ng-show="maxIngD" style="color: red">max heures ingenieur pour cet evenement est de {{event.delaiHjIng}} dont {{event.delaiHjIngCumul}} deja affecte</span>
+							<span ng-show="maxIngD" style="color: red">max heures ingenieur pour cet evenement est de {{event.delaiHjIng}}</span> <span ng-show="maxIngD && event.delaiHjIngCumul" style="color: red">dont {{event.delaiHjIngCumul}} deja affecte</span>
 							</div>
 						</div>
 						
@@ -54,7 +54,7 @@
 							<div class="form-group">
 								<label>Hj tech</label> <input class="form-control" ng-change="nombreHTech()" min=0
 							ng-model="tache.hjTech" placeholder="nombre" type="text" />
-							<span ng-show="maxTechD" style="color: red">max heures ingenieur pour cet evenement est de {{event.delaiHjTech}} dont {{event.delaiHjTechCumul}} deja affecte</span>
+							<span ng-show="maxTechD" style="color: red">max heures ingenieur pour cet evenement est de {{event.delaiHjTech}}</span><span ng-show="maxIngD && event.delaiHjTechCumul" style="color: red"> dont {{event.delaiHjTechCumul}} deja affecte</span>
 							</div>
 						</div>
 						<div class="col-lg-6">

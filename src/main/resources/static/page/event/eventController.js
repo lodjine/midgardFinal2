@@ -16,8 +16,17 @@
 		$scope.selectedPhase = {};
 		$scope.events = eventService.query();
 		$scope.phases = null;
+		$scope.projetsRecherche=projetService.query();
 		$scope.phase = {};
 		$scope.projets = projetService.query();
+
+		
+		
+		$scope.selectProjetRecherche = function() {
+			$scope.phasesRecherhe=phaseService.getByIdProjet({
+				id : $scope.idProjetRecherche
+			});
+		}
 		$scope.selectAllPhase = function() {
 			console.log($scope.selected);
 			$scope.phases = phaseService.getByIdProjet({
