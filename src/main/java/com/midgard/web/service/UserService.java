@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.midgard.web.dao.UserDao;
+import com.midgard.web.model.Tache;
 import com.midgard.web.model.User;
 
 @RestController
@@ -26,6 +27,7 @@ public class UserService {
 
 	@RequestMapping(value = "/user", method = RequestMethod.PUT)
 	public User updateUser(@RequestBody User user) {
+		user.setActive(1);
 		userDao.save(user);
 		return user;
 	}
@@ -44,5 +46,8 @@ public class UserService {
 	public void deleteUser(@PathVariable Long id) {
 		userDao.delete(id);
 	}
-
+	@RequestMapping(value = "/userByLogin/{login}", method = RequestMethod.GET)
+	public User getUserByLogin(@PathVariable String login) {
+		return userDao.getUserByLogin(login);
+	}
 }

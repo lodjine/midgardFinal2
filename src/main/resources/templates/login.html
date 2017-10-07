@@ -12,19 +12,26 @@
 <body>
 	<div class="container" style="margin-top: 15%;">
 		<form th:action="@{/login}" method="post" class="form-signin">
-			<h3 class="form-signin-heading" style="margin-left: 5%;">Authentification Midgard</h3>
+			<h3 class="form-signin-heading" style="margin-left: 5%;">Authentification
+				Midgard</h3>
 			<br /> <input type="text" id="email" name="username"
-				placeholder="Identifiant utilisateur" class="form-control" /> <br /> <input
-				type="password" placeholder="Mot de passe" id="password" name="password"
-				class="form-control" /> <br />
+				placeholder="Identifiant utilisateur" class="form-control" /> <br />
+			<input type="password" placeholder="Mot de passe" id="password"
+				name="password" class="form-control" /> <br />
 
 			<div align="center" th:if="${param.error}">
-				<p style="font-size: 20; color: #FF1C19;">User name ou mot de passe
-					invalide, veuillez vérifier</p>
+				<p style="font-size: 20; color: #FF1C19;">User name ou mot de
+					passe invalide, veuillez vérifier</p>
 			</div>
-			<button type="Submit" class="btn btn-lg btn-primary btn-block">Se
-				connecter</button>
+			<button type="Submit" class="btn btn-lg btn-primary btn-block"
+				onclick="remplissageStockage()">Se connecter</button>
 		</form>
 	</div>
 </body>
+<script>
+	function remplissageStockage() {
+		var login =document.getElementById("email").value;
+		localStorage.setItem('login', login);
+	}
+</script>
 </html>

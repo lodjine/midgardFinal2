@@ -1,0 +1,43 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">List Entreprise</h1>
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<!-- /.row -->
+	<div class="col-lg-2">
+		<button type="nouveau" class="btn btn-primary btn-block"
+			ui-sref="formEntrep">
+
+			<i class="fa fa-times-circle" aria-hidden="true"></i> nouvelle
+			Entreprise
+		</button>
+	</div>
+	<br /> <br />
+
+	<table class="table table-bordered" width="100%" id="dataTable"
+		cellspacing="0">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nom</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr ng-repeat="item in entreprises">
+				<td>{{item.id}}</td>
+				<td>{{item.nom}}</td>
+
+				<td><button type="submit" class="btn btn-primary btn-block"
+						ui-sref="detailUser({id:item.id})">
+						<i class="fa fa-search  " aria-hidden="true"></i> Consulter
+					</button></td>
+			</tr>
+		</tbody>
+	</table>
+
+
+</div>

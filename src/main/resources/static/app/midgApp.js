@@ -16,12 +16,16 @@ angular.module('midgApp')
 
 midgApp.config(function($stateProvider, $urlRouterProvider) {
 
-    
+	 $urlRouterProvider.otherwise('/home');
 
     $stateProvider.state('projet', {
             url: '/listProjets',
             templateUrl: 'page/projet/listProjet.html',
 			controller: 'projetCtrl'
+        }).state('home', {
+            url: '/home',
+            templateUrl: 'page/home/home.html',
+			controller: 'homeController'
         }).state('formProjet', {
             url: '/nouveauProjet',
             templateUrl: 'page/projet/formProjet.html',
@@ -81,6 +85,16 @@ midgApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/detailPhase/:id',
             templateUrl: 'page/phase/formPhase.html',
 			controller: 'editPhase'
+
+        }).state('listEntreprise', {
+            url: '/listEntreprise',
+            templateUrl: 'page/entreprise/listEntreprise.html',
+			controller: 'entrepriseController'
+
+        }).state('formEntrep', {
+            url: '/nouvelleEntreprise',
+            templateUrl: 'page/entreprise/addEntreprise.html',
+			controller: 'entrepriseController'
 
         });
     

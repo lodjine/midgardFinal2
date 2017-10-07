@@ -10,8 +10,13 @@
     function userService ($resource) {
     	
     	var resourceUrl =  '/user/:id';
-    	return $resource(resourceUrl, {}, {
-    		
+    		return $resource(resourceUrl, {}, {
+        		'userByLogin': {
+                    method: 'GET',
+                    isArray: false,
+                    url: '/userByLogin/:login' ,
+                    params:{login:'login'}
+                  }
     	});
     	
     

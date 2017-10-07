@@ -1,16 +1,12 @@
 package com.midgard.web.model;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Email;
@@ -46,18 +42,18 @@ public class User {
 	private String username;
 	@Column(name = "active")
 	private int active;
-	@ManyToMany(cascade = CascadeType.MERGE)
-	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Set<Role> roles;
-private Boolean ingenieur;
-	
-	public Long getId() {
-	return id;
-}
+	@OneToOne
+	@JoinColumn(name = "role")
+	private Role role;
+	private Boolean ingenieur;
 
-public void setId(Long id) {
-	this.id = id;
-}
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getPassword() {
 		return password;
@@ -99,17 +95,6 @@ public void setId(Long id) {
 		this.active = active;
 	}
 
-	
-
-	public Set<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
-
-	
 	public Boolean getIngenieur() {
 		return ingenieur;
 	}
@@ -124,6 +109,14 @@ public void setId(Long id) {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 }
