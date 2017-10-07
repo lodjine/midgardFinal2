@@ -6,52 +6,55 @@
 <title>Midgard</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
-<!-- MetisMenu CSS -->
-<link href="/vendor/metisMenu/metisMenu.min.css" rel="stylesheet" />
-
-<!-- Custom CSS -->
-<link href="/css/sb-admin-2.css" rel="stylesheet" />
-
-<!-- Custom Fonts -->
-<link href="/vendor/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css" />
-<script src="/bower_components/angular/angular.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/vendor/font-awesome/css/font-awesome.min.css}" />
+<script th:src="@{/css/sb-admin-2.min.css}">
+	...
+</script>
+<script th:src="@{/bower_components/angular/angular.min.js}">
+	...
+</script>
+<script th:src="@{/bower_components/angular/angular.min.js}"></script>
 <script
-	src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-<script src="/bower_components/angular-resource/angular-resource.min.js"></script>
-<script src="/bower_components/angular-extend-promises/angular-extend-promises.min.js"></script>
-<script src="/app/midgApp.js"></script>
-<script src="/service/projetService.js"></script>
-<script src="/service/entrepriseService.js"></script>
-<script src="/service/phaseService.js"></script>
-<script src="/service/documentService.js"></script>
-<script src="/service/tacheService.js"></script>
+	th:src="@{/bower_components/angular-ui-router/release/angular-ui-router.min.js}"></script>
+<script
+	th:src="@{/bower_components/angular-resource/angular-resource.min.js}"></script>
+<script
+	th:src="@{/bower_components/angular-extend-promises/angular-extend-promises.min.js}"></script>
+<script th:src="@{/app/midgApp.js}"></script>
+<script th:src="@{/service/projetService.js}"></script>
+<script th:src="@{/service/entrepriseService.js}"></script>
+<script th:src="@{/service/phaseService.js}"></script>
+<script th:src="@{/service/documentService.js}"></script>
+<script th:src="@{/service/tacheService.js}"></script>
 
 
-<script src="/service/eventService.js"></script>
+<script th:src="@{/service/eventService.js}"></script>
 
-<script src="/service/userService.js"></script>
-<script src="/service/roleService.js"></script>
+<script th:src="@{/service/userService.js}"></script>
+<script th:src="@{/service/roleService.js}"></script>
+<script th:src="@{/page/home/homeController.js}"></script>
+<script th:src="@{/page/projet/projetCtrl.js}"></script>
+<script th:src="@{/page/event/eventController.js}"></script>
+<script th:src="@{/page/projet/modifProjetCtrl.js}"></script>
+<script th:src="@{/page/phase/phaseCtrl.js}"></script>
+<script th:src="@{/page/phase/editPhase.js}"></script>
 
-<script src="/page/projet/projetCtrl.js"></script>
-<script src="/page/event/eventController.js"></script>
-<script src="/page/projet/modifProjetCtrl.js"></script>
-<script src="/page/phase/phaseCtrl.js"></script>
-<script src="/page/phase/editPhase.js"></script>
+<script th:src="@{/page/user/userCtrl.js}"></script>
+<script th:src="@{/page/user/adduser.js}"></script>
+<script th:src="@{/page/tache/tacheCtrl.js}"></script>
+<script th:src="@{/page/event/detailEvent.js}"></script>
+<script th:src="@{/page/user/detailUser.js}"></script>
+<script th:src="@{/page/entreprise/entrepriseController.js}"></script>
 
-<script src="/page/user/userCtrl.js"></script>
-<script src="/page/user/adduser.js"></script>
-<script src="/page/tache/tacheCtrl.js"></script>
-<script src="/page/event/detailEvent.js"></script>
-<script src="/page/user/detailUser.js"></script>
 </head>
 <body ng-app="midgApp">
 
 	<nav class="navbar navbar-inverse" role="navigation">
 		<div class="navbar-header">
-			<a class="navbar-brand" ui-sref="projet">Midgard</a>
+			<a class="navbar-brand" ui-sref="home">Midgard</a>
 		</div>
 		<ul class="nav navbar-nav" style="width: 90%;">
 
@@ -65,9 +68,11 @@
 
 			<li><a ui-sref="listTache"><i class="fa fa-edit   fa-fw"></i>
 					Taches</a></li>
-
-			<li><a ui-sref="listUser"><i class="fa  fa-users fa-fw"></i>
-					Users</a></li>
+			<li ng-show="userConect.role.role=='ADMIN'"><a
+				ui-sref="listEntreprise"><i class="fa  fa-users fa-fw"></i>
+					Entreprise</a></li>
+			<li ng-show="userConect.role.role=='ADMIN'"><a
+				ui-sref="listUser"><i class="fa  fa-users fa-fw"></i> Users</a></li>
 			<li><a> </a></li>
 			<li><a> </a></li>
 			<li><a> </a></li>
@@ -83,7 +88,7 @@
 			<li><a> </a></li>
 			<li><a> </a></li>
 			<li><a> </a></li>
-
+			<li><a> Identification: {{userConect.username}}</a></li>
 			<li><a th:href="@{/logout}"><i class="fa fa-sign-out fa-fw"></i>
 					Se d&eacute;connecter</a></li>
 		</ul>
@@ -100,16 +105,17 @@
 	<!-- /#wrapper -->
 
 	<!-- jQuery -->
-	<script src="/vendor/jquery/jquery.min.js"></script>
+	<script th:src="@{/vendor/jquery/jquery.min.js}" ></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}" ></script>
 
 	<!-- Metis Menu Plugin JavaScript -->
-	<script src="/vendor/metisMenu/metisMenu.min.js"></script>
+		<script th:src="@{/vendor/metisMenu/metisMenu.min.js}" ></script>
+	
 
 	<!-- Custom Theme JavaScript -->
-	<script src="/js/sb-admin-2.js"></script>
+	<script th:src="@{/js/sb-admin-2.js}" ></script>
 
 </body>
 

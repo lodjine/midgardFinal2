@@ -11,12 +11,13 @@ function detailUser($scope, $state, $rootScope, userService,$q,roleService,$stat
 	var iduser=$stateParams.id;
 	if(iduser != null){
 		$scope.user= userService.get({id:iduser});
+		$scope.selected=$scope.user.role;
 	}
-	
-	
-
-	
-	
+	$scope.saveuser = function() {
+		userService.save($scope.user);
+		$scope.user={id:null,role : {}};
+		$state.go('listUser');
+	};	
 };
 
 
