@@ -14,6 +14,29 @@ angular.module('midgApp')
   }
 });
 
+//angular.module('midgApp').directive('wbSelect2', function () {
+//    return {
+//        restrict: 'A',
+//        scope: {
+//                'selectWidth': '@',
+//                'ngModel': '='
+//        },
+//        link: function (scope, element, attrs) {
+//            //Setting default values for attribute params
+//            scope.selectWidth = scope.selectWidth || 200;
+//            element.select2({
+//                width: scope.selectWidth,
+//            });
+//            
+//            scope.$watch('ngModel', function(newVal, oldVal){
+//                window.setTimeout(function(){
+//                    element.select2("val", newVal);
+//                });
+//            });
+//        }
+//    };
+//});
+
 midgApp.config(function($stateProvider, $urlRouterProvider) {
 
 	 $urlRouterProvider.otherwise('/home');
@@ -95,6 +118,16 @@ midgApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/nouvelleEntreprise',
             templateUrl: 'page/entreprise/addEntreprise.html',
 			controller: 'entrepriseController'
+
+        }).state('listticket', {
+            url: '/listTicket',
+            templateUrl: 'page/ticket/listticket.html',
+			controller: 'ticketController'
+
+        }).state('formticket', {
+            url: '/formticket',
+            templateUrl: 'page/ticket/formticket.html',
+			controller: 'ticketController'
 
         });
     

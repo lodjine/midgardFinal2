@@ -1,12 +1,17 @@
 package com.midgard.web.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -20,6 +25,19 @@ public class Ticket {
 	@OneToOne
 	@JoinColumn(name = "tache")
 	private Tache tache;
+
+	@OneToOne
+	@JoinColumn(name = "projet")
+	private Projet projet;
+
+	@OneToOne
+	@JoinColumn(name = "emetteur")
+	private User emetteur;
+
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(name = "ticket_destinataire", joinColumns = @JoinColumn(name = "iddbTicket"), inverseJoinColumns = @JoinColumn(name = "id"))
+	private Set<User> destinataire = new HashSet<User>();
+
 	private String idTicket;
 	private String Sujet;
 	private Date dateEchance;
@@ -89,4 +107,29 @@ public class Ticket {
 	public void setEtat(String etat) {
 		this.etat = etat;
 	}
+
+	public Projet getProjet() {
+		return projet;
+	}
+
+	public void setProjet(Projet projet) {
+		this.projet = projet;
+	}
+
+	public User getEmetteur() {
+		return emetteur;
+	}
+
+	public void setEmetteur(User emetteur) {
+		this.emetteur = emetteur;
+	}
+
+	public Set<User> getDestinataire() {
+		return destinataire;
+	}
+
+	public void setDestinataire(Set<User> destinataire) {
+		this.destinataire = destinataire;
+	}
+
 }
