@@ -11,9 +11,9 @@
 	th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
 <link rel="stylesheet" type="text/css"
 	th:href="@{/vendor/font-awesome/css/font-awesome.min.css}" />
-<script th:src="@{/css/sb-admin-2.min.css}">
-	...
-</script>
+<link rel="stylesheet" type="text/css"
+	th:src="@{/css/sb-admin-2.min.css}" />
+
 <script th:src="@{/bower_components/angular/angular.min.js}">
 	...
 </script>
@@ -26,15 +26,19 @@
 <script
 	th:src="@{/bower_components/angular-extend-promises/angular-extend-promises.min.js}"></script>
 <script th:src="@{/app/midgApp.js}"></script>
+<!-- <script th:src="@{/app/select2.min.js}"></script> -->
 <script th:src="@{/service/projetService.js}"></script>
 <script th:src="@{/service/entrepriseService.js}"></script>
 <script th:src="@{/service/phaseService.js}"></script>
 <script th:src="@{/service/documentService.js}"></script>
 <script th:src="@{/service/tacheService.js}"></script>
 
-
 <script th:src="@{/service/eventService.js}"></script>
+
+<script th:src="@{/service/ticketService.js}"></script>
+
 <script th:src="@{/service/statutService.js}"></script>
+
 
 <script th:src="@{/service/userService.js}"></script>
 <script th:src="@{/service/roleService.js}"></script>
@@ -53,52 +57,41 @@
 <script th:src="@{/page/user/detailUser.js}"></script>
 <script th:src="@{/page/entreprise/entrepriseController.js}"></script>
 
+<script th:src="@{/page/ticket/ticketController.js}"></script>
+
+
 
 
 </head>
 <body ng-app="midgApp">
 
 	<nav class="navbar navbar-inverse" role="navigation">
-		<div class="navbar-header">
-			<a class="navbar-brand" ui-sref="home">Midgard</a>
-		</div>
-		<ul class="nav navbar-nav" style="width: 90%;">
+			<div class="navbar-header">
+				<a class="navbar-brand" ui-sref="home">Midgard</a>
+			</div>
+			<ul class="nav navbar-nav" >
 
-			<li><a ui-sref="projet"><i class="fa fa-book   fa-fw"></i>
-					Projets</a></li>
-			<li><a ui-sref="listPhase"><i class="fa fa-th-list fa-fw"></i>
-					Phases</a></li>
-			<li><a ui-sref="event"><i class="fa fa-dashboard fa-fw"></i>
-					Events</a></li>
+				<li><a ui-sref="projet"><i class="fa fa-book   fa-fw"></i>
+						Projets</a></li>
+				<li><a ui-sref="listPhase"><i class="fa fa-th-list fa-fw"></i>
+						Phases</a></li>
+				<li><a ui-sref="event"><i class="fa fa-dashboard fa-fw"></i>
+						Events</a></li>
 
 
-			<li><a ui-sref="listTache"><i class="fa fa-edit   fa-fw"></i>
-					Taches</a></li>
-			<li ng-show="userConect.role.role=='ADMIN'"><a
-				ui-sref="listEntreprise"><i class="fa  fa-users fa-fw"></i>
-					Entreprise</a></li>
-			<li ng-show="userConect.role.role=='ADMIN'"><a
-				ui-sref="listUser"><i class="fa  fa-users fa-fw"></i> Users</a></li>
-			<li><a> </a></li>
-			<li><a> </a></li>
-			<li><a> </a></li>
-			<li><a> </a></li>
-			<li><a> </a></li>
-			<li><a> </a></li>
-			<li><a> </a></li>
-			<li><a> </a></li>
-			<li><a> </a></li>
-			<li><a> </a></li>
-			<li><a> </a></li>
-			<li><a> </a></li>
-			<li><a> </a></li>
-			<li><a> </a></li>
-			<li><a> </a></li>
-			<li><a> Identification: {{userConect.username}}</a></li>
-			<li><a th:href="@{/logout}"><i class="fa fa-sign-out fa-fw"></i>
-					Se d&eacute;connecter</a></li>
-		</ul>
-
+				<li><a ui-sref="listTache"><i class="fa fa-edit   fa-fw"></i>
+						Taches</a></li>
+				<li ng-show="userConect.role.role=='ADMIN'"><a
+					ui-sref="listEntreprise"><i class="fa  fa-users fa-fw"></i>
+						Entreprise</a></li>
+				<li ng-show="userConect.role.role=='ADMIN'"><a
+					ui-sref="listUser"><i class="fa  fa-users fa-fw"></i> Users</a></li>
+				<li><a ui-sref="listticket"><i class="fa  fa-users fa-fw"></i>Ticket
+				</a></li>
+				<li><a> Identification: {{userConect.username}}</a></li>
+				<li><a th:href="@{/logout}"><i class="fa fa-sign-out fa-fw"></i>
+						Se d&eacute;connecter</a></li>
+			</ul>
 	</nav>
 
 	<!-- MAIN CONTENT -->
@@ -111,17 +104,18 @@
 	<!-- /#wrapper -->
 
 	<!-- jQuery -->
-	<script th:src="@{/vendor/jquery/jquery.min.js}" ></script>
+	<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<!-- 	<script th:src="@{/vendor/jquery/dist/jquery.min.js}"></script> -->
 
 	<!-- Bootstrap Core JavaScript -->
-	<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}" ></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
 
 	<!-- Metis Menu Plugin JavaScript -->
-		<script th:src="@{/vendor/metisMenu/metisMenu.min.js}" ></script>
-	
+	<script th:src="@{/vendor/metisMenu/metisMenu.min.js}"></script>
+
 
 	<!-- Custom Theme JavaScript -->
-	<script th:src="@{/js/sb-admin-2.js}" ></script>
+	<script th:src="@{/js/sb-admin-2.js}"></script>
 
 </body>
 

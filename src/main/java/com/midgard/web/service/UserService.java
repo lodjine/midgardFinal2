@@ -21,6 +21,7 @@ public class UserService {
 
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public User saveUser(@RequestBody User user) {
+		user.setActive(1);
 		userDao.save(user);
 		return user;
 	}

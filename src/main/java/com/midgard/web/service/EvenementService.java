@@ -64,6 +64,12 @@ public class EvenementService {
 	public Long getHeurIngCumul(@PathVariable Long id) {
 		return evenementDao.getheurIngCumul(id);
 	}
+
+	@RequestMapping(value = "/getEventByProjet/{id}", method = RequestMethod.GET)
+	public List<Evenement> getEventB(@PathVariable Long id) {
+		return evenementDao.getEventByProjet( id);
+	}
+
 	
 	@RequestMapping(value = "/progressionEvent/{id}", method = RequestMethod.GET)
 	public void progressionEvent(@PathVariable Long id) {
@@ -90,4 +96,5 @@ System.out.println("evenement "+event.getIdEvenement()+" progression"+progressio
 		}
 	}
 	
+
 }
