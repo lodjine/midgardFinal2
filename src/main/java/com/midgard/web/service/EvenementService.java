@@ -68,12 +68,26 @@ public class EvenementService {
 	@RequestMapping(value = "/progressionEvent/{id}", method = RequestMethod.GET)
 	public void progressionEvent(@PathVariable Long id) {
 		
-		Long progressionTotal=tacheDao.progressionEvent(id);
 		
-	Evenement event=evenementDao.findOne(id);
-	event.setEtatAvancement(progressionTotal/event.getNbTaches());
-	
-	evenementDao.save(event);
+		int timout=999999;
+		while(timout!=0){
+			timout--;
+		}
+		
+		
+		List<Evenement> events=evenementDao.findAll();
+		
+		for(Evenement event:events){
+		
+		Long progressionTotal=tacheDao.progressionEvent(event.getIdEvenement());
+		if(event.getNbTaches()!=null&&progressionTotal!=null){
+		
+System.out.println("evenement "+event.getIdEvenement()+" progression"+progressionTotal/event.getNbTaches());
+		event.setEtatAvancement(progressionTotal/event.getNbTaches());
+		
+		evenementDao.save(event);
+		}
+		}
 	}
 	
 }

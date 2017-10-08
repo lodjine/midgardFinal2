@@ -35,12 +35,11 @@
 				<td>{{item.idTache}}</td>
 				<td>{{item.event.idEvenement}}</td>
 				<td>{{item.description}}</td>
-				<td style="width: 30%">
-				
+				<td>		
 				
 			<div class="progress progress-striped active">
 										<div class="progress-bar progress-bar-danger" ng-show="item.etatAavancement<=20"
-											role="progressbar" aria-valuenow="{{item.etatAavancement}}" aria-valuemin="0"
+											role="progressbar"  aria-valuenow="{{item.etatAavancement}}" aria-valuemin="0"
 											aria-valuemax="100" style="width: {{item.etatAavancement}}%">
 											<span class="sr-only"  ng-show="item.etatAavancement<=20">{{item.etatAavancement}} %</span>
 										</div>
