@@ -1,9 +1,10 @@
 angular.module('midgApp').controller('modifProjetCtrl', modifProjetCtrl);
 
-modifProjetCtrl.$inject = [ '$scope','entrepriseService' ,'projetService' , '$window', '$state', '$stateParams' ];
+modifProjetCtrl.$inject = [ '$scope','entrepriseService' ,'projetService' , '$window', '$state', '$stateParams','$rootScope' ,'userService'];
 
-function modifProjetCtrl($scope,entrepriseService,projetService, $window,$state, $stateParams) {
-
+function modifProjetCtrl($scope,entrepriseService,projetService, $window,$state, $stateParams,$rootScope,userService) {
+	var login = localStorage.getItem("login"); 
+	$rootScope.userConect=userService.userByLogin({login:login});
 	$scope.flagModif=true;
 	$scope.entreprises=entrepriseService.query();
 	var idProjet=$stateParams.id;

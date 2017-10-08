@@ -1,9 +1,10 @@
 angular.module('midgApp').controller('detailTacheCtrl', detailTacheCtrl);
 
-detailTacheCtrl.$inject = [ '$scope','userService' ,'tacheService','statutService' ,'eventService', '$window', '$state', '$stateParams' ];
+detailTacheCtrl.$inject = [ '$scope','userService' ,'tacheService','statutService' ,'eventService', '$window', '$state', '$stateParams','$rootScope','userService' ];
 
-function detailTacheCtrl($scope,userService,tacheService,statutService,eventService, $window,$state, $stateParams) {
-
+function detailTacheCtrl($scope,userService,tacheService,statutService,eventService, $window,$state, $stateParams,$rootScope,userService) {
+	var login = localStorage.getItem("login"); 
+	$rootScope.userConect=userService.userByLogin({login:login});
 	$scope.flagModif=true;
 	$scope.users=userService.query();
 	$scope.statuts=statutService.query();

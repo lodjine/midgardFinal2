@@ -9,12 +9,13 @@
 
 	angular.module('midgApp').controller('detailEvent', detailEvent);
 	detailEvent.$inject = [ '$scope', '$state', '$rootScope',
-			'eventService', 'projetService', 'phaseService', '$stateParams' ];
+			'eventService', 'projetService', 'phaseService', '$stateParams' ,'userService'];
 
 	function detailEvent($scope, $state, $rootScope, eventService,
-			projetService, phaseService, $stateParams) {
+			projetService, phaseService, $stateParams,userService) {
 		
-		
+		var login = localStorage.getItem("login"); 
+		$rootScope.userConect=userService.userByLogin({login:login});
 		
 		var idEvent=$stateParams.id;
 		if(idEvent != null){

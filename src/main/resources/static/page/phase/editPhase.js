@@ -1,13 +1,14 @@
 angular.module('midgApp').controller('editPhase', editPhase);
 
 editPhase.$inject = [ '$scope', '$state', '$rootScope', 'eventService',
-		'projetService', 'phaseService', '$stateParams' ];
+		'projetService', 'phaseService', '$stateParams','userService' ];
 
 function editPhase($scope, $state, $rootScope, eventService,
 		projetService, phaseService, $stateParams) {
 	var idPhase = $stateParams.id;
 	$scope.isTrue = false;
-
+	var login = localStorage.getItem("login"); 
+	$rootScope.userConect=userService.userByLogin({login:login});
 	if (idPhase != null) {
 
 		$scope.phase = phaseService.get({

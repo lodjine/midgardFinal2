@@ -10,7 +10,6 @@
 
 	function homeController($scope, $state, $rootScope, userService,$q,roleService) {
 		var login = localStorage.getItem("login"); 
-		console.log(login);
 		$rootScope.userConect=userService.userByLogin({login:login});
 	}
 })();

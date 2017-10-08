@@ -12,6 +12,8 @@
 
 	function ticketController($scope, $state, $rootScope, ticketService,
 			tacheService, projetService, eventService, userService) {
+		var login = localStorage.getItem("login"); 
+		$rootScope.userConect=userService.userByLogin({login:login});
 		$scope.tickets = ticketService.query();
 		$scope.taches = [];
 		$scope.projets = projetService.query();
