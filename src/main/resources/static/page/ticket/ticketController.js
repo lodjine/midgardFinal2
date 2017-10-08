@@ -51,18 +51,32 @@
 			});
 		};
 		$scope.saveTicket = function() {
-			if (typeTicket === 'Projet') {
-				$scope.ticket.projet ;
+			if ($scope.typeTicket === 'Projet') {
+				$scope.ticket.typeTicket=$scope.typeTicket;
+				var idu = Number($scope.ticket.projet.idbd);
+				angular.forEach($scope.projets, function(pr) {
+					if (pr.idbd===idu) {
+						$scope.ticket.idTicket=pr.idProjet+"T00"+$scope.tickets.length;
+					}
+				});
 			}
-			if (typeTicket === 'Evenement') {
-				$scope.showprojet = true;
-				$scope.showevent = true;
-				$scope.showtache = false;
+			if ($scope.typeTicket === 'Evenement') {
+				$scope.ticket.typeTicket=$scope.typeTicket;
+				var idu = Number($scope.ticket.idEvenement.idEvenement);
+				angular.forEach($scope.events, function(ev) {
+					if (ev.idEvenement===idu) {
+						$scope.ticket.idTicket=ev.idEvent+"T00"+$scope.tickets.length;
+					}
+				});
 			}
-			if (typeTicket === 'Tache') {
-				$scope.showprojet = true;
-				$scope.showevent = true;
-				$scope.showtache = true;
+			if ($scope.typeTicket === 'Tache') {
+				$scope.ticket.typeTicket=$scope.typeTicket;
+				var idu = Number($scope.ticket.tache.idBd);
+				angular.forEach($scope.taches, function(ev) {
+					if (ev.idBd===idu) {
+						$scope.ticket.idTicket=ev.idTache+"T00"+$scope.tickets.length;
+					}
+				});
 			}
 			ticketService.save($scope.ticket);
 		};

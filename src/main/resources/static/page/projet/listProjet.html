@@ -33,8 +33,8 @@
 			<tr ng-repeat="item in projets">
 				<td>{{item.idProjet}}</td>
 				<td>{{item.nomProjet}}</td>
-				<td>{{item.dateDebut | date}}</td>
-				<td>{{item.dateFin | date}}</td>
+				<td>{{item.dateDebut | date:'yyyy-MM-dd'}}</td>
+				<td>{{item.dateFin | date:'yyyy-MM-dd'}}</td>
 
 				<td><button type="submit" class="btn btn-primary btn-block" ui-sref="detailProjet({id:item.idbd})">
 						<i class="fa fa-search  " aria-hidden="true"></i> Consulter

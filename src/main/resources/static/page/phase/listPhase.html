@@ -38,9 +38,9 @@
 			<td ng-show="false">{{item.idphas}}</td>
 				<td>{{item.projet.idProjet}}</td>
 				<td>{{item.phase}}</td>
-				<td>{{item.dateDebut| date}}</td>
-				<td>{{item.dateFin | date}}</td>
-				<td>{{item.dateSoldePhase | date}}</td>
+				<td>{{item.dateDebut| date:'yyyy-MM-dd'}}</td>
+				<td>{{item.dateFin | date:'yyyy-MM-dd'}}</td>
+				<td>{{item.dateSoldePhase | | date:'yyyy-MM-dd'}}</td>
 
 				<td><button type="submit" class="btn btn-primary btn-block"
 						ui-sref="detailPhase({id:item.idphas})">
