@@ -12,9 +12,31 @@
 	function eventController($scope, $state, $rootScope, eventService,
 			projetService, phaseService, $log, tacheService, userService) {
 		$scope.$log = $log;
-		$scope.showTache = true;
-		$scope.showevent = false;
+		
+		
+		$scope.selectedUser = false;
+		$scope.maxIngD = false;
+		$scope.maxTechD = false;
+		$scope.users = userService.query();
+		
+	
+		eventService.progressionEvent({id:1});
+		
 		$scope.checked = false;
+		$scope.tache={
+				id : null,
+				statut : {
+					id : null
+				},
+				event :{
+					idEvent : null,
+					idPhase:{
+						
+					}
+				}
+		};
+		
+		
 		$scope.event = {
 			idEvenement : null,
 			idPhase : {
@@ -51,6 +73,16 @@
 				$scope.isTrue = false;
 			}
 		};
+		
+		$scope.change2 = function() {
+			var dateFin = new Date($scope.tache.event.dateFin);
+			var dateDebut = new Date($scope.tache.event.dateDebut);
+			if (dateDebut > dateFin) {
+				$scope.isTrue = true;
+			} else {
+				$scope.isTrue = false;
+			}
+		};
 		$scope.selectPhase = function() {
 			var idp = Number($scope.selectedPhase);
 			angular.forEach($scope.phases, function(ph) {
@@ -75,6 +107,37 @@
 				}
 			});
 		};
+		
+		$scope.selectPhase2 = function() {
+			var idp = Number($scope.selectedPhase);
+			angular.forEach($scope.phases, function(ph) {
+				if (ph.idphas === idp) {
+					$scope.phase = ph;
+					$scope.phase.nbrEvent = $scope.phase.nbrEvent + 1;
+					var nbr = $scope.phase.nbrEvent;
+					if (nbr < 10) {
+						$scope.phase.nbrEvent = "0" + $scope.phase.nbrEvent;
+					}
+					var phaseChar = "";
+					if ($scope.phase.phase == "EXE")
+						phaseChar = "E";
+					if ($scope.phase.phase == "PRE")
+						phaseChar = "P";
+					if ($scope.phase.phase == "DCE")
+						phaseChar = "D";
+					if ($scope.phase.phase == "DIAG")
+						phaseChar = "DI";
+					$scope.tache.event.idEvent = $scope.phase.projet.idProjet
+							+ phaseChar + "x" + $scope.phase.nbrEvent;
+					$scope.tache.idTache=$scope.phase.projet.idProjet
+					+ phaseChar + "x" + $scope.phase.nbrEvent+"T01";
+				}
+			});
+		};
+		
+		
+		
+		
 		$scope.saveEvenement = function() {
 
 			
@@ -90,24 +153,23 @@
 			phaseService.save($scope.phase);
 			$state.go('event');
 		};
-		$scope.detailEvenement = function(checked) {
-			if (checked) {
-				$scope.showTache = false;
-				$scope.showevent = true;
-				$scope.selectedUser = false;
-				$scope.maxIngD = false;
-				$scope.maxTechD = false;
-				$scope.users = userService.query();
-				$scope.tache.event=$scope.event;
-			} else {
-				$scope.showTache = true;
-				$scope.showevent = false;
-				$scope.selectedUser = true;
-				$scope.maxIngD = true;
-				$scope.maxTechD = true;
-			}
+		$scope.saveTache = function() {
 
-		};
+			$scope.tache.event.delaiHjIngCumul=0;
+			$scope.tache.event.delaiHjTechCumul=0;
+			$scope.tache.event.nbTaches=2;
+			$scope.tache.event.idPhase = $scope.phase;
+			$scope.tache.statut.id = 1;
+			tacheService.save($scope.tache);
+			
+			phaseService.save($scope.phase);
+			
+			$state.go('event');
+		
+
+		}
+				
+
 		$scope.retour = function() {
 
 			$state.go('event');
@@ -122,12 +184,7 @@
 		$scope.selectedUser = false;
 		$scope.maxIngD = false;
 		$scope.maxTechD = false;
-		$scope.tache = {
-			id : null,
-			statut : {
-				id : null
-			}
-		}
+	
 		$scope.selectOperateur = function selectOperateur() {
 			$scope.selectedUser = true;
 			$scope.user = userService.get({
@@ -135,43 +192,9 @@
 			});
 		};
 
-		$scope.selectEvent = function() {
-			$scope.event = eventService.get({
-				id : $scope.tache.event.idEvenement
-			});
+		
 
-			$scope.event.delaiHjIngCumul = eventService.getHeurIngCumul({
-				id : $scope.tache.event.idEvenement
-			});
-			$scope.event.delaiHjTechCumul = eventService.getHeurTechCumul({
-				id : $scope.tache.event.idEvenement
-			});
-
-			$scope.event.delaiHjIng = eventService.getHeurIng({
-				id : $scope.tache.event.idEvenement
-			});
-
-			$scope.event.delaiHjTech = eventService.getHeurTech({
-				id : $scope.tache.event.idEvenement
-			});
-			$scope.tachesLies = tacheService.getByIdEvent({
-				id : $scope.tache.event.idEvenement
-			});
-		};
-
-		$scope.saveTache = function() {
-			$scope.tache.idTache = $scope.event.idEvent + 'T'
-					+ $scope.event.nbTaches;
-			$scope.tache.statut.id = 1;
-			tacheService.save($scope.tache);
-			$scope.event.nbTaches = $scope.event.nbTaches + 1;
-			$scope.event.delaiHjTechCumul = $scope.event.delaiHjTechCumul
-					+ $scope.tache.hjTech;
-			$scope.event.delaiHjIngCumul = $scope.event.delaiHjIngCumul
-					+ $scope.tache.hjIng;
-			eventService.save($scope.event);
-
-		}
+	
 		$scope.nombreHTech = function() {
 
 			if ($scope.tache.hjTech + $scope.event.delaiHjTechCumul > $scope.event.delaiHjTech)
