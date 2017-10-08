@@ -12,6 +12,12 @@
 
 		var resourceUrl = '/evenement/:id';
 		return $resource(resourceUrl, {}, {
+
+			'getEventByProjet' : {
+				method : 'GET',
+				isArray : true,
+				url : '/getEventByProjet/:id'
+			},
 			'getHeurIng' : {
 				method : 'GET',
 				isArray : false,
@@ -32,11 +38,12 @@
 				isArray : false,
 				url : '/getHeurTech/:id'
 			},
-			'getEventByProjet' : {
+			'progressionEvent' : {
 				method : 'GET',
-				isArray : true,
-				url : '/getEventByProjet/:id'
+				isArray : false,
+				url : '/progressionEvent/:id'
 			}
+
 		});
 
 	}

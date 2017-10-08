@@ -14,6 +14,7 @@ public interface TacheDao extends JpaRepository<Tache, Serializable> {
 	@Query("select t from Tache t where t.event.idEvenement like :x")
 	List<Tache> getTacheByEvent(@Param("x") Long ref);
 	
-	
+	@Query("select sum(t.etatAavancement) from Tache t where t.event.idEvenement like :x")
+	Long progressionEvent(@Param("x") Long ref);
 
 }

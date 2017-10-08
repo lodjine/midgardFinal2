@@ -42,7 +42,7 @@
 			<tr>
 			<th>Id phase</th>
 				<th>Id</th>
-				<th>Entreprise</th>
+				<th>Progression</th>
 				<th>Phase</th>
 				<th>dateDebut</th>
 				<th>echeance</th>
@@ -55,7 +55,32 @@
 			<tr ng-repeat="item in events | filter:idPhase ">
 			<td>{{item.idPhase.idPhase}}</td>
 				<td>{{item.idEvent}}</td>
-				<td>{{item.idPhase.projet.entreprise.nom}}</td>
+	
+				
+				
+				
+				<td>
+				
+				<div class="progress progress-striped active">
+										<div class="progress-bar progress-bar-danger" ng-show="item.etatAvancement<=20"
+											role="progressbar" aria-valuenow="{{item.etatAvancement}}" aria-valuemin="0"
+											aria-valuemax="100" style="width: {{item.etatAvancement}}%">
+											<span class="sr-only"  ng-show="item.etatAvancement<=20">{{item.etatAvancement}} %</span>
+										</div>
+										<div class="progress-bar progress-bar-warning" ng-show="item.etatAvancement <= 60 &&  20 < item.etatAvancement"
+											role="progressbar" aria-valuenow="{{item.etatAvancement}}" aria-valuemin="0"
+											aria-valuemax="100" style="width: {{item.etatAvancement}}%">
+											<span class="sr-only"  ng-show=" 20 < item.etatAvancement <= 60">{{item.etatAvancement}} %</span>
+										</div>
+										<div class="progress-bar progress-bar-success" ng-show="item.etatAvancement>60"
+											role="progressbar" aria-valuenow="{{item.etatAvancement}}" aria-valuemin="0"
+											aria-valuemax="100" style="width: {{item.etatAvancement}}%">
+											<span class="sr-only"  ng-show="item.etatAvancement > 60">{{item.etatAvancement}} %</span>
+										</div>
+									</div>
+				
+				</td>
+				
 				<td>{{item.idPhase.phase}}</td>
 				<td>{{item.dateDebut}}</td>
 				<td>{{item.echeance}}</td>

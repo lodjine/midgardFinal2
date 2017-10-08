@@ -51,4 +51,11 @@ public class UserService {
 	public User getUserByLogin(@PathVariable String login) {
 		return userDao.getUserByLogin(login);
 	}
+	
+	@RequestMapping(value = "/getIsIngenieurById/{id}", method = RequestMethod.GET)
+	public boolean getIsIngenieurById(@PathVariable long id) {
+		return userDao.getIsIngenieurById(id);
+	}
+	
+	
 }

@@ -47,6 +47,8 @@ public class Evenement {
 	private Boolean rapport;
 
 	private Long nbTaches;
+	
+	private Long etatAvancement;
 
 	@ManyToOne
 	private Statut statut;
@@ -225,6 +227,14 @@ public class Evenement {
 
 	public void setDelaiHjTechCumul(Long delaiHjTechCumul) {
 		this.delaiHjTechCumul = delaiHjTechCumul;
+	}
+
+	public Long getEtatAvancement() {
+		return etatAvancement;
+	}
+
+	public void setEtatAvancement(Long etatAvancement) {
+		this.etatAvancement = etatAvancement;
 	}
 
 }

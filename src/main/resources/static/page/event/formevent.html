@@ -170,6 +170,13 @@
 	<button type="submit" class="btn btn-success">Enregister</button>
 	<button type="button" class="btn btn-primary" ng-click="retour()">Retour</button>
 	</div>
+	
+	
+	<input hidden="true" ng-model="evenement.delaiHjIngCumul">
+	<input hidden="true" ng-model="evenement.delaiHjTechCumul">
+	<input hidden="true" ng-model="evenement.nbTaches">
+	
+	
 </form>
 
 
@@ -366,8 +373,8 @@
 								ng-model="tache.hjIng" placeholder="nombre" type="number"
 								ng-change="nombreHIng()" min=0 /> <span ng-show="maxIngD"
 								style="color: red">max heures ingenieur pour cet
-								evenement est de {{event.delaiHjIng}} dont
-								{{event.delaiHjIngCumul}} deja affecte</span>
+								evenement est de {{evenement.delaiHjIng}} dont
+								{{evenement.delaiHjIngCumul}} deja affecte</span>
 						</div>
 					</div>
 
@@ -378,8 +385,8 @@
 								ng-change="nombreHTech()" min=0 ng-model="tache.hjTech"
 								placeholder="nombre" type="text" /> <span ng-show="maxTechD"
 								style="color: red">max heures ingenieur pour cet
-								evenement est de {{event.delaiHjTech}} dont
-								{{event.delaiHjTechCumul}} deja affecte</span>
+								evenement est de {{evenement.delaiHjTech}} dont
+								{{evenement.delaiHjTechCumul}} deja affecte</span>
 						</div>
 					</div>
 					<div class="col-lg-6">
@@ -421,6 +428,9 @@
 		ng-click="detailEvenement()"></label><br />
 	<button type="submit" class="btn btn-success">Enregister</button>
 	<button type="button" class="btn btn-primary" ng-click="retour()">Retour</button>
+		<input hidden="true" ng-model="evenement.delaiHjIngCumul" value="0">
+	<input hidden="true" ng-model="evenement.delaiHjTechCumul" value="0">
+	<input hidden="true" ng-model="evenement.nbTaches" value="1">
 </form>
 
 

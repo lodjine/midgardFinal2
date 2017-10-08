@@ -21,7 +21,9 @@ public interface EvenementDao extends JpaRepository<Evenement, Long> {
 
 	@Query("select e.delaiHjTech from Evenement e where e.idEvenement like :x")
 	Long getheurTechCumul(@Param("x") Long ref);
+ 
 
 	@Query("select e from Evenement e where e.idPhase.projet.idbd = :x")
 	List<Evenement> getEventByProjet(@Param("x") Long id);
+
 }
