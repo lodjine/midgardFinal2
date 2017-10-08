@@ -1,7 +1,9 @@
 var midgApp = angular.module('midgApp');
 
 var projetCtrl = midgApp.controller('projetCtrl', function($scope, $window,$state,
-		projetService, entrepriseService, phaseService, documentService) {
+		projetService, entrepriseService, phaseService, documentService,$rootScope,userService) {
+	var login = localStorage.getItem("login"); 
+	$rootScope.userConect=userService.userByLogin({login:login});
 	$scope.phase = {
 		id : null,
 		docs : []

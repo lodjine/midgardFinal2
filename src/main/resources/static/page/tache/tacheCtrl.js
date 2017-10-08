@@ -1,11 +1,12 @@
 angular.module('midgApp').controller('tacheCtrl', tacheCtrl);
 
 tacheCtrl.$inject = [ '$scope', '$window', 'tacheService', 'userService',
-	'eventService', '$state' ];
+	'eventService', '$state' ,'$rootScope'];
 
 function tacheCtrl($scope, $window, tacheService, userService,
-		eventService,  $state) {
-
+		eventService,  $state,$rootScope) {
+	var login = localStorage.getItem("login"); 
+	$rootScope.userConect=userService.userByLogin({login:login});
 	$scope.initFunc = function() {
 		$scope.events = eventService.query();
 		

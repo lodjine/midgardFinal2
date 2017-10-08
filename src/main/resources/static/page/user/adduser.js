@@ -8,6 +8,8 @@
 	adduser.$inject = [ '$scope', '$state', '$rootScope', 'userService', '$q' ,'roleService'];
 
 	function adduser($scope, $state, $rootScope, userService,$q,roleService) {
+		var login = localStorage.getItem("login"); 
+		$rootScope.userConect=userService.userByLogin({login:login});
 		$scope.users=userService.query();
 		$scope.roles=roleService.query();
 		$scope.selected={};

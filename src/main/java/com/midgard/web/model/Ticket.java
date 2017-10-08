@@ -34,7 +34,7 @@ public class Ticket {
 	@JoinColumn(name = "emetteur")
 	private User emetteur;
 
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinTable(name = "ticket_destinataire", joinColumns = @JoinColumn(name = "iddbTicket"), inverseJoinColumns = @JoinColumn(name = "id"))
 	private Set<User> destinataire = new HashSet<User>();
 
@@ -43,6 +43,8 @@ public class Ticket {
 	private Date dateEchance;
 	private String priorite;
 	private String etat;
+	
+	private String typeTicket;
 
 	public Long getIddbTicket() {
 		return iddbTicket;
@@ -130,6 +132,14 @@ public class Ticket {
 
 	public void setDestinataire(Set<User> destinataire) {
 		this.destinataire = destinataire;
+	}
+
+	public String getTypeTicket() {
+		return typeTicket;
+	}
+
+	public void setTypeTicket(String typeTicket) {
+		this.typeTicket = typeTicket;
 	}
 
 }

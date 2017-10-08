@@ -12,7 +12,8 @@
 	function eventController($scope, $state, $rootScope, eventService,
 			projetService, phaseService, $log, tacheService, userService) {
 		$scope.$log = $log;
-		
+		var login = localStorage.getItem("login"); 
+		$rootScope.userConect=userService.userByLogin({login:login});
 		
 		$scope.selectedUser = false;
 		$scope.maxIngD = false;

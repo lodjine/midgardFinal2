@@ -20,8 +20,8 @@
 		<thead>
 			<tr>
 				<th>Id Ticket</th>
+				<th>Type Ticket</th>
 				<th>Emetteur</th>
-				<th>Destinataire</th>
 				<th>Date Echeance</th>
 				<th>Etat</th>
 				<th>Options</th>
@@ -32,9 +32,9 @@
 		<tbody>
 			<tr ng-repeat="item in tickets">
 				<td>{{item.idTicket}}</td>
+				<td>{{item.typeTicket}}</td>
 				<td>{{item.emetteur.name}} {{item.emetteur.lastName}}</td>
-				<td>{{item.c.name}} {{item.destinataire.lastName}}</td>
-				<td>{{item.dateEchance}}</td>
+				<td>{{item.dateEchance | date:'yyyy-MM-dd'}}</td>
 				<td>{{item.etat}}</td>
 				<td><button type="submit" class="btn btn-primary btn-block"
 						ui-sref="detailProjet({id:item.idbd})">
