@@ -13,6 +13,7 @@ import com.midgard.web.dao.PhaseDao;
 import com.midgard.web.dao.ProjetDao;
 import com.midgard.web.model.Phase;
 import com.midgard.web.model.Projet;
+import com.midgard.web.model.Statut;
 
 @RestController
 public class PhaseService {
@@ -71,7 +72,10 @@ public class PhaseService {
 		boolean test=false;
 		while(!test){
 			 projet = projetDao.getProjetByIdFunct(idProjet);
-
+Statut statut=new Statut();
+statut.setId(1L);
+			 
+			 phase.setStatut(statut);
 			phase.setProjet(projet);
 			test=saveRecurcive(phase);
 			

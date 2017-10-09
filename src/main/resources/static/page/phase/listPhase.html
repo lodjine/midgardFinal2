@@ -8,6 +8,7 @@
 	
 	<br /> <br />
 	<!-- /.row -->
+	<div class="col-lg-12">
 	<div class="col-lg-3">
 	<label>Recherche par projet</label> <select ng-model="idProjet" wb-select2
 		class="form-control">
@@ -15,15 +16,34 @@
 		<option ng-repeat="x in projets" ng-value="x.idProjet">{{x.idProjet}}
 		</option>
 	</select>
-	<br />
-	<br />
+	</div>
+	<div class="col-lg-3">
+	<label>Recherche par statut</label> <select  ng-model="statut" 
+		class="form-control">
+		<option ng-value=""></option>
+		<option ng-repeat="x in statutRecherche" ng-value="x.statut">{{x.statut}}
+		</option>
+	</select>
+
+	</div> 
+	<div class="col-lg-3">
+	<label>Recherche par chef projet</label> <select  ng-model="name"
+		class="form-control">
+		<option ng-value=""></option>
+		<option ng-repeat="x in usersRecherche" ng-value="x.name">{{x.name}}
+		</option>
+	</select>
+	<br>
+	</div> 
 	</div> 
 	<table class="table table-bordered" width="100%" id="dataTable"
 		cellspacing="0">
 		<thead>
 			<tr>
 				<th>Id projet</th>
+				<th>chef Projet</th>
 				<th>Phase</th>
+				<th>statut</th>
 				<th>Date debut</th>
 				<th>Date fin</th>
 				<th>Date solde</th>
@@ -34,10 +54,12 @@
 		</thead>
 
 		<tbody>
-			<tr ng-repeat="item in phases| filter:idProjet">
+			<tr ng-repeat="item in phases| filter:idProjet | filter:name | filter:statut">
 			<td ng-show="false">{{item.idphas}}</td>
 				<td>{{item.projet.idProjet}}</td>
+				<td>{{item.chefProjet.name}}</td>
 				<td>{{item.phase}}</td>
+				<td>{{item.statut.statut}}</td>
 				<td>{{item.dateDebut| date:'yyyy-MM-dd'}}</td>
 				<td>{{item.dateFin | date:'yyyy-MM-dd'}}</td>
 				<td>{{item.dateSoldePhase | date:'yyyy-MM-dd'}}</td>

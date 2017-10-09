@@ -35,7 +35,8 @@ public class Projet {
 	@ManyToOne
 	private Statut statut;
 	
-	
+	@ManyToOne 
+	private User chefProjet;
 	
 	public Projet() {
 		super();
@@ -138,6 +139,12 @@ public class Projet {
 	}
 	public void setStatut(Statut statut) {
 		this.statut = statut;
+	}
+	public User getChefProjet() {
+		return chefProjet;
+	}
+	public void setChefProjet(User chefProjet) {
+		this.chefProjet = chefProjet;
 	}
 	
 }

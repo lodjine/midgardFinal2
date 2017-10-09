@@ -4,7 +4,7 @@ editPhase.$inject = [ '$scope', '$state', '$rootScope', 'eventService',
 		'projetService', 'phaseService', '$stateParams','userService' ];
 
 function editPhase($scope, $state, $rootScope, eventService,
-		projetService, phaseService, $stateParams) {
+		projetService, phaseService, $stateParams,userService) {
 	var idPhase = $stateParams.id;
 	$scope.isTrue = false;
 	var login = localStorage.getItem("login"); 

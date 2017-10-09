@@ -28,7 +28,7 @@ private Long etatAavancement;
 @ManyToOne
 private Statut statut;
 
-@ManyToOne(cascade=CascadeType.PERSIST)
+@ManyToOne
 private Evenement event;
 
 @ManyToOne

@@ -7,8 +7,9 @@
 	</div>
 
 </div>
-<form ng-submit="form.$valid && saveEvenement()" name="form"
-	>
+
+<form ng-submit="form.$valid && saveEvenement()" name="form">
+
 	<div class="panel panel-default">
 		<div class="panel-heading">Information Evenement</div>
 
@@ -166,14 +167,15 @@
 		</div>
 	</div>
 	
-	<button type="submit" class="btn btn-success">Enregister</button>
+	<button type="submit" class="btn btn-success" >Enregister</button>
 	<button type="button" class="btn btn-primary" ng-click="retour()">Retour</button>
 	</div>
 	
 	
-	<input hidden="true" ng-model="evenement.delaiHjIngCumul">
-	<input hidden="true" ng-model="evenement.delaiHjTechCumul">
-	<input hidden="true" ng-model="evenement.nbTaches">
+	<input hidden="true" ng-model="event.delaiHjIngCumul">
+	<input hidden="true" ng-model="event.delaiHjTechCumul">
+	<input hidden="true" ng-model="event.etatAvancement">
+	<input hidden="true" ng-model="event.nbTaches">
 	
 	
 </form>

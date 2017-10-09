@@ -20,8 +20,12 @@
 		$scope.maxTechD = false;
 		$scope.users = userService.query();
 		
-	
+		
+		$scope.init=function (){
+			eventService.progressionEvent({id:1});
+		};
 		eventService.progressionEvent({id:1});
+	
 		
 		$scope.checked = false;
 		$scope.tache={
@@ -66,8 +70,8 @@
 			});
 		};
 		$scope.change = function() {
-			var dateFin = new Date($scope.evenement.dateFin);
-			var dateDebut = new Date($scope.evenement.dateDebut);
+			var dateFin = new Date($scope.event.dateFin);
+			var dateDebut = new Date($scope.event.dateDebut);
 			if (dateDebut > dateFin) {
 				$scope.isTrue = true;
 			} else {
@@ -143,13 +147,14 @@
 
 			
 			
-			$scope.evenement.delaiHjIngCumul=0;
-			$scope.evenement.delaiHjTechCumul=0;
-			$scope.evenement.nbTaches=1;
+			$scope.event.delaiHjIngCumul=0;
+			$scope.event.delaiHjTechCumul=0;
+			$scope.event.nbTaches=0;
+			$scope.event.etatAvancement=0;
 			
-			$scope.evenement.idPhase = $scope.phase;
-			console.log($scope.evenement);
-			eventService.save($scope.evenement);
+			$scope.event.idPhase = $scope.phase;
+			console.log($scope.event);
+			eventService.save($scope.event);
 
 			phaseService.save($scope.phase);
 			$state.go('event');
@@ -158,7 +163,8 @@
 
 			$scope.tache.event.delaiHjIngCumul=0;
 			$scope.tache.event.delaiHjTechCumul=0;
-			$scope.tache.event.nbTaches=2;
+			$scope.tache.event.nbTaches=1;
+			$scope.tache.event.etatAvancement=0;
 			$scope.tache.event.idPhase = $scope.phase;
 			$scope.tache.statut.id = 1;
 			tacheService.save($scope.tache);
