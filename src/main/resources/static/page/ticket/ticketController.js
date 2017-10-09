@@ -92,5 +92,9 @@
 				id : $scope.ticket.idEvenement.idEvenement
 			});
 		};
+		
+		$scope.retour = function() {
+			$state.go('listticket');
+		};
 	}
 })();
