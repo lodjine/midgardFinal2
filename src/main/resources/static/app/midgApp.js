@@ -139,6 +139,11 @@ midgApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'page/ticket/formticket.html',
 			controller: 'ticketController'
 
+        }).state('modifTicket', {
+            url: '/modifTicket/:id',
+            templateUrl: 'page/ticket/modifTicket.html',
+			controller: 'modifTicket'
+
         });
     
     

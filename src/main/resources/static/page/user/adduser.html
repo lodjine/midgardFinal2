@@ -54,11 +54,9 @@
 					<label>Role  : </label>
 				</div>
 				<div class="col-md-2">
-                          <select  ng-model="selected" required
+                          <select  ng-model="user.role" required
 								class="form-control">
-								<option ng-selected="true" ng-value="">Selectionner un
-									projet</option>
-								<option ng-repeat="x in roles" ng-value="x.id">{{x.role}}</option>
+								<option ng-repeat="x in roles" ng-value="x.id" ng-selected="user.role">{{x.role}}</option>
 							</select>
 				</div>
 				</div>

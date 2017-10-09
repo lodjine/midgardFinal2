@@ -58,39 +58,42 @@
 <script th:src="@{/page/entreprise/entrepriseController.js}"></script>
 
 <script th:src="@{/page/ticket/ticketController.js}"></script>
-
+<script th:src="@{/page/ticket/modifTicket.js}"></script>
 
 
 </head>
 <body ng-app="midgApp">
 
 	<nav class="navbar navbar-inverse" role="navigation">
-			<div class="navbar-header">
-				<a class="navbar-brand" ui-sref="home">Midgard</a>
-			</div>
-			<ul class="nav navbar-nav" >
+		<div class="navbar-header">
+			<a class="navbar-brand" ui-sref="home">Midgard</a>
+		</div>
+		<ul class="nav navbar-nav">
 
-				<li><a ui-sref="projet"><i class="fa fa-book   fa-fw"></i>
-						Projets</a></li>
-				<li><a ui-sref="listPhase"><i class="fa fa-th-list fa-fw"></i>
-						Phases</a></li>
-				<li><a ui-sref="event"><i class="fa fa-dashboard fa-fw"></i>
-						Events</a></li>
+			<li><a ui-sref="projet"><i class="fa fa-book   fa-fw"></i>
+					Projets</a></li>
+			<li><a ui-sref="listPhase"><i class="fa fa-th-list fa-fw"></i>
+					Phases</a></li>
+			<li><a ui-sref="event"><i class="fa fa-dashboard fa-fw"></i>
+					Events</a></li>
 
 
-				<li><a ui-sref="listTache"><i class="fa fa-edit   fa-fw"></i>
-						Taches</a></li>
-				<li ng-show="userConect.role.role=='ADMIN'"><a
-					ui-sref="listEntreprise"><i class="fa  fa-users fa-fw"></i>
-						Entreprise</a></li>
-				<li ng-show="userConect.role.role=='ADMIN'"><a
-					ui-sref="listUser"><i class="fa  fa-users fa-fw"></i> Users</a></li>
-				<li><a ui-sref="listticket"><i class="fa  fa-users fa-fw"></i>Ticket
-				</a></li>
-				<li><a> Identification: {{userConect.username}}</a></li>
-				<li><a th:href="@{/logout}"><i class="fa fa-sign-out fa-fw"></i>
-						Se d&eacute;connecter</a></li>
-			</ul>
+			<li><a ui-sref="listTache"><i class="fa fa-edit   fa-fw"></i>
+					Taches</a></li>
+			<li ng-show="userConect.role.role=='ADMIN'"><a
+				ui-sref="listEntreprise"><i class="fa  fa-users fa-fw"></i>
+					Entreprise</a></li>
+			<li ng-show="userConect.role.role=='ADMIN'"><a
+				ui-sref="listUser"><i class="fa  fa-users fa-fw"></i> Users</a></li>
+			<li><a ui-sref="listticket"><i class="fa  fa-users fa-fw"></i>Ticket
+			</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a> Identification: {{userConect.username}}</a></li>
+			<li><a th:href="@{/logout}"><i class="fa fa-sign-out fa-fw"></i>
+					Se d&eacute;connecter</a></li>
+		</ul>
+
 	</nav>
 
 	<!-- MAIN CONTENT -->
