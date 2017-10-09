@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.midgard.web.dao.EvenementDao;
 import com.midgard.web.dao.TacheDao;
 import com.midgard.web.model.Tache;
 
@@ -17,16 +18,24 @@ public class TacheService {
 
 	@Autowired
 	private TacheDao tacheDao;
+	@Autowired
+	private EvenementDao eventDao;
 
 	@RequestMapping(value = "/tache", method = RequestMethod.POST)
 	public Tache saveTache(@RequestBody Tache tache) {
+		if(tache.getEvent()!=null&&tache.getEvent().getIdEvenement()==null)
+			tache.setEvent(eventDao.save(tache.getEvent()));
+		
 		tacheDao.save(tache);
+		
 		return tache;
 	}
 
 	@RequestMapping(value = "/tache", method = RequestMethod.PUT)
 	public Tache updateTache(@RequestBody Tache tache) {
+		
 		tacheDao.save(tache);
+		
 		return tache;
 	}
 
