@@ -88,7 +88,7 @@
 						</div>
 						<div class="col-lg-6">
 							<div class="form-group">
-									<label>Phase</label> <select class="form-control" ng-change="createIdPhase()" ng-disabled="flagModif"
+									<label>Phase</label> <select style="width: 100%" ui-select2 ng-change="createIdPhase()" ng-disabled="flagModif"
 										ng-model="phase.phase">
 										<option>PRE</option>
 										<option>DCE</option>
@@ -100,8 +100,8 @@
 						
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label>Statut</label> <select ng-disabled="flagModif"
-									ng-model="phase.statut.id" class="form-control">
+								<label>Statut</label> <select ng-disabled="flagModif" style="width: 100%" ui-select2
+									ng-model="phase.statut.id" >
 									<option selected="true" ng-value="phase.statut.id">{{phase.statut.statut}}</option>
 									<option ng-repeat="x in statuts" ng-value="x.id">{{x.statut}}</option>
 								</select>
@@ -131,7 +131,7 @@
 										<tbody ng-repeat="doc in phase.docs">
 											<tr>
 												<td>{{doc.typeDoc}}</td>
-												<td><select class="form-control" ng-model="doc.etatDoc">
+												<td><select ng-model="doc.etatDoc" style="width: 100%" ui-select2>
 														<option>choisir un element</option>
 														<option>Recu</option>
 														<option>NRecu imp</option>
@@ -145,7 +145,7 @@
 											<tr>
 												<td><input type="text" class="form-control"
 													ng-model="typeDoc" /></td>
-												<td><select class="form-control" ng-model="etatDoc">
+												<td><select  ng-model="etatDoc" style="width: 100%" ui-select2>
 														<option>choisir un element</option>
 														<option>Recu</option>
 														<option>NRecu imp</option>
