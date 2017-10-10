@@ -8,92 +8,114 @@
 		<!-- /.col-lg-12 -->
 	</div>
 	<div class="col-lg-12">
-	<div class="col-lg-3">
-		<button type="nouveau" class="btn btn-primary btn-block" style=" width: 117%;"
-			ui-sref="nouveauEvent">
+		<div class="col-lg-3">
+			<button type="nouveau" class="btn btn-primary btn-block"
+				style="width: 117%;" ui-sref="nouveauEvent">
 
-			<i class="fa fa-pencil-square" aria-hidden="true"></i> Ajouter Evenement
-		</button>
-	</div>
-<div class="col-lg-1">
-</div>
-	<div class="col-lg-3">
-		<button type="nouveau" class="btn btn-primary btn-block" style=" width: 117%;"
-			ui-sref="EventTache">
+				<i class="fa fa-pencil-square" aria-hidden="true"></i> Ajouter
+				Evenement
+			</button>
+		</div>
+		<div class="col-lg-1"></div>
+		<div class="col-lg-3">
+			<button type="nouveau" class="btn btn-primary btn-block"
+				style="width: 117%;" ui-sref="EventTache">
 
-			<i class="fa fa-pencil-square" aria-hidden="true"></i> Ajouter evenement et tache
-		</button>
-	</div>
+				<i class="fa fa-pencil-square" aria-hidden="true"></i> Ajouter
+				evenement et tache
+			</button>
+		</div>
 	</div>
 	<div class="col-lg-12">
-	<div class="col-lg-3">
-	<label>Recherche par projet</label> <select  ng-model="idProjetRecherche" ng-change="selectProjetRecherche()" 
-		class="form-control">
-		<option ng-value=""></option>
-		<option ng-repeat="x in projetsRecherche" ng-value="x.idbd">{{x.idProjet}}
-		</option>
-	</select>
+		<div class="col-lg-3">
+			<label>Recherche par projet</label> <select
+				ng-model="idProjetRecherche" ng-change="selectProjetRecherche()"
+				class="form-control">
+				<option ng-value=""></option>
+				<option ng-repeat="x in projetsRecherche" ng-value="x.idbd">{{x.idProjet}}
+				</option>
+			</select>
 
-	</div> 
-	<div class="col-lg-3">
-	<label>Recherche par phase</label> <select  ng-model="idPhase"
-		class="form-control">
-		<option ng-value=""></option>
-		<option ng-repeat="x in phasesRecherhe" ng-value="x.idPhase">{{x.idPhase}}
-		</option>
-	</select>
-	<br>
-	</div> 
+		</div>
+		<div class="col-lg-3">
+			<label>Recherche par phase</label> <select ng-model="idPhase"
+				class="form-control">
+				<option ng-value=""></option>
+				<option ng-repeat="x in phasesRecherhe" ng-value="x.idPhase">{{x.idPhase}}
+				</option>
+			</select> <br>
+		</div>
 	</div>
 	<table class="table table-bordered" width="100%" id="dataTable"
 		cellspacing="0">
 		<thead>
 			<tr>
-			<th>Id phase</th>
+				<th>Id phase</th>
 				<th>Id</th>
 				<th>Progression</th>
 				<th>Phase</th>
 				<th>dateDebut</th>
 				<th>echeance</th>
 				<th>dateFin</th>
-				<th>Options</th>
+				<th style="width: :10%">Options</th>
 			</tr>
 		</thead>
 
 		<tbody>
 			<tr ng-repeat="item in events | filter:idPhase ">
-			<td>{{item.idPhase.idPhase}}</td>
+				<td>{{item.idPhase.idPhase}}</td>
 				<td>{{item.idEvent}}</td>
 				<td>
-				
-				<div class="progress progress-striped active">
-										<div class="progress-bar progress-bar-danger" ng-show="item.etatAvancement<=20"
-											role="progressbar" aria-valuenow="{{item.etatAvancement}}" aria-valuemin="0"
-											aria-valuemax="100" style="width: {{item.etatAvancement}}%">
-											<span class="sr-only"  ng-show="item.etatAvancement<=20">{{item.etatAvancement}} %</span>
-										</div>
-										<div class="progress-bar progress-bar-warning" ng-show="item.etatAvancement <= 60 &&  20 < item.etatAvancement"
-											role="progressbar" aria-valuenow="{{item.etatAvancement}}" aria-valuemin="0"
-											aria-valuemax="100" style="width: {{item.etatAvancement}}%">
-											<span class="sr-only"  ng-show=" 20 < item.etatAvancement <= 60">{{item.etatAvancement}} %</span>
-										</div>
-										<div class="progress-bar progress-bar-success" ng-show="item.etatAvancement>60"
-											role="progressbar" aria-valuenow="{{item.etatAvancement}}" aria-valuemin="0"
-											aria-valuemax="100" style="width: {{item.etatAvancement}}%">
-											<span class="sr-only"  ng-show="item.etatAvancement > 60">{{item.etatAvancement}} %</span>
-										</div>
-									</div>
-				
+
+					<div class="progress progress-striped active">
+						<div class="progress-bar progress-bar-danger"
+							ng-show="item.etatAvancement<=20" role="progressbar"
+							aria-valuenow="{{item.etatAvancement}}" aria-valuemin="0"
+							aria-valuemax="100" style="width: {{item.etatAvancement">
+							<span class="sr-only" ng-show="item.etatAvancement<=20">{{item.etatAvancement}}
+								%</span>
+						</div>
+						<div class="progress-bar progress-bar-warning"
+							ng-show="item.etatAvancement <= 60 &&  20 < item.etatAvancement"
+							role="progressbar" aria-valuenow="{{item.etatAvancement}}"
+							aria-valuemin="0" aria-valuemax="100"
+							style="width: {{item.etatAvancement">
+							<span class="sr-only" ng-show=" 20 < item.etatAvancement <= 60">{{item.etatAvancement}}
+								%</span>
+						</div>
+						<div class="progress-bar progress-bar-success"
+							ng-show="item.etatAvancement>60" role="progressbar"
+							aria-valuenow="{{item.etatAvancement}}" aria-valuemin="0"
+							aria-valuemax="100" style="width: {{item.etatAvancement">
+							<span class="sr-only" ng-show="item.etatAvancement > 60">{{item.etatAvancement}}
+								%</span>
+						</div>
+					</div>
+
 				</td>
-				
+
 				<td>{{item.idPhase.phase}}</td>
 				<td>{{item.dateDebut}}</td>
 				<td>{{item.echeance}}</td>
 				<td>{{item.dateFin}}</td>
-				<td><button type="submit" class="btn btn-primary btn-block"
-						ui-sref="detailEvent({id:item.idEvenement})">
-						<i class="fa fa-search  " aria-hidden="true"></i>
-					</button></td>
+				<td>
+					<div class="row">
+						<div class="col-sm-6">
+							<button type="submit" class="btn btn-info btn-block"
+								title="Consulter" 
+								ui-sref="detailEvent({id:item.idEvenement})">
+								<i class="fa fa-search" aria-hidden="true"></i>
+							</button>
+						</div>
+						<div class="col-sm-6">
+							<button type="submit" class="btn btn-primary btn-block"
+								title="Ajout Ticket" 
+								ui-sref="formEventProjet({id:item.idEvenement+'/Evenement'})">
+								<i class="fa fa-plus" aria-hidden="true"></i>
+							</button>
+						</div>
+					</div>
+				</td>
 			</tr>
 		</tbody>
 	</table>

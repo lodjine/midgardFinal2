@@ -1,4 +1,4 @@
-var midgApp = angular.module('midgApp', ['ui.router','ngResource']);
+var midgApp = angular.module('midgApp', ['ui.router','ngResource','ui.select2']);
 
 
 
@@ -143,6 +143,16 @@ midgApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/modifTicket/:id',
             templateUrl: 'page/ticket/modifTicket.html',
 			controller: 'modifTicket'
+
+        }).state('formTicketProjet', {
+            url: '/formTicketProjet/:id',
+            templateUrl: 'page/ticket/ticketProEvTach.html',
+			controller: 'ticketProEvTach'
+
+        }).state('formEventProjet', {
+            url: '/formEventProjet/:id',
+            templateUrl: 'page/ticket/ticketProEvTach.html',
+			controller: 'ticketProEvTach'
 
         });
     

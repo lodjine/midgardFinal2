@@ -127,8 +127,8 @@
 					<label>Date D&eacute;but : </label>
 				</div>
 				<div class="col-md-2">
-					<input class="form-control" ng-model="event.dateDebut"
-						ng-change="change()"
+					<input class="form-control" ng-model="event.dateDebut"  min="{{dateMin | date:'yyyy-MM-dd'}}" max="{{dateMax | date:'yyyy-MM-dd'}}"
+						ng-change="change()"      
 						ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}"
 						placeholder="date debut" type="date" /> <span ng-show="isTrue"
 						style="color: red">Date debut Invalid</span>
@@ -139,7 +139,7 @@
 					<label>Date Fin : </label>
 				</div>
 				<div class="col-md-2">
-					<input class="form-control" ng-model="event.dateFin"
+					<input class="form-control" ng-model="event.dateFin" min="{{dateMin | date:'yyyy-MM-dd'}}" max="{{dateMax | date:'yyyy-MM-dd'}}"
 						ng-change="change()"
 						ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}"
 						placeholder="date fin" type="date" /> <span ng-show="isTrue"

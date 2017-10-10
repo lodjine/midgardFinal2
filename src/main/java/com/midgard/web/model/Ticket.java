@@ -34,7 +34,7 @@ public class Ticket {
 	@JoinColumn(name = "emetteur")
 	private User emetteur;
 
-	@ManyToMany(cascade = CascadeType.MERGE)
+	@ManyToMany
 	@JoinTable(name = "ticket_destinataire", joinColumns = @JoinColumn(name = "iddbTicket"), inverseJoinColumns = @JoinColumn(name = "id"))
 	private Set<User> destinataire = new HashSet<User>();
 

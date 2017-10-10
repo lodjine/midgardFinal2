@@ -64,9 +64,14 @@
 				<td>{{item.dateDebut | date:'yyyy-MM-dd'}}</td>
 				<td>{{item.dateFin | date:'yyyy-MM-dd'}}</td>
 
-				<td><button type="submit" class="btn btn-primary btn-block" ui-sref="detailProjet({id:item.idbd})">
-						<i class="fa fa-search  " aria-hidden="true"></i> Consulter
-					</button></td>
+				<td><button type="submit" class="btn btn-primary btn-block" ui-sref="detailProjet({id:item.idbd})" title="Consulter">
+						<i class="fa fa-search  " aria-hidden="true"></i> 
+					</button>
+					<button type="button" class="btn btn-default" ui-sref="formTicketProjet({id:item.idbd+'/Projet'})">
+          <span class="glyphicon glyphicon glyphicon-plus"></span> 
+        </button>
+					
+					</td>
 			</tr>
 		</tbody>
 	</table>

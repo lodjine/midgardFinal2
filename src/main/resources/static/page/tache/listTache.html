@@ -35,30 +35,42 @@
 				<td>{{item.idTache}}</td>
 				<td>{{item.event.idEvenement}}</td>
 				<td>{{item.description}}</td>
-				<td>		
-				
-			<div class="progress progress-striped active">
-										<div class="progress-bar progress-bar-danger" ng-show="item.etatAavancement<=20"
-											role="progressbar"  aria-valuenow="{{item.etatAavancement}}" aria-valuemin="0"
-											aria-valuemax="100" style="width: {{item.etatAavancement}}%">
-											<span class="sr-only"  ng-show="item.etatAavancement<=20">{{item.etatAavancement}} %</span>
-										</div>
-										<div class="progress-bar progress-bar-warning" ng-show="item.etatAavancement <= 60 &&  20 < item.etatAavancement"
-											role="progressbar" aria-valuenow="{{item.etatAavancement}}" aria-valuemin="0"
-											aria-valuemax="100" style="width: {{item.etatAavancement}}%">
-											<span class="sr-only"  ng-show=" 20 < item.etatAavancement <= 60">{{item.etatAavancement}} %</span>
-										</div>
-										<div class="progress-bar progress-bar-success" ng-show="item.etatAavancement>60"
-											role="progressbar" aria-valuenow="{{item.etatAavancement}}" aria-valuemin="0"
-											aria-valuemax="100" style="width: {{item.etatAavancement}}%">
-											<span class="sr-only"  ng-show="item.etatAavancement > 60">{{item.etatAavancement}} %</span>
-										</div>
-									</div>
-				
+				<td>
+
+					<div class="progress progress-striped active">
+						<div class="progress-bar progress-bar-danger"
+							ng-show="item.etatAavancement<=20" role="progressbar"
+							aria-valuenow="{{item.etatAavancement}}" aria-valuemin="0"
+							aria-valuemax="100" style="width: {{item.etatAavancement">
+							<span class="sr-only" ng-show="item.etatAavancement<=20">{{item.etatAavancement}}
+								%</span>
+						</div>
+						<div class="progress-bar progress-bar-warning"
+							ng-show="item.etatAavancement <= 60 &&  20 < item.etatAavancement"
+							role="progressbar" aria-valuenow="{{item.etatAavancement}}"
+							aria-valuemin="0" aria-valuemax="100"
+							style="width: {{item.etatAavancement">
+							<span class="sr-only" ng-show=" 20 < item.etatAavancement <= 60">{{item.etatAavancement}}
+								%</span>
+						</div>
+						<div class="progress-bar progress-bar-success"
+							ng-show="item.etatAavancement>60" role="progressbar"
+							aria-valuenow="{{item.etatAavancement}}" aria-valuemin="0"
+							aria-valuemax="100" style="width: {{item.etatAavancement">
+							<span class="sr-only" ng-show="item.etatAavancement > 60">{{item.etatAavancement}}
+								%</span>
+						</div>
+					</div>
+
 				</td>
 				<td>{{item.operateur.nom}} {{item.operateur.prenom}}</td>
-				<td><button type="submit" class="btn btn-primary btn-block" ui-sref="detailTache({id:item.idBd})">
+				<td><button type="submit" class="btn btn-primary btn-block"
+						ui-sref="detailTache({id:item.idBd})">
 						<i class="fa fa-search  " aria-hidden="true"></i> Consulter
+					</button>
+					<button type="submit" class="btn btn-primary btn-block"
+						ui-sref="formTicketProjet({id:item.idBd+'/Tache'})">
+						<i class="fa fa-search  " aria-hidden="true"></i>
 					</button></td>
 			</tr>
 		</tbody>

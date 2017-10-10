@@ -93,6 +93,8 @@
 			angular.forEach($scope.phases, function(ph) {
 				if (ph.idphas === idp) {
 					$scope.phase = ph;
+					$scope.dateMin=$scope.phase.dateDebut;
+					$scope.dateMax=$scope.phase.dateFin;
 					$scope.phase.nbrEvent = $scope.phase.nbrEvent + 1;
 					var nbr = $scope.phase.nbrEvent;
 					if (nbr < 10) {
@@ -118,6 +120,8 @@
 			angular.forEach($scope.phases, function(ph) {
 				if (ph.idphas === idp) {
 					$scope.phase = ph;
+					$scope.dateMin=$scope.phase.dateDebut;
+					$scope.dateMax=$scope.phase.dateFin;
 					$scope.phase.nbrEvent = $scope.phase.nbrEvent + 1;
 					var nbr = $scope.phase.nbrEvent;
 					if (nbr < 10) {
