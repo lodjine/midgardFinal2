@@ -7,6 +7,7 @@ function tacheCtrl($scope, $window, tacheService, userService,
 		eventService,  $state,$rootScope) {
 	var login = localStorage.getItem("login"); 
 	$rootScope.userConect=userService.userByLogin({login:login});
+
 	$scope.initFunc = function() {
 		$scope.events = eventService.query();
 		
@@ -66,18 +67,33 @@ function tacheCtrl($scope, $window, tacheService, userService,
 	};
 
 	$scope.saveTache = function() {
+		$scope.event.nbTaches = $scope.event.nbTaches + 1;
 		$scope.tache.idTache = $scope.event.idEvent + 'T'
 				+ $scope.event.nbTaches;
 		$scope.tache.statut.id = 1;
-		tacheService.save($scope.tache);
-		$scope.event.nbTaches = $scope.event.nbTaches + 1;
-		$scope.event.delaiHjTechCumul=$scope.event.delaiHjTechCumul+$scope.tache.hjTech;
-		$scope.event.delaiHjIngCumul=$scope.event.delaiHjIngCumul+$scope.tache.hjIng;
-		eventService.save($scope.event);
+	
 		
-		$state.go('listTache');
-
-	}
+		if($scope.tache.hjTech!='undefined'){
+			$scope.tache.event.delaiHjTechCumul=$scope.tache.event.delaiHjTechCumul+$scope.tache.hjTech;
+			}
+			if($scope.tache.hjIng!='undefined'){
+			$scope.tache.event.delaiHjIngCumul=$scope.tache.event.delaiHjIngCumul+$scope.tache.hjIng;
+			}
+		
+		tacheService.save($scope.tache).$promise.then(function(){
+			
+          })
+          .then(function() {
+        	  eventService.save($scope.event);
+          }).then(function() {
+        	  eventService.progressionEvent({id:1});
+          }).then(function() {
+        	  $state.go('listTache');
+          });
+		}
+	
+	
+	
 	$scope.nombreHTech = function() {
 	
 		if ($scope.tache.hjTech + $scope.event.delaiHjTechCumul > $scope.event.delaiHjTech)
@@ -85,6 +101,10 @@ function tacheCtrl($scope, $window, tacheService, userService,
 		if ($scope.tache.hjTech + $scope.event.delaiHjTechCumul <= $scope.event.delaiHjTech)
 			$scope.maxTechD = false;
 	}
+	
+	
+	
+	
 	$scope.nombreHIng = function() {
 		
 			if ($scope.tache.hjIng + $scope.event.delaiHjIngCumul > $scope.event.delaiHjIng)

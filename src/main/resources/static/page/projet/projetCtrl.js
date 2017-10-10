@@ -117,7 +117,7 @@ var projetCtrl = midgApp.controller('projetCtrl', function($scope, $window,
 		$scope.phase.statut.id = 2;
 		$scope.phase.projet.chefProjet.id=$rootScope.userConect.id;
 		$scope.phase.chefProjet.id=$rootScope.userConect.id;
-		phaseService.save($scope.phase);
+		phaseService.save($scope.phase).$promise.then(function(result) {
 		if ($scope.phase.phase == "EXE") {
 
 			$scope.phase2.idPhase = $scope.phase.projet.idProjet + "P";
@@ -197,9 +197,14 @@ var projetCtrl = midgApp.controller('projetCtrl', function($scope, $window,
 			$scope.phase4.chefProjet.id=$rootScope.userConect.id;
 			phaseService.savePhaseAux($scope.phase4);
 		}
+	
+}).then(function(){
+		
 		console.log($scope.phase);
-
 		$state.go('projet');
+		
+		
+	});	
 
 	};
 

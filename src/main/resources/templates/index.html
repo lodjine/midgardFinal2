@@ -66,13 +66,15 @@
 					Events</a></li>
 			<li><a ui-sref="listTache"><i class="fa fa-edit   fa-fw"></i>
 					Taches</a></li>
-			<li ng-show="userConect.role.role=='ADMIN'"><a
-				ui-sref="listEntreprise"><i class="fa  fa-users fa-fw"></i>
-					Entreprise</a></li>
-			<li ng-show="userConect.role.role=='ADMIN'"><a
-				ui-sref="listUser"><i class="fa  fa-users fa-fw"></i> Users</a></li>
+			
 			<li><a ui-sref="listticket"><i class="fa  fa-users fa-fw"></i>Ticket
 			</a></li>
+			
+			<li ><a
+				ui-sref="listEntreprise"><i class="fa  fa-users fa-fw"></i>
+					Entreprise</a></li>
+			<li><a
+				ui-sref="listUser"><i class="fa  fa-users fa-fw"></i> Users</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li><a> Identification: {{userConect.username}}</a></li>

@@ -5,7 +5,15 @@ detailTacheCtrl.$inject = [ '$scope','userService' ,'tacheService','statutServic
 function detailTacheCtrl($scope,userService,tacheService,statutService,eventService, $window,$state, $stateParams,$rootScope,userService) {
 	var login = localStorage.getItem("login"); 
 	$rootScope.userConect=userService.userByLogin({login:login});
-	$scope.flagModif=true;
+
+
+	  $scope.flagModif=true;
+		
+		$scope.activerModification=function(){
+			$scope.flagModif=false;
+		}
+	
+	
 	$scope.users=userService.query();
 	$scope.statuts=statutService.query();
 	var idTache=$stateParams.id;
@@ -45,6 +53,7 @@ function detailTacheCtrl($scope,userService,tacheService,statutService,eventServ
 	
 	
 	
+	
 	$scope.saveTache = function() {
 
 		if($scope.tache.operateur.ingenieur)
@@ -52,8 +61,7 @@ function detailTacheCtrl($scope,userService,tacheService,statutService,eventServ
 		if(!$scope.tache.operateur.ingenieur)
 			$scope.tache.hjIng=0;
 		tacheService.save($scope.tache);
-		$scope.tache.event.delaiHjTechCumul=$scope.tache.event.delaiHjTechCumul+$scope.tache.hjTech;
-		$scope.tache.event.delaiHjIngCumul=$scope.tache.event.delaiHjIngCumul+$scope.tache.hjIng;
+		
 		eventService.save($scope.tache.event);
 		eventService.progressionEvent({id:$scope.tache.event.idEvenement});
 		$state.go('listTache');

@@ -10,7 +10,7 @@ var phaseCtrl=midgApp.controller('phaseCtrl', function($scope,$window,phaseServi
 	$scope.usersRecherche=userService.query();
 	$scope.statutRecherche=statutService.query();
 	
-
+	
 	
 
 	

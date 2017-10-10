@@ -31,9 +31,9 @@
 				<td>{{item.id}}</td>
 				<td>{{item.nom}}</td>
 
-				<td><button type="submit" class="btn btn-primary btn-block"
-						ui-sref="detailUser({id:item.id})">
-						<i class="fa fa-search  " aria-hidden="true"></i> Consulter
+				<td><button type="submit" class="btn btn-danger btn-block"
+						ng-click="supprimerEntreprise({id:item.id})">
+						<i class="fa fa-times" aria-hidden="true"></i> supprimer
 					</button></td>
 			</tr>
 		</tbody>

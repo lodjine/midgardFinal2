@@ -6,7 +6,7 @@
 		<!-- /.col-lg-12 -->
 	</div>
 	<!-- /.row -->
-	<div class="col-lg-2">
+	<div class="col-lg-2"  ng-show="userConect.role.role!='CLIENT'">
 		<button type="nouveau" class="btn btn-primary btn-block"
 			ui-sref="formTache">
 
@@ -14,7 +14,7 @@
 		</button>
 	</div>
 	<br /> <br />
-
+<input hidden="true"  ng-model="userConect.name">
 	<table class="table table-bordered" width="100%" id="dataTable"
 		cellspacing="0">
 		<thead>
@@ -30,7 +30,41 @@
 			</tr>
 		</thead>
 
-		<tbody>
+		<tbody ng-show="userConect.role.role=='CHEFP'||userConect.role.role=='COLLAB'">
+			<tr ng-repeat="item in taches | filter : userConect.name">
+				<td>{{item.idTache}}</td>
+				<td>{{item.event.idEvenement}}</td>
+				<td>{{item.description}}</td>
+				<td>		
+				
+			<div class="progress progress-striped active">
+										<div class="progress-bar progress-bar-danger" ng-show="item.etatAavancement<=20"
+											role="progressbar"  aria-valuenow="{{item.etatAavancement}}" aria-valuemin="0"
+											aria-valuemax="100" style="width: {{item.etatAavancement}}%">
+											<span class="sr-only"  ng-show="item.etatAavancement<=20">{{item.etatAavancement}} %</span>
+										</div>
+										<div class="progress-bar progress-bar-warning" ng-show="item.etatAavancement <= 60 &&  20 < item.etatAavancement"
+											role="progressbar" aria-valuenow="{{item.etatAavancement}}" aria-valuemin="0"
+											aria-valuemax="100" style="width: {{item.etatAavancement}}%">
+											<span class="sr-only"  ng-show=" 20 < item.etatAavancement <= 60">{{item.etatAavancement}} %</span>
+										</div>
+										<div class="progress-bar progress-bar-success" ng-show="item.etatAavancement>60"
+											role="progressbar" aria-valuenow="{{item.etatAavancement}}" aria-valuemin="0"
+											aria-valuemax="100" style="width: {{item.etatAavancement}}%">
+											<span class="sr-only"  ng-show="item.etatAavancement > 60">{{item.etatAavancement}} %</span>
+										</div>
+									</div>
+				
+				</td>
+				<td>{{item.operateur.name}}</td>
+				<td><button type="submit" class="btn btn-primary btn-block" ui-sref="detailTache({id:item.idBd})">
+						<i class="fa fa-search  " aria-hidden="true"></i> Consulter
+					</button></td>
+			</tr>
+		</tbody>
+		
+		
+		<tbody ng-show="userConect.role.role!='CHEFP' && userConect.role.role!='COLLAB'">
 			<tr ng-repeat="item in taches">
 				<td>{{item.idTache}}</td>
 				<td>{{item.event.idEvenement}}</td>
@@ -63,9 +97,9 @@
 					</div>
 
 				</td>
-				<td>{{item.operateur.nom}} {{item.operateur.prenom}}</td>
-				<td><button type="submit" class="btn btn-primary btn-block"
-						ui-sref="detailTache({id:item.idBd})">
+
+				<td>{{item.operateur.name}}</td>
+				<td><button type="submit" class="btn btn-primary btn-block" ui-sref="detailTache({id:item.idBd})">
 						<i class="fa fa-search  " aria-hidden="true"></i> Consulter
 					</button>
 					<button type="submit" class="btn btn-primary btn-block"

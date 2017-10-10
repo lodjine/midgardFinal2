@@ -16,7 +16,15 @@
 		$scope.entreprises = entrepriseService.query();
 		$scope.entreprise={};
 		$scope.save = function() {
-			entrepriseService.save($scope.entreprise);
+			entrepriseService.save($scope.entreprise).$promise.then(function(){
+				$state.go('listEntreprise');
+			});
+				
+			
+		}
+		
+		$scope.supprimerEntreprise= function(id) {
+			entrepriseService.delete({id:id});
 		}
 		
 		$scope.addEntre = function() {

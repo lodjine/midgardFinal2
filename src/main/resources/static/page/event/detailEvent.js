@@ -14,6 +14,13 @@
 	function detailEvent($scope, $state, $rootScope, eventService,
 			projetService, phaseService, $stateParams,userService) {
 		
+		
+
+	      $scope.flagModif=true;
+		
+		$scope.activerModification=function(){
+			$scope.flagModif=false;
+		}
 		var login = localStorage.getItem("login"); 
 		$rootScope.userConect=userService.userByLogin({login:login});
 		
