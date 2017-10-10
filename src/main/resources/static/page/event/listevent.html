@@ -34,7 +34,7 @@
 		<div class="col-lg-3">
 			<label>Recherche par projet</label> <select
 				ng-model="idProjetRecherche" ng-change="selectProjetRecherche()"
-				class="form-control">
+				style="width: 100%" ui-select2>
 				<option ng-value=""></option>
 				<option ng-repeat="x in projetsRecherche" ng-value="x.idbd">{{x.idProjet}}
 				</option>
@@ -43,7 +43,7 @@
 		</div>
 		<div class="col-lg-3">
 			<label>Recherche par phase</label> <select ng-model="idPhase"
-				class="form-control">
+				style="width: 100%" ui-select2>
 				<option ng-value=""></option>
 				<option ng-repeat="x in phasesRecherhe" ng-value="x.idPhase">{{x.idPhase}}
 				</option>
@@ -75,7 +75,7 @@
 						<div class="progress-bar progress-bar-danger"
 							ng-show="item.etatAvancement<=20" role="progressbar"
 							aria-valuenow="{{item.etatAvancement}}" aria-valuemin="0"
-							aria-valuemax="100" style="width: {{item.etatAvancement">
+							aria-valuemax="100" style="width: {{item.etatAvancement}}%!important">
 							<span class="sr-only" ng-show="item.etatAvancement<=20">{{item.etatAvancement}}
 								%</span>
 						</div>
@@ -83,14 +83,14 @@
 							ng-show="item.etatAvancement <= 60 &&  20 < item.etatAvancement"
 							role="progressbar" aria-valuenow="{{item.etatAvancement}}"
 							aria-valuemin="0" aria-valuemax="100"
-							style="width: {{item.etatAvancement">
+							style="width: {{item.etatAvancement}}%!important">
 							<span class="sr-only" ng-show=" 20 < item.etatAvancement <= 60">{{item.etatAvancement}}
 								%</span>
 						</div>
 						<div class="progress-bar progress-bar-success"
 							ng-show="item.etatAvancement>60" role="progressbar"
 							aria-valuenow="{{item.etatAvancement}}" aria-valuemin="0"
-							aria-valuemax="100" style="width: {{item.etatAvancement">
+							aria-valuemax="100" style="width: {{item.etatAvancement}}%!important">
 							<span class="sr-only" ng-show="item.etatAvancement > 60">{{item.etatAvancement}}
 								%</span>
 						</div>

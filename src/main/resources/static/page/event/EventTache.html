@@ -23,7 +23,7 @@
 						</div>
 						<div class="col-md-3">
 							<select ng-change="selectAllPhase()" ng-model="selected" required
-								class="form-control">
+								style="width: 100%" ui-select2>
 								<option ng-selected="true" ng-value="">Selectionner un
 									projet</option>
 								<option ng-repeat="x in projets" ng-value="x.idbd">{{x.idProjet}}</option>
@@ -34,7 +34,7 @@
 						</div>
 						<div class="col-md-2">
 							<select ng-change="selectPhase2()" ng-model="selectedPhase" wb-select2
-								required class="form-control">
+								required style="width: 100%" ui-select2>
 								<option ng-selected="true" ng-value="">Selectionner une
 									phase</option>
 								<option ng-repeat="x in phases" ng-value="x.idphas" ng-show="x.statut.id !== 1">{{x.idPhase}}</option>
@@ -97,7 +97,7 @@
 				<div class="col-md-4">
 
 
-					<select required="required" class="form-control"
+					<select required="required" style="width: 100%" ui-select2
 						ng-model="tache.event.etat">
 						<option>choisir un &eacute;tat</option>
 						<option>Non trait&eacute;</option>
@@ -178,7 +178,7 @@
 					<div class="col-lg-6">
 						<div class="form-group">
 							<label>Intervenant</label> <select ng-change="selectOperateur()"
-								ng-model="tache.operateur.id" class="form-control">
+								ng-model="tache.operateur.id" style="width: 100%" ui-select2>
 								<option ng-repeat="x in users" ng-value="x.id">{{x.name}}</option>
 							</select>
 						</div>
@@ -218,7 +218,7 @@
 						<div class="form-group">
 
 							<label>Liaison tache</label> <select
-								ng-model="tache.tacheLie.idBd" class="form-control">
+								ng-model="tache.tacheLie.idBd" style="width: 100%" ui-select2>
 								<option ng-repeat="x in tachesLies" ng-value="x.idBd">{{x.idTache}}</option>
 							</select>
 

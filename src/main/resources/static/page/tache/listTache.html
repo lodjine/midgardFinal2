@@ -22,7 +22,7 @@
 				<th>Id tache</th>
 				<th>Id evenement</th>
 				<th>Description</th>
-				<th>Avancement</th>
+				<th>Progression</th>
 				<th>Operateur</th>
 				<th>Options</th>
 
@@ -35,22 +35,22 @@
 				<td>{{item.idTache}}</td>
 				<td>{{item.event.idEvenement}}</td>
 				<td>{{item.description}}</td>
-				<td>		
-				
+				<td>{{item.etatAavancement}}</td>	
+				<td>
 			<div class="progress progress-striped active">
 										<div class="progress-bar progress-bar-danger" ng-show="item.etatAavancement<=20"
 											role="progressbar"  aria-valuenow="{{item.etatAavancement}}" aria-valuemin="0"
-											aria-valuemax="100" style="width: {{item.etatAavancement}}%">
+											aria-valuemax="100" style="width: {{item.etatAavancement}}%!important">
 											<span class="sr-only"  ng-show="item.etatAavancement<=20">{{item.etatAavancement}} %</span>
 										</div>
 										<div class="progress-bar progress-bar-warning" ng-show="item.etatAavancement <= 60 &&  20 < item.etatAavancement"
 											role="progressbar" aria-valuenow="{{item.etatAavancement}}" aria-valuemin="0"
-											aria-valuemax="100" style="width: {{item.etatAavancement}}%">
+											aria-valuemax="100" style="width: {{item.etatAavancement}}%!important">
 											<span class="sr-only"  ng-show=" 20 < item.etatAavancement <= 60">{{item.etatAavancement}} %</span>
 										</div>
 										<div class="progress-bar progress-bar-success" ng-show="item.etatAavancement>60"
 											role="progressbar" aria-valuenow="{{item.etatAavancement}}" aria-valuemin="0"
-											aria-valuemax="100" style="width: {{item.etatAavancement}}%">
+											aria-valuemax="100" style="width: {{item.etatAavancement}}%!important">
 											<span class="sr-only"  ng-show="item.etatAavancement > 60">{{item.etatAavancement}} %</span>
 										</div>
 									</div>
@@ -69,13 +69,14 @@
 				<td>{{item.idTache}}</td>
 				<td>{{item.event.idEvenement}}</td>
 				<td>{{item.description}}</td>
+				<td>{{item.etatAavancement}}</td>	
 				<td>
 
 					<div class="progress progress-striped active">
 						<div class="progress-bar progress-bar-danger"
 							ng-show="item.etatAavancement<=20" role="progressbar"
 							aria-valuenow="{{item.etatAavancement}}" aria-valuemin="0"
-							aria-valuemax="100" style="width: {{item.etatAavancement">
+							aria-valuemax="100" style="width: {{item.etatAavancement}}%!important">
 							<span class="sr-only" ng-show="item.etatAavancement<=20">{{item.etatAavancement}}
 								%</span>
 						</div>
@@ -83,14 +84,14 @@
 							ng-show="item.etatAavancement <= 60 &&  20 < item.etatAavancement"
 							role="progressbar" aria-valuenow="{{item.etatAavancement}}"
 							aria-valuemin="0" aria-valuemax="100"
-							style="width: {{item.etatAavancement">
+							style="width: {{item.etatAavancement}}%!important">
 							<span class="sr-only" ng-show=" 20 < item.etatAavancement <= 60">{{item.etatAavancement}}
 								%</span>
 						</div>
 						<div class="progress-bar progress-bar-success"
 							ng-show="item.etatAavancement>60" role="progressbar"
 							aria-valuenow="{{item.etatAavancement}}" aria-valuemin="0"
-							aria-valuemax="100" style="width: {{item.etatAavancement">
+							aria-valuemax="100" style="width: {{item.etatAavancement}}%!important">
 							<span class="sr-only" ng-show="item.etatAavancement > 60">{{item.etatAavancement}}
 								%</span>
 						</div>
