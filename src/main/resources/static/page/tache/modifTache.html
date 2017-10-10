@@ -37,8 +37,8 @@
 
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label>Intervenant</label> <select ng-disabled="flagModif" ng-change="selectOperateur()"
-									ng-model="tache.operateur.id" class="form-control">
+								<label>Intervenant</label> <select ng-disabled="flagModif" ng-change="selectOperateur()" style="width: 100%" ui-select2
+									ng-model="tache.operateur.id" >
 									<option selected="true" ng-value="tache.operateur.id">{{tache.operateur.name}}</option>
 									<option ng-repeat="x in users" ng-value="x.id">{{x.name}}</option>
 								</select>
@@ -47,9 +47,9 @@
 
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label>Evenement</label> <select ng-disabled="true"
+								<label>Evenement</label> <select ng-disabled="true" style="width: 100%" ui-select2
 									ng-change="selectEvent()" ng-change="selectEvent()"
-									ng-model="tache.event.idEvenement" class="form-control">
+									ng-model="tache.event.idEvenement" >
 									<option selected="true" ng-value="tache.event.idEvenement">{{tache.event.idEvent}}</option>
 									<option ng-repeat="x in events" ng-value="x.idEvenement">{{x.idEvent}}</option>
 								</select>
@@ -58,8 +58,8 @@
 						
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label>Statut</label> <select ng-disabled="flagModif"
-									ng-model="tache.statut.id" class="form-control">
+								<label>Statut</label> <select ng-disabled="flagModif" style="width: 100%" ui-select2
+									ng-model="tache.statut.id" >
 									<option selected="true" ng-value="tache.statut.id">{{tache.statut.statut}}</option>
 									<option ng-repeat="x in statuts" ng-value="x.id">{{x.statut}}</option>
 								</select>
