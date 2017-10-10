@@ -1,9 +1,39 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="page-header">Modifier Evenement</h1>
+			<h1 class="page-header">Evenement {{evenement.idEvent}}</h1>
 		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	
+		<!-- /.col-lg-12 -->
+	</div>
+	<!-- /.row -->
+	<div class="col-lg-2" ng-show="userConect.role.role!='COLLAB' && userConect.role.role!='CLIENT'">
+		<button type="submit" class="btn btn-primary btn-block"
+			ng-show="flagModif" ng-click="activerModification()">
+			<i class="fa" aria-hidden="true"></i> Modifier
+		</button>
+	</div>
+	<div class="col-lg-2">
+		<button type="button" class="btn btn-primary btn-block" ng-click="retour()">Retour</button>
+	</div>
+	
+	<div class="col-lg-2" ng-show="userConect.role.role!='COLLAB' && userConect.role.role!='CLIENT'">
+		<button type="submit" class="btn btn-success btn-block"
+			ng-show="!flagModif" ng-click="saveEvenement()">
+			<i class="fa" aria-hidden="true"></i> Valider
+		</button>
+	</div>
+	<div class="col-lg-2" ng-show="!flagModif && (userConect.role.role=='ADMIN' ||userConect.role.role=='CHEFP') ">
 
+		<button type="submit"   class="btn btn btn-danger btn-block"
+			 ng-click="deleteProjet(projet.idBd)">
+			<i class="fa" aria-hidden="true"></i> Supprimer
+		</button>
+	</div>
+	
+	<br><br>
 	</div>
 
 
@@ -46,15 +76,15 @@
 					<div class="col-lg-5">
 						<div class="form-group">
 							<label>Lot &agrave; traiter </label> <br /> <label
-								class="checkbox-inline"> <input
+								class="checkbox-inline"> <input ng-disabled="flagModif"
 								ng-model="evenement.idPhase.archi" type="checkbox">A
-							</label> <label class="checkbox-inline"> <input
+							</label> <label class="checkbox-inline"> <input ng-disabled="flagModif"
 								ng-model="evenement.idPhase.grosOeuvre" type="checkbox">CO
-							</label> <label class="checkbox-inline"> <input
+							</label> <label class="checkbox-inline"> <input ng-disabled="flagModif"
 								ng-model="evenement.idPhase.metal" type="checkbox">CM
-							</label> <label class="checkbox-inline"> <input
+							</label> <label class="checkbox-inline"> <input ng-disabled="flagModif"
 								ng-model="evenement.idPhase.bois" type="checkbox">CB
-							</label> <label class="checkbox-inline"> <input
+							</label> <label class="checkbox-inline"> <input ng-disabled="flagModif"
 								ng-model="evenement.idPhase.voirie" type="checkbox">VRD
 							</label>
 						</div>
@@ -64,15 +94,15 @@
 							<label>Docs &agrave; transmettre </label> <br /> <label
 								class="checkbox-inline"> <input
 								ng-model="evenement.plans" type="checkbox">Plans
-							</label> <label class="checkbox-inline"> <input
+							</label> <label class="checkbox-inline"> <input ng-disabled="flagModif"
 								ng-model="evenement.noteCalcul" type="checkbox">Note de
 								calculs
-							</label> <label class="checkbox-inline"> <input
+							</label> <label class="checkbox-inline"> <input ng-disabled="flagModif"
 								ng-model="evenement.quantitif" type="checkbox">Quantitatifs
-							</label> <label class="checkbox-inline"> <input
+							</label> <label class="checkbox-inline"> <input ng-disabled="flagModif"
 								ng-model="evenement.modele3d" type="checkbox">Mod&egrave;le
 								3D
-							</label> <label class="checkbox-inline"> <input
+							</label> <label class="checkbox-inline"> <input ng-disabled="flagModif"
 								ng-model="evenement.rapport" type="checkbox">Rapport
 							</label>
 						</div>
@@ -87,7 +117,7 @@
 				<div class="col-md-4">
 
 
-					<select class="form-control" ng-model="evenement.etat">
+					<select class="form-control" ng-disabled="flagModif" ng-model="evenement.etat">
 						<option>choisir un &eacute;tat</option>
 						<option>Non trait&eacute;</option>
 						<option>En cours</option>
@@ -102,12 +132,12 @@
 				</div>
 				<div class="col-md-2">
 
-					<input class="form-control" ng-model="evenement.delaiHjIng"
+					<input class="form-control" ng-disabled="flagModif" ng-model="evenement.delaiHjIng"
 						placeholder="JH Ing" type="text" />
 				</div>
 				<div class="col-md-2">
 
-					<input class="form-control" ng-model="evenement.delaiHjTech"
+					<input class="form-control" ng-disabled="flagModif" ng-model="evenement.delaiHjTech"
 						placeholder="JH Tech" type="text" />
 				</div>
 			</div>
@@ -117,7 +147,7 @@
 					<label>Date D&eacute;but : </label>
 				</div>
 				<div class="col-md-2">
-					<input class="form-control" ng-model="evenement.dateDebut"
+					<input class="form-control"  ng-disabled="flagModif" ng-model="evenement.dateDebut"
 						format-date placeholder="date debut" type="date" />
 				</div>
 
@@ -125,14 +155,14 @@
 					<label>Date Fin : </label>
 				</div>
 				<div class="col-md-2">
-					<input class="form-control" ng-model="evenement.dateFin"
+					<input class="form-control"  ng-disabled="flagModif" ng-model="evenement.dateFin"
 						format-date placeholder="date fin" type="date" />
 				</div>
 				<div class="col-md-2">
 					<label>Date Ech&eacute;ance : </label>
 				</div>
 				<div class="col-md-2">
-					<input class="form-control" ng-model="evenement.echeance"
+					<input class="form-control" ng-disabled="flagModif" ng-model="evenement.echeance"
 						format-date placeholder="date Ech&eacute;ance" type="date" />
 				</div>
 
@@ -143,15 +173,13 @@
 					<label>Priorit&eacute; : </label>
 				</div>
 				<div class="col-md-2">
-					<input class="form-control" ng-model="evenement.priorite"
+					<input class="form-control"  ng-disabled="flagModif" ng-model="evenement.priorite"
 						placeholder="1 &agrave; 10 " type="text" />
 				</div>
 			</div>
 		</div>
 
 	</div>
-	<button type="button" class="btn btn-success"
-		ng-click="saveEvenement()">Enregister</button>
-	<button type="button" class="btn btn-primary" ng-click="retour()">Retour</button>
-	</div>
+	
+
 </form>

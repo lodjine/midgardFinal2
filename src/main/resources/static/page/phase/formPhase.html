@@ -1,10 +1,35 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="page-header">Nouvel phase</h1>
+			<h1 class="page-header">Phase {{phase.idPhase}}</h1>
 		</div>
 		<!-- /.col-lg-12 -->
 	</div>
+	
+		<!-- /.col-lg-12 -->
+	</div>
+	<!-- /.row -->
+	<div class="col-lg-2">
+		<button type="submit" class="btn btn-primary btn-block" ng-show="flagModif  && userConect.role.role!='COLLAB'"
+		ng-click="activerModification()">
+			<i class="fa" aria-hidden="true"></i> Modifier
+		</button>
+	</div>
+	<div class="col-lg-2">
+		<button type="submit" class="btn btn-success btn-block"
+			ng-show="!flagModif" ng-click="updatePhase()">
+			<i class="fa" aria-hidden="true"></i> Valider
+		</button>
+	</div>
+	<div class="col-lg-2">
+
+		<button type="submit"   class="btn btn btn-danger btn-block"
+			ng-show="!flagModif && userConect.role.role=='ADMIN'" ng-click="deleteProjet(projet.idBd)">
+			<i class="fa" aria-hidden="true"></i> Supprimer
+		</button>
+	</div>
+	
+	<br><br>
 	<!-- /.row -->
 	<div class="row">
 		<div class="col-lg-11">
@@ -28,7 +53,7 @@
 
 						<div class="col-lg-6">
 							<div class="form-group">
-							<label>Date debut</label> <input class="form-control"
+							<label>Date debut</label> <input class="form-control" ng-disabled="flagModif"
 								ng-disabled="flagModif" ng-model="phase.dateDebut" format-date
 								placeholder="date debut" type="date" ng-change="change()"
 								ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}" />
@@ -39,7 +64,7 @@
 						</div>
 						<div class="col-lg-6">
 							<div class="form-group">
-							<label>Date fin</label> <input class="form-control"
+							<label>Date fin</label> <input class="form-control" 
 								ng-disabled="flagModif" ng-model="phase.dateFin" format-date
 								placeholder="date fin" type="date" ng-change="change()"
 								ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}" />
@@ -50,20 +75,20 @@
 						</div>
 						<div class="col-lg-6">
 								<div class="form-group">
-									<label>Solde phase</label> <input class="form-control"
+									<label>Solde phase</label> <input class="form-control" ng-disabled="flagModif"
 										ng-model="phase.dateSoldePhase" format-date
 										placeholder="Informations additionnel" type="date" />
 								</div>
 							</div>
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label>Honoraires</label> <input class="form-control"
-									ng-model="phase.honoraire" placeholder="Nom" type="text" />
+								<label>Honoraires</label> <input class="form-control" ng-disabled="flagModif"
+									ng-model="phase.honoraires" placeholder="Nom" type="text" />
 							</div>
 						</div>
 						<div class="col-lg-6">
 							<div class="form-group">
-									<label>Phase</label> <select class="form-control" ng-change="createIdPhase()"
+									<label>Phase</label> <select class="form-control" ng-change="createIdPhase()" ng-disabled="flagModif"
 										ng-model="phase.phase">
 										<option>PRE</option>
 										<option>DCE</option>
@@ -72,14 +97,24 @@
 									</select>
 								</div>
 						</div>
+						
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label>Statut</label> <select ng-disabled="flagModif"
+									ng-model="phase.statut.id" class="form-control">
+									<option selected="true" ng-value="phase.statut.id">{{phase.statut.statut}}</option>
+									<option ng-repeat="x in statuts" ng-value="x.id">{{x.statut}}</option>
+								</select>
+							</div>
+						</div>
 							<div class="col-lg-6">
 								<div class="form-group">
 									<label>Lot a traiter </label> <br /> <label
-										class="checkbox-inline"> <input  ng-model="phase.archi" type="checkbox">A
-									</label> <label class="checkbox-inline"> <input   ng-model="phase.grosOeuvre"  type="checkbox">CO
-									</label> <label class="checkbox-inline"> <input  ng-model="phase.metal"  type="checkbox">CM
-									</label> <label class="checkbox-inline"> <input  ng-model="phase.bois"  type="checkbox">CB
-									</label> <label class="checkbox-inline"> <input  ng-model="phase.voirie" type="checkbox">VRD
+										class="checkbox-inline"> <input ng-disabled="flagModif"  ng-model="phase.archi" type="checkbox">A
+									</label> <label class="checkbox-inline"> <input ng-disabled="flagModif"  ng-model="phase.grosOeuvre"  type="checkbox">CO
+									</label> <label class="checkbox-inline"> <input  ng-disabled="flagModif" ng-model="phase.metal"  type="checkbox">CM
+									</label> <label class="checkbox-inline"> <input ng-disabled="flagModif" ng-model="phase.bois"  type="checkbox">CB
+									</label> <label class="checkbox-inline"> <input ng-disabled="flagModif" ng-model="phase.voirie" type="checkbox">VRD
 									</label>
 								</div>
 							</div>
@@ -102,7 +137,7 @@
 														<option>NRecu imp</option>
 														<option>NRecu non imp</option>
 												</select></td>
-												<td><input type="button" class="btn btn-danger"  ng-click="Remove($index)"
+												<td><input type="button" class="btn btn-danger" ng-disabled="flagModif" ng-click="Remove($index)"
 													value="Remove" /></td>
 											</tr>
 										</tbody>
@@ -116,7 +151,7 @@
 														<option>NRecu imp</option>
 														<option>NRecu non imp</option>
 												</select></td>
-												<td><input class="btn" type="button" ng-click="Add()" value="Add" /></td>
+												<td><input class="btn" type="button" ng-click="Add()" ng-disabled="flagModif" value="Add" /></td>
 											</tr>
 										</tfoot>
 									</table>

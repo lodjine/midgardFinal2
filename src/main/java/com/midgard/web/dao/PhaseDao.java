@@ -12,4 +12,5 @@ import com.midgard.web.model.Phase;
 public interface PhaseDao extends JpaRepository<Phase, Serializable> {
 	@Query("select p from Phase p where p.projet.idbd like :x")
 	List<Phase> getPhaseByProjet(@Param("x") Long ref);
+
 }

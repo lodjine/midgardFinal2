@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.midgard.web.dao.TicketDao;
+import com.midgard.web.dao.TicketDestinataireDao;
 import com.midgard.web.model.Ticket;
 @RestController
 public class TicketService {
 	@Autowired
 	private TicketDao ticketDao;
+	@Autowired
+	private TicketDestinataireDao  ticketDestinataireDao;
 
 	@RequestMapping(value = "/ticket", method = RequestMethod.POST)
 	public Ticket saveTicket(@RequestBody Ticket ticket) {
@@ -43,5 +46,12 @@ public class TicketService {
 		ticketDao.delete(id);
 	}
 	
-
+	@RequestMapping(value = "/deleteTacheDestByTicketId/{id}", method = RequestMethod.GET)
+	public long deleteTacheDestByTicketId(@PathVariable Long id) {
+		ticketDestinataireDao.deleteTacheDestByTicketId(id);
+		
+		return 1L;
+	}
+	
+	
 }

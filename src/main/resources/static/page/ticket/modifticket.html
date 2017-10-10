@@ -1,13 +1,38 @@
 
 <div class="container-fluid">
-	<div class="row">
+<div class="row">
 		<div class="col-lg-12">
-			<h1 class="page-header">Ajouter Ticket</h1>
+			<h1 class="page-header">Ticket {{ticket.idTicket}}</h1>
 		</div>
 
 	</div>
+	
+	<div class="col-lg-2" ng-show="userConect.role.role !='COLLAB'">
+		<button  class="btn btn-primary btn-block"
+			ng-show="flagModif" ng-click="activerModification()">
+			<i class="fa" aria-hidden="true"></i> Modifier
+		</button>
+	</div>
+	
+	
+
+	
 </div>
 <form name="form" ng-submit="form.$valid && saveTicket()">
+<div class="col-lg-2">
+		<button type="submit" class="btn btn-success btn-block"
+			ng-show="!flagModif">
+			<i class="fa" aria-hidden="true"></i> Valider
+		</button>
+	</div>
+	<div class="col-lg-2">
+
+		<button type="button"   class="btn btn btn-danger btn-block"
+			ng-show="!flagModif && userConect.role.role=='ADMIN'" ng-click="deleteTicket(projet.idBd)">
+			<i class="fa" aria-hidden="true"></i> Supprimer
+		</button>
+	</div>
+<br></br>
 	<div class="panel panel-default">
 		<div class="panel-heading">Information Ticket</div>
 
@@ -56,12 +81,19 @@
 				<div class="col-md-2">
 					<label>Destinataire :</label>
 				</div>
-				<div class="col-md-3">
-					<select ng-model="userList" class="form-control"
+				<div class="col-md-3" ng-show="!flagModif">
+					<select ng-model="userList2" class="form-control"   ng-change="selectUser(userList2)"
 						multiple ng-multiple="true">
-						<option ng-repeat="x in users" ng-value="x.id">{{x.name}}</option>
+					
+						<option  ng-repeat="x in users" ng-value="x.id">{{x.name}}</option>	  
 					</select> 
-				</div>
+					</div>
+					<div class="col-md-3" ng-show="flagModif">
+					<select   multiple="multiple" class="multi-select"  ng-model="userList" style="width: 100%" ng-options="x.id as x.name for x in users track by x.id">
+				</select>
+			</div>
+			<div class="col-md-2" >
+			</div>
 			</div>
 			<br></br>
 			<div class="row">
@@ -110,7 +142,7 @@
 				</div>
 			</div>
 		</div>
+		
+
 	</div>
-	<button type="submit" class="btn btn-success">Enregister</button>
-	<button type="button" class="btn btn-primary" ng-click="retour()">Retour</button>
 </form>

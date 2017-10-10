@@ -6,7 +6,7 @@
 		<!-- /.col-lg-12 -->
 	</div>
 	<!-- /.row -->
-	<div class="col-lg-2">
+	<div class="col-lg-2" ng-show="userConect.role.role !='COLLAB'">
 		<button type="submit" class="btn btn-primary btn-block"
 			ng-show="flagModif" ng-click="activerModification()">
 			<i class="fa" aria-hidden="true"></i> Modifier
@@ -20,8 +20,8 @@
 	</div>
 	<div class="col-lg-2">
 
-		<button type="submit" class="btn btn btn-danger btn-block"
-			ng-show="!flagModif" ng-click="deleteProjet(projet.idBd)">
+		<button type="submit"   class="btn btn btn-danger btn-block"
+			ng-show="!flagModif && userConect.role.role=='ADMIN'" ng-click="deleteProjet(projet.idBd)">
 			<i class="fa" aria-hidden="true"></i> Supprimer
 		</button>
 	</div>
@@ -95,6 +95,16 @@
 
 
 					</div>
+					
+					<div class="col-lg-6">
+							<div class="form-group">
+								<label>Statut</label> <select ng-disabled="flagModif"
+									ng-model="projet.statut.id" class="form-control">
+									<option selected="true" ng-value="phase.statut.id">{{projet.statut.statut}}</option>
+									<option ng-repeat="x in statuts" ng-value="x.id">{{x.statut}}</option>
+								</select>
+							</div>
+						</div>
 				</div>
 
 				<!-- /.row (nested) -->

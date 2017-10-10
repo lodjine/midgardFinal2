@@ -53,12 +53,12 @@ public class PhaseService {
 	public List<Phase> getByIdProjet(@PathVariable Long id) {
 		return phaseDao.getPhaseByProjet(id);
 	}
-	
-	public boolean saveRecurcive(Phase phase){
-		if(phase.getProjet()!=null&&phase.getProjet().getIdbd()!=null){
+
+	public boolean saveRecurcive(Phase phase) {
+		if (phase.getProjet() != null && phase.getProjet().getIdbd() != null) {
 			phaseDao.save(phase);
 			return true;
-		}else
+		} else
 			return false;
 	}
 
@@ -66,21 +66,23 @@ public class PhaseService {
 	public Phase savePhaseAux(@RequestBody Phase phase) {
 
 		Projet projet = projetDao.getProjetByIdFunct(phase.getProjet().getIdProjet());
-		long idProjet=phase.getProjet().getIdProjet();
+		long idProjet = phase.getProjet().getIdProjet();
 		phase.setProjet(projet);
 
-		boolean test=false;
-		while(!test){
-			 projet = projetDao.getProjetByIdFunct(idProjet);
-Statut statut=new Statut();
-statut.setId(1L);
-			 
-			 phase.setStatut(statut);
+		boolean test = false;
+		while (!test) {
+			projet = projetDao.getProjetByIdFunct(idProjet);
+			Statut statut = new Statut();
+			statut.setId(1L);
+
+			phase.setStatut(statut);
 			phase.setProjet(projet);
-			test=saveRecurcive(phase);
-			
+			test = saveRecurcive(phase);
+
 		}
 
 		return phase;
 	}
+
+	
 }

@@ -36,7 +36,7 @@
 								required class="form-control">
 								<option ng-selected="true" ng-value="">Selectionner une
 									phase</option>
-								<option ng-repeat="x in phases" ng-value="x.idphas">{{x.idPhase}}</option>
+								<option ng-repeat="x in phases " ng-value="x.idphas" ng-show="x.statut.id !== 1">{{x.idPhase}}</option>
 							</select>
 						</div>
 						<div class="col-md-1">

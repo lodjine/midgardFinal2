@@ -1,11 +1,12 @@
 angular.module('midgApp').controller('modifProjetCtrl', modifProjetCtrl);
 
-modifProjetCtrl.$inject = [ '$scope','entrepriseService' ,'projetService' , '$window', '$state', '$stateParams','$rootScope' ,'userService'];
+modifProjetCtrl.$inject = [ '$scope','entrepriseService' ,'projetService' , '$window', '$state', '$stateParams','$rootScope' ,'userService','statutService'];
 
-function modifProjetCtrl($scope,entrepriseService,projetService, $window,$state, $stateParams,$rootScope,userService) {
+function modifProjetCtrl($scope,entrepriseService,projetService, $window,$state, $stateParams,$rootScope,userService,statutService) {
 	var login = localStorage.getItem("login"); 
 	$rootScope.userConect=userService.userByLogin({login:login});
 	$scope.flagModif=true;
+	$scope.statuts=statutService.query();
 	$scope.entreprises=entrepriseService.query();
 	var idProjet=$stateParams.id;
 	if(idProjet != null){
@@ -23,7 +24,9 @@ function modifProjetCtrl($scope,entrepriseService,projetService, $window,$state,
 		$window.location.href = '/blank.html#/listProjets';
 	}
 	$scope.updateProjet=function updateProjet(){
-		projetService.save($scope.projet);
+		projetService.save($scope.projet).$promise.then(function() {
+			$state.go('projet');
+		});
 		$scope.flagModif=true;
 	}
 	
@@ -36,6 +39,8 @@ function modifProjetCtrl($scope,entrepriseService,projetService, $window,$state,
 			$scope.isTrue=false;
 		}
 	};
+	
+	
 };
 
 

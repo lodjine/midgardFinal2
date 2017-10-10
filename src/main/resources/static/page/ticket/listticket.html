@@ -6,7 +6,7 @@
 		<!-- /.col-lg-12 -->
 	</div>
 	<!-- /.row -->
-	<div class="col-lg-2">
+	<div class="col-lg-2" ng-show="userConect.role.role!='CLIENT'">
 		<button type="nouveau" class="btn btn-primary btn-block"
 			ui-sref="formticket">
 
@@ -22,6 +22,7 @@
 				<th>Id Ticket</th>
 				<th>Type Ticket</th>
 				<th>Emetteur</th>
+				<th>Destinataire</th>
 				<th>Date Echeance</th>
 				<th>Etat</th>
 				<th>Options</th>
@@ -29,11 +30,27 @@
 			</tr>
 		</thead>
 
-		<tbody>
+		<tbody ng-show="userConect.role.role=='CHEFP'||userConect.role.role=='COLLAB'||userConect.role.role=='CLIENT'">
+			<tr ng-repeat="item in tickets | filter: userConect.name">
+				<td>{{item.idTicket}}</td>
+				<td>{{item.typeTicket}}</td>
+				<td>{{item.emetteur.name}}</td>
+				<td> <output ng-repeat=" item2 in item.destinataire"> {{item2.name}} </output> </td>
+				<td>{{item.dateEchance | date:'yyyy-MM-dd'}}</td>
+				<td>{{item.etat}}</td>
+				<td><button type="submit" class="btn btn-primary btn-block"
+						ui-sref="modifTicket({id:item.iddbTicket})">
+						<i class="fa fa-search  " aria-hidden="true"></i> Consulter
+					</button></td>
+			</tr>
+		</tbody>
+		
+		<tbody ng-show="userConect.role.role=='ADMIN'">
 			<tr ng-repeat="item in tickets">
 				<td>{{item.idTicket}}</td>
 				<td>{{item.typeTicket}}</td>
 				<td>{{item.emetteur.name}} {{item.emetteur.lastName}}</td>
+				<td><output ng-repeat=" item2 in item.destinataire">{{item2.name}} </output></td>
 				<td>{{item.dateEchance | date:'yyyy-MM-dd'}}</td>
 				<td>{{item.etat}}</td>
 				<td><button type="submit" class="btn btn-primary btn-block"
