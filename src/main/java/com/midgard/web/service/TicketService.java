@@ -19,34 +19,34 @@ public class TicketService {
 	@Autowired
 	private TicketDestinataireDao  ticketDestinataireDao;
 
-	@RequestMapping(value = "/ticket", method = RequestMethod.POST)
+	@RequestMapping(value = "/midgard/ticket", method = RequestMethod.POST)
 	public Ticket saveTicket(@RequestBody Ticket ticket) {
 		ticketDao.save(ticket);
 		return ticket;
 	}
 
-	@RequestMapping(value = "/ticket", method = RequestMethod.PUT)
+	@RequestMapping(value = "/midgard/ticket", method = RequestMethod.PUT)
 	public Ticket updateTicket(@RequestBody Ticket ticket) {
 		ticketDao.save(ticket);
 		return ticket;
 	}
 
-	@RequestMapping(value = "/ticket", method = RequestMethod.GET)
+	@RequestMapping(value = "/midgard/ticket", method = RequestMethod.GET)
 	public List<Ticket> getTickets() {
 		return ticketDao.findAll();
 	}
 
-	@RequestMapping(value = "/ticket/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/midgard/ticket/{id}", method = RequestMethod.GET)
 	public Ticket getTicket(@PathVariable Long id) {
 		return ticketDao.findOne(id);
 	}
 
-	@RequestMapping(value = "/ticket/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/midgard/ticket/{id}", method = RequestMethod.DELETE)
 	public void deleteTicket(@PathVariable Long id) {
 		ticketDao.delete(id);
 	}
 	
-	@RequestMapping(value = "/deleteTacheDestByTicketId/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/midgard/deleteTacheDestByTicketId/{id}", method = RequestMethod.GET)
 	public long deleteTacheDestByTicketId(@PathVariable Long id) {
 		ticketDestinataireDao.deleteTacheDestByTicketId(id);
 		

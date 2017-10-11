@@ -10,38 +10,38 @@
 
 	function eventService($resource) {
 
-		var resourceUrl = '/evenement/:id';
+		var resourceUrl = '/midgard/evenement/:id';
 		return $resource(resourceUrl, {}, {
 
 			'getEventByProjet' : {
 				method : 'GET',
 				isArray : true,
-				url : '/getEventByProjet/:id'
+				url : '/midgard/getEventByProjet/:id'
 			},
 			'getHeurIng' : {
 				method : 'GET',
 				isArray : false,
-				url : '/getHeurIng/:id'
+				url : '/midgard/getHeurIng/:id'
 			},
 			'getHeurTech' : {
 				method : 'GET',
 				isArray : false,
-				url : '/getHeurTech/:id'
+				url : '/midgard/getHeurTech/:id'
 			},
 			'getHeurIngCumul' : {
 				method : 'GET',
 				isArray : false,
-				url : '/getHeurIng/:id'
+				url : '/midgard/getHeurIng/:id'
 			},
 			'getHeurTechCumul' : {
 				method : 'GET',
 				isArray : false,
-				url : '/getHeurTech/:id'
+				url : '/midgard/getHeurTech/:id'
 			},
 			'progressionEvent' : {
 				method : 'GET',
 				isArray : false,
-				url : '/progressionEvent/:id'
+				url : '/midgard/progressionEvent/:id'
 			}
 
 		});

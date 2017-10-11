@@ -9,7 +9,7 @@
 
     function entrepriseService ($resource) {
     	
-    	var resourceUrl =  '/entreprise/:id';
+    	var resourceUrl =  '/midgard/entreprise/:id';
     	return $resource(resourceUrl, {}, {
 
     	});

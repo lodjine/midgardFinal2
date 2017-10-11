@@ -11,54 +11,63 @@
 
 			<div class="panel-body">
 				<div class="row">
-				<div class="col-md-2">
-					<label>Nom : </label>
-				</div>
-				<div class="col-md-2">
-					<input class="form-control" ng-model="user.name" required
-						placeholder="" type="text" />
-				</div>
-				<div class="col-md-2">
-					<label>Pr&eacute;nom : </label>
-				</div>
-				<div class="col-md-2">
-					<input class="form-control" ng-model="user.lastName" required
-						placeholder="" type="text" />
-				</div>
-				<div class="col-md-2">
-					<label>Email : </label>
-				</div>
-				<div class="col-md-2">
-					<input class="form-control" ng-model="user.email" required
-						placeholder="" type="email" />
-				</div>
+					<div class="col-md-2">
+						<label>Nom : </label>
+					</div>
+					<div class="col-md-2">
+						<input class="form-control" ng-model="user.name" required
+							placeholder="" type="text" />
+					</div>
+					<div class="col-md-2">
+						<label>Pr&eacute;nom : </label>
+					</div>
+					<div class="col-md-2">
+						<input class="form-control" ng-model="user.lastName" required
+							placeholder="" type="text" />
+					</div>
+					<div class="col-md-2">
+						<label>Email : </label>
+					</div>
+					<div class="col-md-2">
+						<input class="form-control" ng-model="user.email" required
+							placeholder="" type="email" />
+					</div>
 				</div>
 				<br>
 				<div class="row">
-				
-				<div class="col-md-2">
-					<label>Mot de passe : </label>
+
+					<div class="col-md-2">
+						<label>Mot de passe : </label>
+					</div>
+					<div class="col-md-2">
+						<input class="form-control" ng-model="user.password" required
+							placeholder="" type="password" />
+					</div>
+					<div class="col-md-2">
+						<label>Identifiant : </label>
+					</div>
+					<div class="col-md-2">
+						<input class="form-control" ng-model="user.username" required
+							placeholder="" type="text" />
+					</div>
+					<div class="col-md-2">
+						<label>Role : </label>
+					</div>
+					<div class="col-md-2">
+						<select ng-model="user.role" required style="width: 100%"
+							ui-select2>
+							<option ng-repeat="x in roles" ng-value="x.id"
+								ng-selected="user.role">{{x.role}}</option>
+						</select>
+					</div>
 				</div>
-				<div class="col-md-2">
-					<input class="form-control" ng-model="user.password" required
-						placeholder="" type="password" />
-				</div>
-				<div class="col-md-2">
-					<label>Identifiant  : </label>
-				</div>
-				<div class="col-md-2">
-					<input class="form-control" ng-model="user.username" required
-						placeholder="" type="text" />
-				</div>
-				<div class="col-md-2">
-					<label>Role  : </label>
-				</div>
-				<div class="col-md-2">
-                          <select  ng-model="user.role" required
-								 style="width: 100%" ui-select2 >
-								<option ng-repeat="x in roles" ng-value="x.id" ng-selected="user.role">{{x.role}}</option>
-							</select>
-				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<label>Ing&eacute;nieur : </label>
+						<input ng-model="user.ingenieur" required placeholder=""
+							type="checkbox" />
+					</div>
+
 				</div>
 				<button type="submit" class="btn btn-success">Enregister</button>
 			</div>

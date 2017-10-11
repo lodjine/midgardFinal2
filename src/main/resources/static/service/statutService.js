@@ -9,7 +9,7 @@
 
 	function statutService($resource) {
 
-		var resourceUrl = '/statut/:id';
+		var resourceUrl = '/midgard/statut/:id';
 		return $resource(resourceUrl, {}, {
 			
 			

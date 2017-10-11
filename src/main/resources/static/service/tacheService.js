@@ -9,7 +9,7 @@
 
     function tacheService ($resource) {
     	
-    	var resourceUrl =  '/tache/:id';
+    	var resourceUrl =  '/midgard/tache/:id';
     	return $resource(resourceUrl, {}, {
     		'getByIdEvent': {
                 method: 'GET',
