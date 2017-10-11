@@ -11,13 +11,13 @@
 
     function ticketService ($resource) {
     	
-    	var resourceUrl =  '/ticket/:id';
+    	var resourceUrl =  '/midgard/ticket/:id';
     	return $resource(resourceUrl, {}, {
     		
     		
     		'deleteTacheDestByTicketId' : {
 				method : 'GET',
-				url : '/deleteTacheDestByTicketId/:id'
+				url : '/midgard/deleteTacheDestByTicketId/:id'
 			}
     	});
     	

@@ -35,7 +35,7 @@ public class Ticket {
 	private User emetteur;
 
 
-	@ManyToMany(cascade = CascadeType.MERGE)
+	@ManyToMany
 	private Set<User> destinataire = new HashSet<User>();
 
 	private String idTicket;

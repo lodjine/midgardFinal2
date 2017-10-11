@@ -42,7 +42,7 @@
 					<label>Emetteur :</label>
 				</div>
 				<div class="col-md-3">
-					<select ng-model="ticket.emetteur.id" class="form-control">
+					<select ng-model="ticket.emetteur.id" style="width: 100%" ui-select2>
 						<option ng-repeat="x in users" ng-value="x.id">{{x.name}}</option>
 					</select>
 				</div>
@@ -50,7 +50,7 @@
 					<label>Destinataire :</label>
 				</div>
 				<div class="col-md-3">
-					<select  ng-model="list" class="form-control" multiple ng-change="selectUser(list)" 	>
+					<select  ng-model="list" style="width: 100%" ui-select2 multiple ng-change="selectUser(list)" 	>
 						<option ng-repeat="x in users" ng-value="x.id">{{x.name}}</option>
 					</select>
 				</div>
@@ -89,7 +89,7 @@
 				<div class="col-md-3">
 
 
-					<select required="required" class="form-control"
+					<select required="required" style="width: 100%" ui-select2
 						ng-model="ticket.etat">
 						<option>choisir un &eacute;tat</option>
 						<option>Non trait&eacute;</option>

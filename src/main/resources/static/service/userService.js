@@ -14,7 +14,7 @@
         		'userByLogin': {
                     method: 'GET',
                     isArray: false,
-                    url: '/userByLogin/:login' ,
+                    url: '/midgard/userByLogin/:login' ,
                     params:{login:'login'}
                   }
     	});

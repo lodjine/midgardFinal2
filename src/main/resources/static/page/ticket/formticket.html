@@ -18,7 +18,7 @@
 					<label>Type Ticket : </label>
 				</div>
 				<div class="col-md-3">
-					<select required="required" class="form-control"
+					<select required="required" style="width: 100%" ui-select2
 						ng-change="selectType(typeTicket)" ng-model="typeTicket">
 						<option>choisir type</option>
 						<option>Projet</option>
@@ -32,7 +32,7 @@
 				</div>
 				<div class="col-md-3">
 					<select ng-change="selectEvent()" ng-model="ticket.projet.idbd"
-						class="form-control">
+						style="width: 100%" ui-select2>
 						<option ng-selected="true" ng-value="">Selectionner un
 							projet</option>
 						<option ng-repeat="x in projets" ng-value="x.idbd">{{x.idProjet}}</option>
@@ -46,7 +46,7 @@
 				</div>
 				<div class="col-md-3" ng-show="showevent">
 					<select ng-change="selectTache()"
-						ng-model="ticket.idEvenement.idEvenement" class="form-control">
+						ng-model="ticket.idEvenement.idEvenement" style="width: 100%" ui-select2>
 						<option ng-repeat="x in events" ng-value="x.idEvenement">{{x.idEvent}}</option>
 					</select>
 				</div>
@@ -54,7 +54,7 @@
 					<label> Tache :</label>
 				</div>
 				<div class="col-md-3" ng-show="showtache">
-					<select ng-model="ticket.tache.idBd" class="form-control">
+					<select ng-model="ticket.tache.idBd" style="width: 100%" ui-select2>
 						<option ng-repeat="x in taches" ng-value="x.idBd">{{x.idTache}}</option>
 					</select>
 				</div>
@@ -65,7 +65,7 @@
 					<label>Emetteur :</label>
 				</div>
 				<div class="col-md-3">
-					<select ng-model="ticket.emetteur.id" class="form-control">
+					<select ng-model="ticket.emetteur.id" style="width: 100%" ui-select2>
 						<option ng-repeat="x in users" ng-value="x.id">{{x.name}}</option>
 					</select>
 				</div>
@@ -73,7 +73,7 @@
 					<label>Destinataire :</label>
 				</div>
 				<div class="col-md-3">
-					<select ng-model="list" class="form-control" multiple ng-change="selectUser(list)" >
+					<select ng-model="listSelectedDesti" style="width: 100%" ui-select2 multiple >
 						<option ng-repeat="x in users" ng-value="x.id">{{x.name}}</option>
 					</select>
 				</div>
@@ -113,7 +113,7 @@
 				<div class="col-md-3">
 
 
-					<select required="required" class="form-control"
+					<select required="required" style="width: 100%" ui-select2
 						ng-model="ticket.etat">
 						<option>choisir un &eacute;tat</option>
 						<option>Non trait&eacute;</option>
