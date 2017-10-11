@@ -31,7 +31,7 @@
 			'getHeurIngCumul' : {
 				method : 'GET',
 				isArray : false,
-				url : '/getHeurIng/:id'
+				url : '/midgard/getHeurIng/:id'
 			},
 			'getHeurTechCumul' : {
 				method : 'GET',
