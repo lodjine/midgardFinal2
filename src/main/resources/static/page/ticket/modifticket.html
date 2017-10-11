@@ -52,7 +52,7 @@
 				</div>
 				<div class="col-md-3">
 					<input ng-change="selectEvent()" ng-model="ticket.projet.idProjet"
-						class="form-control" />
+						style="width: 100%" ui-select2 />
 				</div>
 			</div>
 			<br></br>
@@ -82,14 +82,14 @@
 					<label>Destinataire :</label>
 				</div>
 				<div class="col-md-3" ng-show="!flagModif">
-					<select ng-model="userList2" class="form-control"   ng-change="selectUser(userList2)"
+					<select ng-model="userList2" style="width: 100%" ui-select2  
 						multiple ng-multiple="true">
 					
 						<option  ng-repeat="x in users" ng-value="x.id">{{x.name}}</option>	  
 					</select> 
 					</div>
 					<div class="col-md-3" ng-show="flagModif">
-					<select   multiple="multiple" class="multi-select"  ng-model="userList" style="width: 100%" ng-options="x.id as x.name for x in users track by x.id">
+					<select   multiple="multiple" class="form-control"  ng-model="userList" style="width: 100%" ng-options="x.id as x.name for x in users track by x.id">
 				</select>
 			</div>
 			<div class="col-md-2" >
@@ -130,7 +130,7 @@
 				<div class="col-md-3">
 
 
-					<select required="required" class="form-control"
+					<select required="required" style="width: 100%" ui-select2
 						ng-model="ticket.etat">
 						<option>choisir un &eacute;tat</option>
 						<option>Non trait&eacute;</option>

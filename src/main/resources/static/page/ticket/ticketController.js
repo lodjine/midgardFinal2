@@ -18,7 +18,7 @@
 		$scope.taches = [];
 		$scope.projets = projetService.query();
 		$scope.events = [];
-		$scope.list = [];
+		$scope.listSelectedDesti = [];
 		$scope.users = userService.query();
 
 		$scope.typeTicket = {};
@@ -44,15 +44,25 @@
 				$scope.showtache = true;
 			}
 		};
-		$scope.selectUser = function(id) {
-			var idu = Number(id);
-			angular.forEach($scope.users, function(user) {
-				if (user.id===idu) {
-					$scope.ticket.destinataire.push(user);
-				}
-			});
-		};
+		
 		$scope.saveTicket = function() {
+			
+			
+			
+			
+				angular.forEach($scope.users, function(user) {
+					
+					angular.forEach($scope.listSelectedDesti, function(selectedId) {
+						if (Number(selectedId) === user.id) {
+							$scope.ticket.destinataire.push(user);
+						}
+					});
+					
+			});
+			
+			
+			
+			
 			if ($scope.typeTicket === 'Projet') {
 				$scope.ticket.typeTicket=$scope.typeTicket;
 				var idu = Number($scope.ticket.projet.idbd);

@@ -14,7 +14,7 @@
     		'getByIdEvent': {
                 method: 'GET',
                 isArray: true,
-                url: '/tachesByEvent/:id'
+                url: '/midgard/tachesByEvent/:id'
               }
     	});
     	

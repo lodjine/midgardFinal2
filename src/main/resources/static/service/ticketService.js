@@ -17,7 +17,7 @@
     		
     		'deleteTacheDestByTicketId' : {
 				method : 'GET',
-				url : '/deleteTacheDestByTicketId/:id'
+				url : '/midgard/deleteTacheDestByTicketId/:id'
 			}
     	});
     	

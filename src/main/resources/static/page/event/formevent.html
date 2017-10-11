@@ -22,7 +22,7 @@
 						</div>
 						<div class="col-md-3">
 							<select ng-change="selectAllPhase()" ng-model="selected" required
-								class="form-control">
+								style="width: 100%" ui-select2>
 								<option ng-selected="true" ng-value="">Selectionner un
 									projet</option>
 								<option ng-repeat="x in projets" ng-value="x.idbd">{{x.idProjet}}</option>
@@ -33,7 +33,7 @@
 						</div>
 						<div class="col-md-2">
 							<select ng-change="selectPhase()" ng-model="selectedPhase"
-								required class="form-control">
+								required style="width: 100%" ui-select2>
 								<option ng-selected="true" ng-value="">Selectionner une
 									phase</option>
 								<option ng-repeat="x in phases " ng-value="x.idphas" ng-show="x.statut.id !== 1">{{x.idPhase}}</option>
@@ -96,7 +96,7 @@
 				<div class="col-md-4">
 
 
-					<select required="required" class="form-control"
+					<select required="required" style="width: 100%" ui-select2
 						ng-model="event.etat">
 						<option>choisir un &eacute;tat</option>
 						<option>Non trait&eacute;</option>

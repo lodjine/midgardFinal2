@@ -34,7 +34,7 @@
 		<div class="col-lg-3">
 			<label>Recherche par projet</label> <select
 				ng-model="idProjetRecherche" ng-change="selectProjetRecherche()"
-				class="form-control">
+				style="width: 100%" ui-select2>
 				<option ng-value=""></option>
 				<option ng-repeat="x in projetsRecherche" ng-value="x.idbd">{{x.idProjet}}
 				</option>
@@ -43,7 +43,7 @@
 		</div>
 		<div class="col-lg-3">
 			<label>Recherche par phase</label> <select ng-model="idPhase"
-				class="form-control">
+				style="width: 100%" ui-select2>
 				<option ng-value=""></option>
 				<option ng-repeat="x in phasesRecherhe" ng-value="x.idPhase">{{x.idPhase}}
 				</option>
