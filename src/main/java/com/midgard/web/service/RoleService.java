@@ -17,29 +17,29 @@ public class RoleService {
 	@Autowired
 	private RoleDao RoleDao;
 
-	@RequestMapping(value = "/midgard/role", method = RequestMethod.POST)
+	@RequestMapping(value = "/role", method = RequestMethod.POST)
 	public Role saveRole(@RequestBody Role role) {
 		RoleDao.save(role);
 		return role;
 	}
 
-	@RequestMapping(value = "/midgard/role", method = RequestMethod.PUT)
+	@RequestMapping(value = "/role", method = RequestMethod.PUT)
 	public Role updateRole(@RequestBody Role role) {
 		RoleDao.save(role);
 		return role;
 	}
 
-	@RequestMapping(value = "/midgard/role", method = RequestMethod.GET)
+	@RequestMapping(value = "/role", method = RequestMethod.GET)
 	public List<Role> getRoles() {
 		return RoleDao.findAll();
 	}
 
-	@RequestMapping(value = "/midgard/role/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/role/{id}", method = RequestMethod.GET)
 	public Role getRole(@PathVariable Long id) {
 		return RoleDao.findOne(id);
 	}
 
-	@RequestMapping(value = "/midgard/role/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/role/{id}", method = RequestMethod.DELETE)
 	public void deleteRole(@PathVariable Long id) {
 		RoleDao.delete(id);
 	}
