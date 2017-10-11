@@ -34,8 +34,7 @@
 			<tr ng-repeat="item in taches | filter : userConect.name">
 				<td>{{item.idTache}}</td>
 				<td>{{item.event.idEvenement}}</td>
-				<td>{{item.description}}</td>
-				<td>{{item.etatAavancement}}</td>	
+				<td>{{item.description}}</td>	
 				<td>
 			<div class="progress progress-striped active">
 										<div class="progress-bar progress-bar-danger" ng-show="item.etatAavancement<=20"

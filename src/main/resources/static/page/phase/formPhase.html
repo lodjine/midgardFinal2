@@ -88,21 +88,18 @@
 						</div>
 						<div class="col-lg-6">
 							<div class="form-group">
-									<label>Phase</label> <select style="width: 100%" ui-select2 ng-change="createIdPhase()" ng-disabled="flagModif"
-										ng-model="phase.phase">
-										<option>PRE</option>
-										<option>DCE</option>
-										<option>EXE</option>
-										<option>DIAG</option>
-									</select>
+									<label>Phase</label> 
+									<input class="form-control" ng-disabled="true"
+									ng-model="phase.phase"  type="text" />
+									
+									
 								</div>
 						</div>
 						
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label>Statut</label> <select ng-disabled="flagModif" style="width: 100%" ui-select2
+								<label>Statut</label> <select ng-disabled="flagModif" ui-select2 style="width: 100%" 
 									ng-model="phase.statut.id" >
-									<option selected="true" ng-value="phase.statut.id">{{phase.statut.statut}}</option>
 									<option ng-repeat="x in statuts" ng-value="x.id">{{x.statut}}</option>
 								</select>
 							</div>

@@ -16,17 +16,15 @@
 		$scope.users.$promise.then(function (result) {
 			$scope.users=userService.query();
 			  });
-		$scope.user={id:null,role : {}};
+		$scope.user={id:null,role : {id:null}};
 		$scope.saveuser = function() {
-			var idrole = Number($scope.selected);
-			angular.forEach($scope.roles, function(item) {
-				if (item.id === idrole) {
-					$scope.user.role=item;
-				}
+			
+			
+			userService.save($scope.user).$promise.then(function() {
+				$scope.user={id:null,role : {id:null}};
+				$state.go('listUser');
 			});
-			userService.save($scope.user);
-			$scope.user={id:null,role : {}};
-			$state.go('listUser');
+			
 		};
 	}
 })();

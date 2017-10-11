@@ -39,20 +39,17 @@
 							<div class="form-group">
 								<label>Intervenant</label> <select ng-disabled="flagModif" ng-change="selectOperateur()" style="width: 100%" ui-select2
 									ng-model="tache.operateur.id" >
-									<option selected="true" ng-value="tache.operateur.id">{{tache.operateur.name}}</option>
-									<option ng-repeat="x in users" ng-value="x.id">{{x.name}}</option>
+									<option  ng-repeat="x in users" ng-value="x.id">{{x.name}}</option>
 								</select>
 							</div>
 						</div>
 
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label>Evenement</label> <select ng-disabled="true" style="width: 100%" ui-select2
-									ng-change="selectEvent()" ng-change="selectEvent()"
-									ng-model="tache.event.idEvenement" >
-									<option selected="true" ng-value="tache.event.idEvenement">{{tache.event.idEvent}}</option>
-									<option ng-repeat="x in events" ng-value="x.idEvenement">{{x.idEvent}}</option>
-								</select>
+								<label>Evenement</label> 
+								<input class="form-control" ng-disabled="true"
+									ng-model="tache.event.idEvent" placeholder="evenement "
+									type="text" />
 							</div>
 						</div>
 						

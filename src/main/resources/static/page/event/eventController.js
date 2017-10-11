@@ -34,6 +34,8 @@
 				idEvent : null,
 				idPhase : {
 
+				},statut : {
+					id : null
 				}
 			}
 		};
@@ -149,10 +151,12 @@
 			$scope.event.statut.id=1;
 			$scope.event.idPhase = $scope.phase;
 			console.log($scope.event);
-			eventService.save($scope.event);
+			eventService.save($scope.event).$promise.then(function() {
+				phaseService.save($scope.phase);
+				$state.go('event');
+			});
 
-			phaseService.save($scope.phase);
-			$state.go('event');
+			
 		};
 		$scope.saveTache = function() {
 
@@ -164,11 +168,10 @@
 			$scope.tache.event.statut.id=1;
 			$scope.tache.statut.id = 1;
 			tacheService.save($scope.tache).$promise.then(function() {
-				phaseService.save($scope.phase).then(function() {
+				phaseService.save($scope.phase);
 
 					$state.go('event');
 
-				});
 			});
 
 		}
