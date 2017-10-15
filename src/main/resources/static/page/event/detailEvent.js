@@ -22,13 +22,21 @@
 			$scope.flagModif=false;
 		}
 		var login = localStorage.getItem("login"); 
-		$rootScope.userConect=userService.userByLogin({login:login});
+		$rootScope.userConect=userService.userByLogin({login:login}).$promise.then(function (data) {
+			$rootScope.userConect=angular.fromJson(data);
+		  });
 		
 		var idEvent=$stateParams.id;
 		if(idEvent != null){
-			$scope.evenement= eventService.get({id:idEvent});
-			$scope.phases = phaseService.query();
-			$scope.projets = projetService.query();
+			$scope.evenement= eventService.get({id:idEvent}).$promise.then(function (data) {
+				$scope.evenement=angular.fromJson(data);
+			  });
+			$scope.phases = phaseService.query().$promise.then(function (data) {
+				$scope.phases=angular.fromJson(data);
+			  });
+			$scope.projets = projetService.query().$promise.then(function (data) {
+				$scope.projets=angular.fromJson(data);
+			  });
 		}
 		$scope.retour = function() {
 		

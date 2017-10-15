@@ -33,8 +33,8 @@
 		if (idTicket != null) {
 			$scope.ticket = ticketService.get({
 				id : idTicket
-			}).$promise.then(function(result) {
-				$scope.ticket = result;
+			}).$promise.then(function(data) {
+				$scope.ticket = angular.fromJson(data);
 			}).then(function() {
 				if ($scope.ticket.typeTicket === 'Projet') {
 					$scope.showprojet = false;
@@ -55,7 +55,7 @@
 					function() {
 						$scope.users = userService.query().$promise.then(
 								function(result) {
-									$scope.users = result;
+									$scope.users = angular.fromJson(result);
 								}).then(function() {
 							$scope.userList = $scope.ticket.destinataire;
 						});

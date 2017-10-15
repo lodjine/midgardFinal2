@@ -6,11 +6,11 @@
 
 	angular.module('midgApp').controller('eventController', eventController);
 	eventController.$inject = [ '$scope', '$state', '$rootScope',
-			'eventService', 'projetService', 'phaseService', '$log',
-			'tacheService', 'userService' ];
+		'eventService', 'projetService', 'phaseService', '$log',
+		'tacheService', 'userService' ];
 
 	function eventController($scope, $state, $rootScope, eventService,
-			projetService, phaseService, $log, tacheService, userService) {
+		projetService, phaseService, $log, tacheService, userService) {
 		$scope.$log = $log;
 		var login = localStorage.getItem("login");
 		$rootScope.userConect = userService.userByLogin({
@@ -22,8 +22,10 @@
 		$scope.maxTechD = false;
 		$scope.users = userService.query();
 
-		eventService.progressionEvent({id:1});
-	
+//		eventService.progressionEvent({
+//			id : 1
+//		});
+
 		$scope.checked = false;
 		$scope.tache = {
 			id : null,
@@ -34,7 +36,8 @@
 				idEvent : null,
 				idPhase : {
 
-				},statut : {
+				},
+				statut : {
 					id : null
 				}
 			}
@@ -44,28 +47,43 @@
 			idEvenement : null,
 			idPhase : {
 				idphas : null
-			},statut : {
+			},
+			statut : {
 				id : null
 			}
 		};
 		$scope.selected = {};
 		$scope.selectedPhase = {};
-		$scope.events = eventService.query();
+		$scope.events = eventService.query().$promise.then(function(data) {
+			$scope.events = angular.fromJson(data);
+		});
 		$scope.phases = null;
-		$scope.projetsRecherche = projetService.query();
+		$scope.projetsRecherche = projetService.query().$promise.then(function(data) {
+			$scope.projetsRecherche = angular.fromJson(data);
+		});
 		$scope.phase = {};
-		$scope.projets = projetService.query();
+		$scope.projets = projetService.query().$promise.then(function(data) {
+			$scope.projets = angular.fromJson(data);
+		});
 
 		$scope.selectProjetRecherche = function() {
-			$scope.phasesRecherhe = phaseService.getByIdProjet({
-				id : $scope.idProjetRecherche
-			});
+			if ($scope.idProjetRecherche !== '') {
+				$scope.phasesRecherhe = phaseService.getByIdProjet({
+					id : $scope.idProjetRecherche
+				}).$promise.then(function(data) {
+					$scope.phasesRecherhe = angular.formJSON(data);
+				});
+			}
+
 		}
 		$scope.selectAllPhase = function() {
 			console.log($scope.selected);
-			$scope.phases = phaseService.getByIdProjet({
-				id : $scope.selected
-			});
+			if ($scope.selected) {
+				$scope.phases = phaseService.getByIdProjet({
+					id : $scope.selected
+				});
+			}
+
 		};
 		$scope.change = function() {
 			var dateFin = new Date($scope.event.dateFin);
@@ -91,8 +109,8 @@
 			angular.forEach($scope.phases, function(ph) {
 				if (ph.idphas === idp) {
 					$scope.phase = ph;
-					$scope.dateMin=$scope.phase.dateDebut;
-					$scope.dateMax=$scope.phase.dateFin;
+					$scope.dateMin = $scope.phase.dateDebut;
+					$scope.dateMax = $scope.phase.dateFin;
 					$scope.phase.nbrEvent = $scope.phase.nbrEvent + 1;
 					var nbr = $scope.phase.nbrEvent;
 					if (nbr < 10) {
@@ -108,7 +126,7 @@
 					if ($scope.phase.phase == "DIAG")
 						phaseChar = "D";
 					$scope.event.idEvent = $scope.phase.projet.idProjet
-							+ phaseChar + "x" + $scope.phase.nbrEvent;
+					+ phaseChar + "x" + $scope.phase.nbrEvent;
 				}
 			});
 		};
@@ -118,8 +136,8 @@
 			angular.forEach($scope.phases, function(ph) {
 				if (ph.idphas === idp) {
 					$scope.phase = ph;
-					$scope.dateMin=$scope.phase.dateDebut;
-					$scope.dateMax=$scope.phase.dateFin;
+					$scope.dateMin = $scope.phase.dateDebut;
+					$scope.dateMax = $scope.phase.dateFin;
 					$scope.phase.nbrEvent = $scope.phase.nbrEvent + 1;
 					var nbr = $scope.phase.nbrEvent;
 					if (nbr < 10) {
@@ -135,9 +153,9 @@
 					if ($scope.phase.phase == "DIAG")
 						phaseChar = "D";
 					$scope.tache.event.idEvent = $scope.phase.projet.idProjet
-							+ phaseChar + "x" + $scope.phase.nbrEvent;
+					+ phaseChar + "x" + $scope.phase.nbrEvent;
 					$scope.tache.idTache = $scope.phase.projet.idProjet
-							+ phaseChar + "x" + $scope.phase.nbrEvent + "T01";
+						+ phaseChar + "x" + $scope.phase.nbrEvent + "T01";
 				}
 			});
 		};
@@ -148,7 +166,7 @@
 			$scope.event.delaiHjTechCumul = 0;
 			$scope.event.nbTaches = 0;
 			$scope.event.etatAvancement = 0;
-			$scope.event.statut.id=1;
+			$scope.event.statut.id = 1;
 			$scope.event.idPhase = $scope.phase;
 			console.log($scope.event);
 			eventService.save($scope.event).$promise.then(function() {
@@ -156,7 +174,7 @@
 				$state.go('event');
 			});
 
-			
+
 		};
 		$scope.saveTache = function() {
 
@@ -165,12 +183,12 @@
 			$scope.tache.event.nbTaches = 1;
 			$scope.tache.event.etatAvancement = 0;
 			$scope.tache.event.idPhase = $scope.phase;
-			$scope.tache.event.statut.id=1;
+			$scope.tache.event.statut.id = 1;
 			$scope.tache.statut.id = 1;
 			tacheService.save($scope.tache).$promise.then(function() {
 				phaseService.save($scope.phase);
 
-					$state.go('event');
+				$state.go('event');
 
 			});
 
@@ -215,10 +233,15 @@
 		}
 
 		$scope.progressionTotal = function(id) {
+			if (id !=='') {
+				return eventService.progressionEvent({
+					id : id
+				});
+			} else {
 
-			return eventService.progressionEvent({
-				id : id
-			});
+			}
+			return null;
+
 		}
 
 	}

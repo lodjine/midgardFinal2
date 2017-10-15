@@ -11,7 +11,7 @@
 
     function roleService ($resource) {
     	
-    	var resourceUrl =  '/midgard/role/:id';
+    	var resourceUrl =  '/role/:id';
     	return $resource(resourceUrl, {}, {
     		
     	});

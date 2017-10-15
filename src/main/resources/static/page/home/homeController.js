@@ -11,6 +11,7 @@
 	function homeController($scope, $state, $rootScope, userService,$q,roleService) {
 		var login = localStorage.getItem("login"); 
 		$rootScope.userConect=userService.userByLogin({login:login});
-
+//		$rootScope.roles=roleService.query();
+//		$rootScope.users=userService.query();
 	}
 })();

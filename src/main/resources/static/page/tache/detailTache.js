@@ -1,77 +1,87 @@
 angular.module('midgApp').controller('detailTacheCtrl', detailTacheCtrl);
 
-detailTacheCtrl.$inject = [ '$scope','userService' ,'tacheService','statutService' ,'eventService', '$window', '$state', '$stateParams','$rootScope','userService' ];
+detailTacheCtrl.$inject = [ '$scope', 'userService', 'tacheService', 'statutService', 'eventService', '$window', '$state', '$stateParams', '$rootScope', 'userService' ];
 
-function detailTacheCtrl($scope,userService,tacheService,statutService,eventService, $window,$state, $stateParams,$rootScope,userService) {
-	var login = localStorage.getItem("login"); 
-	$rootScope.userConect=userService.userByLogin({login:login});
+function detailTacheCtrl($scope, userService, tacheService, statutService, eventService, $window, $state, $stateParams, $rootScope) {
+	var login = localStorage.getItem("login");
+	$rootScope.userConect = userService.userByLogin({
+		login : login
+	});
 
 
-	  $scope.flagModif=true;
-		
-		$scope.activerModification=function(){
-			$scope.flagModif=false;
-		}
-	
-	
-	$scope.users=userService.query();
-	$scope.statuts=statutService.query();
-	var idTache=$stateParams.id;
-	if(idTache != null){
-		$scope.tache= tacheService.get({id:idTache});
-	
+	$scope.flagModif = true;
+
+	$scope.activerModification = function() {
+		$scope.flagModif = false;
 	}
-	
-	
-	$scope.activerModification=function(){
-		$scope.flagModif=false;
+
+
+	$scope.users = userService.query().$promise.then(function(data) {
+		$scope.users = angular.fromJson(data);
+	});
+	$scope.statuts = statutService.query().$promise.then(function(data) {
+		$scope.statuts = angular.fromJson(data);
+	});
+	var idTache = $stateParams.id;
+	if (idTache != null) {
+		$scope.tache = tacheService.get({
+			id : idTache
+		}).$promise.then(function(data) {
+			$scope.tache = angular.fromJson(data);
+		});
+
 	}
-	
+
+
+	$scope.activerModification = function() {
+		$scope.flagModif = false;
+	}
+
 	$scope.nombreHTech = function() {
-		
-		if ($scope.tache.hjTech +$scope.tache.event.delaiHjTechCumul > $scope.tache.event.delaiHjTech)
+
+		if ($scope.tache.hjTech + $scope.tache.event.delaiHjTechCumul > $scope.tache.event.delaiHjTech)
 			$scope.maxTechD = true;
 		if ($scope.tache.hjTech + $scope.tache.event.delaiHjTechCumul <= $scope.tache.event.delaiHjTech)
 			$scope.maxTechD = false;
 	}
 	$scope.nombreHIng = function() {
-		
-			if ($scope.tache.hjIng +$scope.tache.event.delaiHjIngCumul > $scope.tache.event.delaiHjIng)
-				$scope.maxIngD = true;
-			if ($scope.tache.hjIng+ $scope.tache.event.delaiHjIngCumul <= $scope.tache.event.delaiHjIng)
-				$scope.maxIngD = false;
-	
+
+		if ($scope.tache.hjIng + $scope.tache.event.delaiHjIngCumul > $scope.tache.event.delaiHjIng)
+			$scope.maxIngD = true;
+		if ($scope.tache.hjIng + $scope.tache.event.delaiHjIngCumul <= $scope.tache.event.delaiHjIng)
+			$scope.maxIngD = false;
+
 
 	}
 	$scope.selectOperateur = function selectOperateur() {
 		$scope.selectedUser = true;
 		$scope.tache.operateur = userService.get({
 			id : $scope.tache.operateur.id
+		}).$promise.then(function(data) {
+			$scope.tache.operateur = angular.fromJson(data);
 		});
 	};
-	
-	
-	
-	
-	
+
+
+
+
+
 	$scope.saveTache = function() {
 
-		if($scope.tache.operateur.ingenieur)
-			$scope.tache.hjTech=0;
-		if(!$scope.tache.operateur.ingenieur)
-			$scope.tache.hjIng=0;
+		if ($scope.tache.operateur.ingenieur)
+			$scope.tache.hjTech = 0;
+		if (!$scope.tache.operateur.ingenieur)
+			$scope.tache.hjIng = 0;
 		tacheService.save($scope.tache);
-		
+
 		eventService.save($scope.tache.event);
-		eventService.progressionEvent({id:$scope.tache.event.idEvenement});
+		eventService.progressionEvent({
+			id : $scope.tache.event.idEvenement
+		});
 		$state.go('listTache');
-	
+
 
 	}
-	
-};
 
-
-	
-	
-	
+}
+;

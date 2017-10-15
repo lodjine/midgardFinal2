@@ -44,7 +44,7 @@
 				$scope.ticket.evenement = eventService.get({
 					id : $scope.id
 				}).$promise.then(function(result) {
-					$scope.ticket.evenement = result;
+					$scope.ticket.evenement = angular.fromJson(result);
 					$scope.ticket.idTicket = $scope.ticket.evenement + "T00"
 							+ $scope.tickets.length;
 
@@ -58,7 +58,7 @@
 				$scope.ticket.tache = tacheService.get({
 					id : $scope.id
 				}).$promise.then(function(result) {
-					$scope.ticket.tache = result;
+					$scope.ticket.tache = angular.fromJson(result);
 					$scope.ticket.idTicket = $scope.ticket.tache + "T00"
 							+ $scope.tickets.length;
 

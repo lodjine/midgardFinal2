@@ -7,11 +7,18 @@ detailUser.$inject = [ '$scope', '$state', '$rootScope', 'userService', '$q' ,'r
 
 function detailUser($scope, $state, $rootScope, userService,$q,roleService,$stateParams) {
 
-	$scope.roles=roleService.query();
+	$scope.roles=roleService.query().$promise.then(function (data) {
+		console.log(data);
+		console.log(angular.fromJson(data));
+		$scope.roles=angular.fromJson(data);
+	  });
 	var iduser=$stateParams.id;
 	if(iduser != null){
-		$scope.user= userService.get({id:iduser});
-		$scope.selected=$scope.user.role;
+		$scope.user= userService.get({id:iduser}).$promise.then(function (data) {
+			$scope.user=angular.fromJson(data);
+			$scope.selected=$scope.user.role;
+		  });
+		
 	}
 	$scope.saveuser = function() {
 		userService.save($scope.user);

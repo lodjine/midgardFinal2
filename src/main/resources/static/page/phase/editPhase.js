@@ -1,24 +1,27 @@
 angular.module('midgApp').controller('editPhase', editPhase);
 
 editPhase.$inject = [ '$scope', '$state', '$rootScope', 'eventService',
-		'projetService', 'phaseService', '$stateParams','userService','statutService' ];
+	'projetService', 'phaseService', '$stateParams', 'userService', 'statutService' ];
 
 function editPhase($scope, $state, $rootScope, eventService,
-		projetService, phaseService, $stateParams,userService,statutService) {
-	
-      $scope.flagModif=true;
-      $scope.statuts=statutService.query();
-	$scope.activerModification=function(){
-		$scope.flagModif=false;
+	projetService, phaseService, $stateParams, userService, statutService) {
+	$scope.flagModif = true;
+	$scope.statuts = statutService.query();
+	$scope.activerModification = function() {
+		$scope.flagModif = false;
 	}
 	var idPhase = $stateParams.id;
 	$scope.isTrue = false;
-	var login = localStorage.getItem("login"); 
-	$rootScope.userConect=userService.userByLogin({login:login});
+	var login = localStorage.getItem("login");
+	$rootScope.userConect = userService.userByLogin({
+		login : login
+	});
 	if (idPhase != null) {
 
 		$scope.phase = phaseService.get({
 			id : idPhase
+		}).$promise.then(function(data) {
+			$scope.phase = angular.fromJson(data);
 		});
 
 	}
@@ -34,14 +37,14 @@ function editPhase($scope, $state, $rootScope, eventService,
 	$scope.Remove = function(index) {
 		$scope.phase.docs.splice(index, 1);
 	}
-	
-	$scope.updatePhase=function() {
-		phaseService.save($scope.phase).$promise.then(function(){
+
+	$scope.updatePhase = function() {
+		phaseService.save($scope.phase).$promise.then(function() {
 			$state.go('listPhase');
-			
-        })
+
+		})
 	}
-	
+
 	$scope.Add = function() {
 		// Add the new item to the Array.
 		var document = {};
@@ -51,6 +54,6 @@ function editPhase($scope, $state, $rootScope, eventService,
 		$scope.typeDoc = "";
 		$scope.etatDoc = "";
 	};
-	
-};
 
+}
+;

@@ -8,17 +8,17 @@
 
     function phaseService ($resource) {
     	
-    	var resourceUrl =  '/midgard/phase/:id';
+    	var resourceUrl =  '/phase/:id';
     	return $resource(resourceUrl, {}, {
     		'getByIdProjet': {
                 method: 'GET',
                 isArray: true,
-                url: '/midgard/getByIdProjet/:id'
+                url: '/getByIdProjet/:id'
               },
     	
     	'savePhaseAux': {
             method: 'POST',
-            url: '/midgard/savePhaseAux',
+            url: '/savePhaseAux',
             params: {'Idphase':1,'idProjet':2}
           }
     	});

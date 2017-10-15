@@ -10,13 +10,13 @@
     function userService ($resource) {
     	
 
-    	var resourceUrl =  '/midgard/user/:id';
+    	var resourceUrl =  '/user/:id';
 
     		return $resource(resourceUrl, {}, {
         		'userByLogin': {
                     method: 'GET',
                     isArray: false,
-                    url: '/midgard/userByLogin/:login' ,
+                    url: '/userByLogin/:login' ,
                     params:{login:'login'}
                   }
     	});

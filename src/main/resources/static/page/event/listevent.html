@@ -2,15 +2,15 @@
 
 <div class="container-fluid" ng-init="init()">
 	<div class="row">
-		<div class="col-lg-12">
-			<h1 class="page-header">List Evenement</h1>
+		<div class="col-md-12">
+			<h1 class="page-header">Liste Evenements</h1>
 		</div>
-		<!-- /.col-lg-12 -->
+		<!-- /.col-md-12 -->
 	</div>
-	<div class="col-lg-12">
+	<div class="row">
 
-	<div class="col-lg-3" ng-show="userConect.role.role!='COLLAB' && userConect.role.role!='CLIENT'">
-		<button type="nouveau" class="btn btn-primary btn-block" style=" width: 117%;"
+	<div class="col-md-3" ng-show="userConect.role.role!='COLLAB' && userConect.role.role!='CLIENT'">
+		<button type="nouveau" class="btn btn-primary btn-block" style=" width: 100%;"
 			ui-sref="nouveauEvent">
 
 
@@ -18,10 +18,11 @@
 			<i class="fa fa-pencil-square" aria-hidden="true"></i> Ajouter Evenement
 		</button>
 	</div>
-<div class="col-lg-1">
+	
+<div class="col-md-1">
 </div>
-	<div class="col-lg-3" ng-show="userConect.role.role!='COLLAB' && userConect.role.role!='CLIENT'">
-		<button type="nouveau" class="btn btn-primary btn-block" style=" width: 117%;"
+	<div class="col-md-3" ng-show="userConect.role.role!='COLLAB' && userConect.role.role!='CLIENT'">
+		<button type="nouveau" class="btn btn-primary btn-block" style=" width: 100%;"
 			ui-sref="EventTache">
 
 
@@ -30,9 +31,13 @@
 			</button>
 		</div>
 	</div>
-	<div class="col-lg-12">
-		<div class="col-lg-3">
-			<label>Recherche par projet</label> <select
+	<br>
+	<div class="row">
+	<div class="col-md-1">
+		<label>Projet :</label>
+		</div>
+		<div class="col-md-2">
+			 <select
 				ng-model="idProjetRecherche" ng-change="selectProjetRecherche()"
 				style="width: 100%" ui-select2>
 				<option ng-value=""></option>
@@ -41,8 +46,11 @@
 			</select>
 
 		</div>
-		<div class="col-lg-3">
-			<label>Recherche par phase</label> <select ng-model="idPhase"
+		<div class="col-md-1">
+		<label>Phase :</label> 
+		</div>
+		<div class="col-md-2">
+			<select ng-model="idPhase"
 				style="width: 100%" ui-select2>
 				<option ng-value=""></option>
 				<option ng-repeat="x in phasesRecherhe" ng-value="x.idPhase">{{x.idPhase}}
@@ -50,27 +58,28 @@
 			</select> <br>
 		</div>
 	</div>
-	<table class="table table-bordered" width="100%" id="dataTable"
+		<br>
+		<div class="col-md-10">
+	<table class="table table-bordered table-sm" width="80%" id="dataTable" style="text-align: center !important;"
 		cellspacing="0">
 		<thead>
 			<tr>
-				<th>Id phase</th>
-				<th>Id</th>
-				<th>Progression</th>
-				<th>Phase</th>
-				<th>dateDebut</th>
-				<th>echeance</th>
-				<th>dateFin</th>
-				<th style="width: :10%">Options</th>
+				<th style="text-align: center !important;">Id phase</th>
+				<th style="text-align: center !important;">Id</th>
+				<th style="text-align: center !important;">Progression</th>
+				<th style="text-align: center !important;">Phase</th>
+				<th style="text-align: center !important;">dateDebut</th>
+				<th style="text-align: center !important;">echeance</th>
+				<th style="text-align: center !important;">dateFin</th>
+				<th style="text-align: center !important;width: :10%">Options</th>
 			</tr>
 		</thead>
 
 		<tbody>
-			<tr ng-repeat="item in events | filter:idPhase ">
+			<tr ng-repeat="item in events  ">
 				<td>{{item.idPhase.idPhase}}</td>
 				<td>{{item.idEvent}}</td>
 				<td>
-{{item.etatAvancement}}
 					<div class="progress progress-striped active">
 						<div class="progress-bar progress-bar-danger"
 							ng-show="item.etatAvancement<=20" role="progressbar"
@@ -103,26 +112,20 @@
 				<td>{{item.echeance}}</td>
 				<td>{{item.dateFin}}</td>
 				<td>
-					<div class="row">
-						<div class="col-sm-6">
-							<button type="submit" class="btn btn-info btn-block"
+							<button type="submit" class="btn btn-info btn-sm"
 								title="Consulter" 
 								ui-sref="detailEvent({id:item.idEvenement})">
 								<i class="fa fa-search" aria-hidden="true"></i>
 							</button>
-						</div>
-						<div class="col-sm-6">
-							<button type="submit" class="btn btn-primary btn-block"
+							<button type="submit" class="btn btn-primary btn-sm"
 								title="Ajout Ticket" 
 								ui-sref="formEventProjet({id:item.idEvenement+'/Evenement'})">
 								<i class="fa fa-plus" aria-hidden="true"></i>
 							</button>
-						</div>
-					</div>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-
+</div>
 
 </div>

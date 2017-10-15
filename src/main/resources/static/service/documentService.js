@@ -9,7 +9,7 @@
 
     function documentService ($resource) {
     	
-    	var resourceUrl =  '/midgard/document/:id';
+    	var resourceUrl =  '/document/:id';
     	return $resource(resourceUrl, {}, {
 
     	});

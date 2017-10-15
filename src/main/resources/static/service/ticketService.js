@@ -11,7 +11,7 @@
 
     function ticketService ($resource) {
     	
-    	var resourceUrl =  '/midgard/ticket/:id';
+    	var resourceUrl =  '/ticket/:id';
     	return $resource(resourceUrl, {}, {
     		
     		

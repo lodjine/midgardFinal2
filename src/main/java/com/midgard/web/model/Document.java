@@ -13,12 +13,12 @@ public class Document {
 	private String typeDoc;
 	private String etatDoc;
 
-	public Long getId() {
+	public Long getIddoc() {
 		return iddoc;
 	}
 
-	public void setId(Long id) {
-		this.iddoc = id;
+	public void setIddoc(Long iddoc) {
+		this.iddoc = iddoc;
 	}
 
 	public String getTypeDoc() {

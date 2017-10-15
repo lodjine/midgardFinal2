@@ -54,18 +54,18 @@
 						<label>Role : </label>
 					</div>
 					<div class="col-md-2">
-						<select ng-model="user.role.id" required style="width: 100%"
-							ui-select2>
-							<option ng-repeat="x in roles" ng-value="x.id"
-								ng-selected="user.role">{{x.role}}</option>
-						</select>
+						 <select ng-model="user.role.id"  ui-select2
+							name="category" required>
+							<option value="" disabled="" selected="">Select Role</option>
+							<option ng-selected="selected.id == x.id"
+								ng-repeat="x in roles" value="{{x.id}}">{{x.role}}</option>
+						</select> 
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-3">
-						<label>Ing&eacute;nieur : </label>
-						<input ng-model="user.ingenieur" required placeholder=""
-							type="checkbox" />
+						<label>Ing&eacute;nieur : </label> <input
+							ng-model="user.ingenieur" required placeholder="" type="checkbox" />
 					</div>
 
 				</div>

@@ -23,7 +23,7 @@
 						<div class="col-md-3">
 							<select ng-change="selectAllPhase()" ng-model="selected" required
 								style="width: 100%" ui-select2>
-								<option ng-selected="true" ng-value="">Selectionner un
+								<option value="" disabled="" selected="">Selectionner un
 									projet</option>
 								<option ng-repeat="x in projets" ng-value="x.idbd">{{x.idProjet}}</option>
 							</select>

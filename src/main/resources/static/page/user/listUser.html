@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="page-header">List utilisateurs</h1>
+			<h1 class="page-header">Liste utilisateurs</h1>
 		</div>
 		<!-- /.col-lg-12 -->
 	</div>
@@ -10,20 +10,20 @@
 		<button type="nouveau" class="btn btn-primary btn-block"
 			ui-sref="adduser">
 
-			<i class="fa fa-times-circle" aria-hidden="true"></i> nouvel utilisateur
+			<i class="fa fa-pencil-square" aria-hidden="true"></i> Ajouter Utilisateur
 		</button>
 	</div>
 	<br /> <br />
-
-	<table class="table table-bordered" width="100%" id="dataTable"
+	<div class="col-lg-10">
+	<table class="table table-bordered table-sm" width="80%" id="dataTable" style="text-align: center !important;"
 		cellspacing="0">
 		<thead>
 			<tr>
-				<th>Nom</th>
-				<th>Prenom</th>
-				<th>Email</th>
-				<th>Login</th>
-				<th>Options</th>
+				<th style="text-align: center !important;">Nom</th>
+				<th style="text-align: center !important;">Prenom</th>
+				<th style="text-align: center !important;">Email</th>
+				<th style="text-align: center !important;">Login</th>
+				<th style="text-align: center !important;width: 5%">Options</th>
 
 
 			</tr>
@@ -36,12 +36,12 @@
 				<td>{{item.email}}</td>
 				<td>{{item.username}}</td>
 
-				<td><button type="submit" class="btn btn-primary btn-block" ui-sref="detailUser({id:item.id})">
-						<i class="fa fa-search  " aria-hidden="true"></i> Consulter
+				<td><button title="Consulter" type="submit" class="btn btn-primary btn-sm" ui-sref="detailUser({id:item.id})">
+						<i class="fa fa-search  " aria-hidden="true"></i> 
 					</button></td>
 			</tr>
 		</tbody>
 	</table>
 
-
+</div>
 </div>

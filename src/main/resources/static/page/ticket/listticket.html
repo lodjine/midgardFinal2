@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="page-header">List des Tickets</h1>
+			<h1 class="page-header">Liste des Tickets</h1>
 		</div>
 		<!-- /.col-lg-12 -->
 	</div>
@@ -10,22 +10,22 @@
 		<button type="nouveau" class="btn btn-primary btn-block"
 			ui-sref="formticket">
 
-			<i class="fa fa-times-circle" aria-hidden="true"></i> Ajouter Ticket
+			<i class="fa fa-pencil-square" aria-hidden="true"></i> Ajouter Ticket
 		</button>
 	</div>
 	<br /> <br />
 
-	<table class="table table-bordered" width="100%" id="dataTable"
+	<table class="table table-bordered table-sm" style="text-align: center !important;" width="80%" id="dataTable"
 		cellspacing="0">
 		<thead>
 			<tr>
-				<th>Id Ticket</th>
-				<th>Type Ticket</th>
-				<th>Emetteur</th>
-				<th>Destinataire</th>
-				<th>Date Echeance</th>
-				<th>Etat</th>
-				<th>Options</th>
+				<th style="text-align: center !important;">Id Ticket</th>
+				<th style="text-align: center !important;">Type Ticket</th>
+				<th style="text-align: center !important;">Emetteur</th>
+				<th style="text-align: center !important;">Destinataire</th>
+				<th style="text-align: center !important;">Date Echeance</th>
+				<th style="text-align: center !important;">Etat</th>
+				<th style="text-align: center !important;width: 10%">Options</th>
 
 			</tr>
 		</thead>
@@ -53,9 +53,9 @@
 				<td><output ng-repeat=" item2 in item.destinataire">{{item2.name}} </output></td>
 				<td>{{item.dateEchance | date:'yyyy-MM-dd'}}</td>
 				<td>{{item.etat}}</td>
-				<td><button type="submit" class="btn btn-primary btn-block"
+				<td><button type="submit" class="btn btn-primary btn-sm"
 						ui-sref="modifTicket({id:item.iddbTicket})">
-						<i class="fa fa-search  " aria-hidden="true"></i> Consulter
+						<i class="fa fa-search  " aria-hidden="true"></i> 
 					</button></td>
 			</tr>
 		</tbody>

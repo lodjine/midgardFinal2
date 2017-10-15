@@ -1,24 +1,30 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="page-header">List phases</h1>
+			<h1 class="page-header">Liste phases</h1>
 		</div>
 		<!-- /.col-lg-12 -->
 	</div>
 
 	<br /> <br />
 	<!-- /.row -->
-	<div class="col-lg-12">
-		<div class="col-md-3">
-			<label>Recherche par projet :</label> <select ng-model="idProjet"
+	<div class="row">
+	<div class="col-md-1">
+			<label>Projet :</label>
+		</div>
+		<div class="col-md-2">
+			 <select ng-model="idProjet"
 				style="width: 100%" ui-select2>
 				<option ng-value=""></option>
 				<option ng-repeat="x in projets" ng-value="x.idProjet">{{x.idProjet}}
 				</option>
 			</select>
 		</div>
-		<div class="col-lg-3">
-			<label>Recherche par statut :</label> <select ng-model="statut"
+		<div class="col-md-1">
+			<label>Statut :</label>
+		</div>
+		<div class="col-md-2">
+			<select ng-model="statut"
 				style="width: 100%" ui-select2>
 				<option ng-value=""></option>
 				<option ng-repeat="x in statutRecherche" ng-value="x.statut">{{x.statut}}
@@ -26,8 +32,11 @@
 			</select>
 
 		</div>
-		<div class="col-lg-3">
-			<label>Recherche par chef projet :</label> <select ng-model="name"
+		<div class="col-md-2">
+			<label>Chef projet :</label>
+		</div>
+		<div class="col-md-2">
+			<select ng-model="name"
 				style="width: 100%" ui-select2>
 				<option ng-value=""></option>
 				<option ng-repeat="x in usersRecherche" ng-value="x.name">{{x.name}}
@@ -37,18 +46,18 @@
 	</div>
 	<br /> <br />
 	<div>
-		<table class="table table-bordered" width="100%" id="dataTable"
-			cellspacing="0">
+		<table class="table table-bordered table-sm" width="80%"
+				id="dataTable" style="text-align: center;" cellspacing="0"">
 			<thead>
 				<tr>
-					<th>Id projet</th>
-					<th>chef Projet</th>
-					<th>Phase</th>
-					<th>statut</th>
-					<th>Date debut</th>
-					<th>Date fin</th>
-					<th>Date solde</th>
-					<th>Options</th>
+					<th style="text-align: center;">Id projet</th>
+					<th style="text-align: center;">chef Projet</th>
+					<th style="text-align: center;">Phase</th>
+					<th style="text-align: center;">statut</th>
+					<th style="text-align: center;">Date debut</th>
+					<th style="text-align: center;">Date fin</th>
+					<th style="text-align: center;">Date solde</th>
+					<th style="text-align: center;width: 10%">Options</th>
 
 
 				</tr>
@@ -66,10 +75,11 @@
 					<td>{{item.dateFin | date:'yyyy-MM-dd'}}</td>
 					<td>{{item.dateSoldePhase | date:'yyyy-MM-dd'}}</td>
 
-					<td><button type="submit" class="btn btn-primary btn-block"
-							ui-sref="detailPhase({id:item.idphas})">
-							<i class="fa fa-search  " aria-hidden="true"></i> Consulter
+					<td><button type="submit"  title="Consulter"  class="btn btn-primary btn-sm"
+							ui-sref="detailPhase({id:item.idphas})"> 
+							<i class="fa fa-search  " aria-hidden="true"></i> 
 						</button></td>
+						
 				</tr>
 			</tbody>
 		</table>

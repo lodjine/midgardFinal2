@@ -6,7 +6,7 @@
 
 	function projetService($resource) {
 
-		var resourceUrl = '/midgard/projet/:id';
+		var resourceUrl = '/projet/:id';
 		return $resource(resourceUrl, {}, {
 			
 			

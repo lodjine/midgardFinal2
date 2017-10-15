@@ -10,9 +10,10 @@ function modifProjetCtrl($scope,entrepriseService,projetService, $window,$state,
 	$scope.entreprises=entrepriseService.query();
 	var idProjet=$stateParams.id;
 	if(idProjet != null){
-		$scope.projet= projetService.get({id:idProjet});
-		$scope.date=$scope.projet.dateDebut;
-		console.log($scope.projet);
+		$scope.projet= projetService.get({id:idProjet}).$promise.then(function (data) {
+			$scope.projet=angular.fromJson(data);
+			$scope.date=$scope.projet.dateDebut;
+		  });
 	}
 	
 	
@@ -21,7 +22,7 @@ function modifProjetCtrl($scope,entrepriseService,projetService, $window,$state,
 	}
 	$scope.deleteProjet=function deleteProjet(id){
 		projetService.delete({id:id});
-		$window.location.href = '/blank.html#/listProjets';
+		$state.go('projet');
 	}
 	$scope.updateProjet=function updateProjet(){
 		projetService.save($scope.projet).$promise.then(function() {
