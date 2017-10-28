@@ -37,9 +37,9 @@
 
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label>Intervenant</label> <select ng-disabled="flagModif" ng-change="selectOperateur()" style="width: 100%" ui-select2
+								<label>Intervenant</label> <select ng-disabled="flagModif" ng-change="selectOperateur()" style="width: 100%" class=" form-control"
 									ng-model="tache.operateur.id" >
-									<option  ng-repeat="x in users" ng-value="x.id">{{x.name}}</option>
+									<option  ng-repeat="x in users" ng-value="x.id" ng-selected="tache.operateur.id === x.id">{{x.name}}</option>
 								</select>
 							</div>
 						</div>
@@ -55,7 +55,7 @@
 						
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label>Statut</label> <select ng-disabled="flagModif" style="width: 100%" ui-select2
+								<label>Statut</label> <select ng-disabled="flagModif" style="width: 100%" class=" form-control"
 									ng-model="tache.statut.id" >
 									<option selected="true" ng-value="tache.statut.id">{{tache.statut.statut}}</option>
 									<option ng-repeat="x in statuts" ng-value="x.id">{{x.statut}}</option>

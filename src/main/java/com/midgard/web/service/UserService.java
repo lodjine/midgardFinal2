@@ -3,6 +3,7 @@ package com.midgard.web.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,6 +57,9 @@ public class UserService {
 	public boolean getIsIngenieurById(@PathVariable long id) {
 		return userDao.getIsIngenieurById(id);
 	}
-	
+	@RequestMapping(value = "/getChefProjet/{role}", method = RequestMethod.GET)
+	public List<User> getChefProjet(@PathVariable String role) {
+		return userDao.getChefProjet( role);
+	}
 	
 }

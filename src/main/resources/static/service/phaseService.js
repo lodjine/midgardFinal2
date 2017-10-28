@@ -21,6 +21,16 @@
             url: '/savePhaseAux',
             params: {'Idphase':1,'idProjet':2}
           }
+            ,  'update' : {
+  				method : 'PUT',
+  				transformResponse : function(data) {
+  					if (data) {
+  						data = angular.fromJson(data);
+  					}
+  					return data;
+  				}
+
+  			}
     	});
     	
     

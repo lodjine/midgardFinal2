@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Phase {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idphas;
 	private String idPhase;
 	private String phase;
@@ -33,12 +33,13 @@ public class Phase {
 	private Long nbrEvent;
 	@ManyToOne
 	private Statut statut;
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Projet projet;
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "phase_documents", joinColumns = @JoinColumn(name = "idphas"), inverseJoinColumns = @JoinColumn(name = "iddoc"))
 	private Set<Document> docs = new HashSet<Document>();
 	@ManyToOne
+	@JoinColumn(name = "chef_projet_user_id")
 	private User chefProjet;
 
 	private String etat;

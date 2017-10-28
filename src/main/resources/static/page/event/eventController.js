@@ -81,7 +81,9 @@
 			if ($scope.selected) {
 				$scope.phases = phaseService.getByIdProjet({
 					id : $scope.selected
-				});
+				}).$promise.then(function(data) {
+					$scope.phases = angular.fromJson(data);
+				});;
 			}
 
 		};
@@ -170,6 +172,7 @@
 			$scope.event.idPhase = $scope.phase;
 			console.log($scope.event);
 			eventService.save($scope.event).$promise.then(function() {
+				$scope.phase.statut.id=2;
 				phaseService.save($scope.phase);
 				$state.go('event');
 			});

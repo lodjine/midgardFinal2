@@ -19,7 +19,7 @@ public class Projet {
 	private String nomProjet;
 	private Date dateDebut;
 	private Date dateFin;
-	
+	private String nomProj;
 	private Date dateProjetMoe;
 	private String maitreDouvrage;
 	private String maitreDoeuvre;
@@ -31,7 +31,7 @@ public class Projet {
 	private String modeInfra;
 	private String modeSuperstructure;
 	private String infoHypoSupp;
-
+	private String nomEntreprise;
 	@ManyToOne
 	private Statut statut;
 	
@@ -145,6 +145,18 @@ public class Projet {
 	}
 	public void setChefProjet(User chefProjet) {
 		this.chefProjet = chefProjet;
+	}
+	public String getNomEntreprise() {
+		return nomEntreprise;
+	}
+	public void setNomEntreprise(String nomEntreprise) {
+		this.nomEntreprise = nomEntreprise;
+	}
+	public String getNomProj() {
+		return nomProj;
+	}
+	public void setNomProj(String nomProj) {
+		this.nomProj = nomProj;
 	}
 	
 }

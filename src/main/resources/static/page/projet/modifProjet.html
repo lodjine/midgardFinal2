@@ -20,14 +20,17 @@
 	</div>
 	<div class="col-lg-2">
 
-		<button type="submit"   class="btn btn btn-danger btn-block"
-			ng-show="!flagModif && userConect.role.role=='ADMIN'" ng-click="deleteProjet(projet.idBd)">
+		<button type="submit" class="btn btn btn-danger btn-block"
+			ng-show="!flagModif && userConect.role.role=='ADMIN'"
+			ng-click="deleteProjet(projet.idBd)">
 			<i class="fa" aria-hidden="true"></i> Supprimer
 		</button>
 	</div>
-	<div class="row">
-		<div class="col-lg-11">
-
+</div>
+<br>
+<div class="row">
+	<div class="col-lg-11">
+		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-lg-2">
@@ -71,8 +74,7 @@
 								class="form-control" ng-disabled="flagModif" format-date
 								placeholder="date debut" type="date" ng-change="change()"
 								ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}" />
-							<span ng-show="isTrue" style="color: red">Date fin
-								Invalid</span>
+							<span ng-show="isTrue" style="color: red">Date fin Invalid</span>
 
 						</div>
 
@@ -82,134 +84,289 @@
 				</div>
 				<div class="row">
 					<div class="col-lg-6">
-						<label>Entreprise</label> <select ng-model="projet.entreprise.id"
-							class="form-control" ng-disabled="flagModif">
-							<option ng-selected="projet.entreprise.nom"
-								ng-value="projet.entreprise.id">{{projet.entreprise.nom}}
-							</option>
-							<option ng-repeat="x in entreprises" ng-value="x.id">{{x.nom}}
-							</option>
-						</select>
+						<div class="form-group">
+							<label>Entreprise</label> <input class="form-control"
+								ng-disabled="flagModif" ng-model="phase.projet.nomEntreprise"
+								placeholder="Entreprise" type="text" />
 
+						</div>
 
 
 
 					</div>
-					
+
 					<div class="col-lg-6">
-							<div class="form-group">
-								<label>Statut</label> <select ng-disabled="flagModif"
-									ng-model="projet.statut.id" class="form-control">
-									<option selected="true" ng-value="phase.statut.id">{{projet.statut.statut}}</option>
-									<option ng-repeat="x in statuts" ng-value="x.id">{{x.statut}}</option>
-								</select>
-							</div>
+						<div class="form-group">
+							<label>Statut</label> <select ng-disabled="flagModif"
+								ng-model="projet.statut.id" class="form-control">
+								<option selected="true" ng-value="phase.statut.id">{{projet.statut.statut}}</option>
+								<option ng-repeat="x in statuts" ng-value="x.id">{{x.statut}}</option>
+							</select>
 						</div>
+					</div>
 				</div>
 
 				<!-- /.row (nested) -->
 			</div>
-			<!-- /.panel-body -->
-			<div class="panel panel-default">
-				<div class="panel-heading">Information projet</div>
-				<div class="panel-body">
-					<div class="row">
-
-
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label>Date projet</label> <input
-									ng-model="projet.dateProjetMoe" class="form-control"
-									ng-disabled="flagModif" format-date placeholder="date debut"
-									type="date" />
-
-							</div>
-						</div>
-
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label>Maitre d'ouvrage</label> <input class="form-control"
-									ng-disabled="flagModif" ng-model="projet.maitreDouvrage"
-									placeholder="Nom" type="text" />
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label>Maitre d'oeuvre</label> <input class="form-control"
-									ng-disabled="flagModif" ng-model="projet.maitreDoeuvre"
-									placeholder="Nom" type="text" />
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label>Architecte</label> <input class="form-control"
-									ng-disabled="flagModif" ng-model="projet.architect"
-									placeholder="Nom" type="text" />
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label>Geotechnicien</label> <input class="form-control"
-									ng-disabled="flagModif" ng-model="projet.geotechnicien"
-									placeholder="Nom" type="text" />
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label>CT</label> <input class="form-control"
-									ng-disabled="flagModif" ng-model="projet.ct" placeholder="Nom"
-									type="text" />
-
-							</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-
-			<div class="panel panel-default">
-				<div class="panel-heading">Descriptif structure</div>
-				<div class="panel-body">
-					<div class="row">
-
-						<div class="col-lg-8">
-
-							<div class="form-group">
-								<label>Infrastructure</label> <input class="form-control"
-									ng-disabled="flagModif" ng-model="projet.modeInfra"
-									placeholder="Infrastructure" type="text" />
-
-							</div>
-
-
-
-							<div class="form-group">
-								<label>Superstructure</label> <input class="form-control"
-									ng-disabled="flagModif" ng-model="projet.modeSuperstructure"
-									placeholder="Superstructure" type="text" />
-							</div>
-
-
-							<div class="form-group">
-								<label>informations additionnel</label> <input
-									class="form-control" ng-model="phase.projet.infoHypoSupp"
-									ng-disabled="flagModif" placeholder="Informations additionnel"
-									type="text" />
-							</div>
-
-
-						</div>
-
-					</div>
-				</div>
-			</div>
-
-
-
-
-
-
-			<!-- /.panel -->
 		</div>
-		<!-- /.col-lg-12 -->
+		<!-- /.panel-body -->
+		<div class="panel panel-default">
+			<div class="panel-heading">Information projet</div>
+			<div class="panel-body">
+				<div class="row">
+
+
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label>Date projet</label> <input ng-model="projet.dateProjetMoe"
+								class="form-control" ng-disabled="flagModif" format-date
+								placeholder="date debut" type="date" />
+
+						</div>
+					</div>
+
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label>Maitre d'ouvrage</label> <input class="form-control"
+								ng-disabled="flagModif" ng-model="projet.maitreDouvrage"
+								placeholder="Nom" type="text" />
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label>Maitre d'oeuvre</label> <input class="form-control"
+								ng-disabled="flagModif" ng-model="projet.maitreDoeuvre"
+								placeholder="Nom" type="text" />
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label>Architecte</label> <input class="form-control"
+								ng-disabled="flagModif" ng-model="projet.architect"
+								placeholder="Nom" type="text" />
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label>Geotechnicien</label> <input class="form-control"
+								ng-disabled="flagModif" ng-model="projet.geotechnicien"
+								placeholder="Nom" type="text" />
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label>CT</label> <input class="form-control"
+								ng-disabled="flagModif" ng-model="projet.ct" placeholder="Nom"
+								type="text" />
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">Descriptif structure</div>
+			<div class="panel-body">
+				<div class="row">
+
+					<div class="col-md-6">
+
+						<div class="form-group">
+							<label>Infrastructure</label> <input class="form-control"
+								ng-disabled="flagModif" ng-model="projet.modeInfra"
+								placeholder="Infrastructure" type="text" />
+
+						</div>
+
+					</div>
+					<div class="col-md-6">
+
+						<div class="form-group">
+							<label>Superstructure</label> <input class="form-control"
+								ng-disabled="flagModif" ng-model="projet.modeSuperstructure"
+								placeholder="Superstructure" type="text" />
+						</div>
+					</div>
+					<div class="col-md-12">
+
+						<div class="form-group">
+							<label>informations additionnel</label> 
+							<textarea class="form-control" rows="5" id="comment" ng-disabled="flagModif"
+									ng-model="phase.projet.infoHypoSupp"
+									placeholder="Informations additionnel"></textarea>
+						</div>
+
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">Phase du projet</div>
+			<div class="panel-body">
+				<div class="row">
+
+					<div class="col-md-6">
+
+						<div class="form-group">
+							<label>Phase</label> <select   class=" form-control"
+								ng-disabled="flagModif" ng-change="createIdPhase()"
+								ng-model="phase.phase">
+								<option>PRE</option>
+								<option>DCE</option>
+								<option>EXE</option>
+								<option>DIAG</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Honoraires</label> <input class="form-control"
+								ng-disabled="flagModif" ng-model="phase.honoraires"
+								placeholder="Superstructure" type="text" />
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<!-- 						<div class="form-group"> -->
+						<!-- 							<label>Chef projet :</label> <input class="form-control" -->
+						<!-- 								ng-disabled="flagModif" ng-model="phase.chefProjet.name" /> -->
+						<!-- 						</div> -->
+						<div class="form-group">
+							<label>Chef projet :</label> <select
+								ng-model="chefP" ng-disabled="flagModif"
+								 class=" form-control"  >
+								<option ng-repeat="x in usersChef" value="{{x.id}}"
+									ng-selected="chefP.id === x.id">{{x.name}}</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>Quantification Jours Ing : </label> <input
+								ng-disabled="flagModif" class="form-control"
+								ng-model="phase.delaiHjIng" required name="ing"
+								placeholder="JH Ing" type="text" />
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>Quantification Jours Tech : </label> <input
+								ng-disabled="flagModif" class="form-control"
+								ng-model="phase.delaiHjTech" required name="tech"
+								placeholder="JH Tech" type="text" />
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Date debut</label> <input class="form-control" format-date
+								ng-disabled="flagModif"
+								ng-style="isTrue2 && {'border-color':'red'} || {'background-color': 'none'}"
+								ng-model="phase.dateDebut" placeholder="date debut" type="date" />
+							<span ng-show="isTrue2" style="color: red">Date debut
+								Invalid</span>
+						</div>
+
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Solde phase</label> <input class="form-control"
+								format-date ng-disabled="flagModif"
+								ng-style="isTrue2 && {'border-color':'red'} || {'background-color': 'none'}"
+								ng-model="phase.dateSoldePhase" placeholder="date debut"
+								type="date" /> <span ng-show="isTrue2" style="color: red">Solde
+								phase Invalid</span>
+						</div>
+					</div>
+					<!-- 					<div class="col-md-6"> -->
+					<!-- 						<div class="form-group"> -->
+					<!-- 							<label>Solde phase</label> <input class="form-control" -->
+					<!-- 								ng-disabled="flagModif" format-date -->
+					<!-- 								ng-model="phase.dateSoldePhase" -->
+					<!-- 								placeholder="Informations additionnel" type="date" /> -->
+					<!-- 						</div> -->
+					<!-- 					</div> -->
+
+
+					<div class="col-md-5">
+						<div class="form-group">
+							<label>Lot a traiter </label> <br /> <label
+								class="checkbox-inline"> <input ng-disabled="flagModif"
+								ng-model="phase.grosOeuvre" type="checkbox">Gros oeuvre
+							</label> <label class="checkbox-inline"> <input
+								ng-disabled="flagModif" ng-model="phase.archi" type="checkbox">Architecture
+							</label> <label class="checkbox-inline"> <input
+								ng-disabled="flagModif" ng-model="phase.metal" type="checkbox">Charpente
+								m&eacute;tallique
+							</label> <label style="margin-left: 0px;" class="checkbox-inline">
+								<input ng-model="phase.voirie" type="checkbox"
+								ng-disabled="flagModif">Voirie et R&eacute;seau divers
+							</label> <label class="checkbox-inline"> <input
+								ng-disabled="flagModif" ng-model="phase.bois" type="checkbox">Charpente
+								bois
+							</label>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<label>Documents</label>
+						<div class="table-responsive">
+							<table class="table table-striped table-bordered table-hover">
+								<tr>
+									<th>Titre document</th>
+									<th>Etat</th>
+									<th>Action</th>
+
+								</tr>
+								<tbody ng-repeat="doc in phase.docs">
+									<tr>
+										<td>{{doc.typeDoc}}</td>
+										<td style="width: 30%"><select class="form-control"
+											ng-disabled="flagModif"  ng-model="doc.etatDoc">
+												<option>Recu</option>
+												<option>Non Recu</option>
+												<option>A recevoir</option>
+										</select></td>
+										<td><input type="button" class="btn btn-danger"
+											ng-disabled="flagModif" ng-click="Remove($index)"
+											value="Remove" /></td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td><input type="text" class="form-control"
+											ng-disabled="flagModif" ng-model="typeDoc" /></td>
+										<td><select class="form-control"
+											ng-disabled="flagModif" ng-model="etatDoc">
+												<option>Recu</option>
+												<option>Non Recu</option>
+												<option>A recevoir</option>
+										</select></td>
+										<td><input class="btn" type="button" ng-click="Adddoc()"
+											ng-disabled="flagModif" value="Add" /></td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+
+
+
+
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+
+		<!-- /.panel -->
 	</div>
+	<!-- /.col-lg-12 -->
+</div>

@@ -23,26 +23,27 @@
 						</div>
 						<div class="col-md-3">
 							<select ng-change="selectAllPhase()" ng-model="selected" required
-								style="width: 100%" ui-select2>
-								<option ng-selected="true" ng-value="">Selectionner un
-									projet</option>
+								style="width: 100%" class=" form-control">
+								<option value="" disabled="" selected="">Selectionner
+									un projet</option>
 								<option ng-repeat="x in projets" ng-value="x.idbd">{{x.idProjet}}</option>
 							</select>
 						</div>
 						<div class="col-md-1">
 							<label>Phase :</label>
 						</div>
-						<div class="col-md-2">
-							<select ng-change="selectPhase2()" ng-model="selectedPhase" wb-select2
-								required style="width: 100%" ui-select2>
+						<div class="col-md-4">
+							<select ng-change="selectPhase()" ng-model="selectedPhase"
+								required style="width: 100%" class=" form-control">
 								<option ng-selected="true" ng-value="">Selectionner une
 									phase</option>
-								<option ng-repeat="x in phases" ng-value="x.idphas" ng-show="x.statut.id !== 1">{{x.idPhase}}</option>
+								<option ng-repeat="x in phases " ng-value="x.idphas"
+									>{{x.idPhase}}</option>
 							</select>
 						</div>
-						<div class="col-md-1">
-							<label>Evenement:</label>
-						</div>
+<!-- 						<div class="col-md-1"> -->
+<!-- 							<label>Evenement:</label> -->
+<!-- 						</div> -->
 						<div class="col-md-3">
 							<input class="form-control" ng-model="tache.event.idEvent"
 								ng-disabled="true" required name="ing"

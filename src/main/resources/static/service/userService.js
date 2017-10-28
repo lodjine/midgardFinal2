@@ -1,27 +1,35 @@
 
 (function() {
-    'use strict';
-    angular
-        .module('midgApp')
-        .factory('userService', userService);
+	'use strict';
+	angular
+		.module('midgApp')
+		.factory('userService', userService);
 
-    userService.$inject = ['$resource'];
+	userService.$inject = [ '$resource' ];
 
-    function userService ($resource) {
-    	
+	function userService($resource) {
+		var resourceUrl = '/user/:id';
 
-    	var resourceUrl =  '/user/:id';
+		return $resource(resourceUrl, {}, {
+			'userByLogin' : {
+				method : 'GET',
+				isArray : false,
+				url : '/userByLogin/:login',
+				params : {
+					login : 'login'
+				}
+			},
+			'getChefProjet' : {
+				method : 'GET',
+				isArray : true,
+				url : '/getChefProjet/:role',
+				params : {
+					role : 'role'
+				}
+			}
+		});
 
-    		return $resource(resourceUrl, {}, {
-        		'userByLogin': {
-                    method: 'GET',
-                    isArray: false,
-                    url: '/userByLogin/:login' ,
-                    params:{login:'login'}
-                  }
-    	});
-    		
-    
-        
-    }
+
+
+	}
 })();

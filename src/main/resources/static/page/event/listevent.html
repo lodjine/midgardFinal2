@@ -15,21 +15,22 @@
 
 
 
-			<i class="fa fa-pencil-square" aria-hidden="true"></i> Ajouter Evenement
+			<i class="fa fa-pencil-square" aria-hidden="true"></i> Ajouter
+				evenement et tache
 		</button>
 	</div>
 	
-<div class="col-md-1">
+<div class="col-md-1" >
 </div>
-	<div class="col-md-3" ng-show="userConect.role.role!='COLLAB' && userConect.role.role!='CLIENT'">
-		<button type="nouveau" class="btn btn-primary btn-block" style=" width: 100%;"
-			ui-sref="EventTache">
+<!-- 	<div class="col-md-3" ng-show="userConect.role.role!='COLLAB' && userConect.role.role!='CLIENT'" > -->
+<!-- 		<button type="nouveau" class="btn btn-primary btn-block" style=" width: 100%;" ng-show="false" -->
+<!-- 			ui-sref="EventTache"> -->
 
 
-				<i class="fa fa-pencil-square" aria-hidden="true"></i> Ajouter
-				evenement et tache
-			</button>
-		</div>
+<!-- 				<i class="fa fa-pencil-square" aria-hidden="true"></i> Ajouter -->
+<!-- 				evenement et tache -->
+<!-- 			</button> -->
+<!-- 		</div> -->
 	</div>
 	<br>
 	<div class="row">
@@ -39,7 +40,7 @@
 		<div class="col-md-2">
 			 <select
 				ng-model="idProjetRecherche" ng-change="selectProjetRecherche()"
-				style="width: 100%" ui-select2>
+				style="width: 100%" class=" form-control">
 				<option ng-value=""></option>
 				<option ng-repeat="x in projetsRecherche" ng-value="x.idbd">{{x.idProjet}}
 				</option>
@@ -51,7 +52,7 @@
 		</div>
 		<div class="col-md-2">
 			<select ng-model="idPhase"
-				style="width: 100%" ui-select2>
+				style="width: 100%" class=" form-control">
 				<option ng-value=""></option>
 				<option ng-repeat="x in phasesRecherhe" ng-value="x.idPhase">{{x.idPhase}}
 				</option>

@@ -22,29 +22,30 @@
 						</div>
 						<div class="col-md-3">
 							<select ng-change="selectAllPhase()" ng-model="selected" required
-								style="width: 100%" ui-select2>
-								<option value="" disabled="" selected="">Selectionner un
-									projet</option>
+								style="width: 100%" class=" form-control">
+								<option value="" disabled="" selected="">Selectionner
+									un projet</option>
 								<option ng-repeat="x in projets" ng-value="x.idbd">{{x.idProjet}}</option>
 							</select>
 						</div>
 						<div class="col-md-1">
 							<label>Phase :</label>
 						</div>
-						<div class="col-md-2">
+						<div class="col-md-4">
 							<select ng-change="selectPhase()" ng-model="selectedPhase"
-								required style="width: 100%" ui-select2>
+								required style="width: 100%" class=" form-control">
 								<option ng-selected="true" ng-value="">Selectionner une
 									phase</option>
-								<option ng-repeat="x in phases " ng-value="x.idphas" ng-show="x.statut.id !== 1">{{x.idPhase}}</option>
+								<option ng-repeat="x in phases " ng-value="x.idphas"
+									>{{x.idPhase}}</option>
 							</select>
 						</div>
-						<div class="col-md-1">
-							<label>Evenement:</label>
-						</div>
+<!-- 						<div class="col-md-1"> -->
+<!-- 							<label>Evenement:</label> -->
+<!-- 						</div> -->
 						<div class="col-md-3">
 							<input class="form-control" ng-model="event.idEvent"
-								ng-disabled="true" required name="ing"
+								 required name="ing"
 								placeholder="N Evenement " type="text" />
 						</div>
 					</div>
@@ -54,16 +55,19 @@
 				<div class="col-md-12">
 					<div class="col-lg-5">
 						<div class="form-group">
-							<label>Lot &agrave; traiter </label> <br /> <label
-								class="checkbox-inline"> <input ng-model="phase.archi"
+							<label>Lot &agrave; traiter </label> <br /> 
+							<label ng-show="phase.archi"
+								class="checkbox-inline"> 
+								<input ng-model="phase.archi" ng-show="phase.archi"
 								type="checkbox">A
-							</label> <label class="checkbox-inline"> <input
+							</label>
+							 <label class="checkbox-inline" ng-show="phase.grosOeuvre"> <input ng-show="phase.grosOeuvre"
 								ng-model="phase.grosOeuvre" type="checkbox">CO
-							</label> <label class="checkbox-inline"> <input
+							</label> <label class="checkbox-inline" ng-show="phase.metal"> <input ng-show="phase.metal"
 								ng-model="phase.metal" type="checkbox">CM
-							</label> <label class="checkbox-inline"> <input
+							</label> <label class="checkbox-inline"  ng-show="phase.bois"> <input ng-show="phase.bois"
 								ng-model="phase.bois" type="checkbox">CB
-							</label> <label class="checkbox-inline"> <input
+							</label> <label class="checkbox-inline"  ng-show="phase.voirie"> <input ng-show="phase.voirie"
 								ng-model="phase.voirie" type="checkbox">VRD
 							</label>
 						</div>
@@ -71,8 +75,8 @@
 					<div class="col-lg-7">
 						<div class="form-group">
 							<label>Docs &agrave; transmettre </label> <br /> <label
-								class="checkbox-inline"> <input
-								ng-model="event.plans" type="checkbox">Plans
+								class="checkbox-inline"> <input ng-model="event.plans"
+								type="checkbox">Plans
 							</label> <label class="checkbox-inline"> <input
 								ng-model="event.noteCalcul" type="checkbox">Note de
 								calculs
@@ -90,35 +94,35 @@
 
 			</div>
 			<div class="row">
-				<div class="col-md-1">
-					<label>Etat : </label>
-				</div>
-				<div class="col-md-4">
+<!-- 				<div class="col-md-1"> -->
+<!-- 					<label>Etat : </label> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-md-4"> -->
 
 
-					<select required="required" style="width: 100%" ui-select2
-						ng-model="event.etat">
-						<option>choisir un &eacute;tat</option>
-						<option>Non trait&eacute;</option>
-						<option>En cours</option>
-						<option>V&eacute;rifi&eacute;</option>
-						<option>Termin&eacute;</option>
-						<option>Arr&ecirc;t</option>
-						<option>Abandon</option>
-					</select>
-				</div>
+<!-- 					<select required="required" style="width: 100%" class=" form-control" -->
+<!-- 						ng-model="event.etat"> -->
+<!-- 						<option>choisir un &eacute;tat</option> -->
+<!-- 						<option>Non trait&eacute;</option> -->
+<!-- 						<option>En cours</option> -->
+<!-- 						<option>V&eacute;rifi&eacute;</option> -->
+<!-- 						<option>Termin&eacute;</option> -->
+<!-- 						<option>Arr&ecirc;t</option> -->
+<!-- 						<option>Abandon</option> -->
+<!-- 					</select> -->
+<!-- 				</div> -->
 				<div class="col-md-3">
 					<label>Quantification d&eacute;lai : </label>
 				</div>
 				<div class="col-md-2">
 
-					<input class="form-control" ng-model="event.delaiHjIng"
-						required name="ing" placeholder="JH Ing" type="text" />
+					<input class="form-control" ng-model="event.delaiHjIng" required
+						name="ing" placeholder="JH Ing" type="text" />
 				</div>
 				<div class="col-md-2">
 
-					<input class="form-control" ng-model="event.delaiHjTech"
-						required name="tech" placeholder="JH Tech" type="text" />
+					<input class="form-control" ng-model="event.delaiHjTech" required
+						name="tech" placeholder="JH Tech" type="text" />
 				</div>
 			</div>
 			<br>
@@ -127,24 +131,26 @@
 					<label>Date D&eacute;but : </label>
 				</div>
 				<div class="col-md-2">
-					<input class="form-control" ng-model="event.dateDebut"  min="{{dateMin | date:'yyyy-MM-dd'}}" max="{{dateMax | date:'yyyy-MM-dd'}}"
-						ng-change="change()"      
+					<input class="form-control" ng-model="event.dateDebut"
+						min="{{dateMin | date:'yyyy-MM-dd'}}"
+						max="{{dateMax | date:'yyyy-MM-dd'}}" ng-change="change()"
 						ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}"
 						placeholder="date debut" type="date" /> <span ng-show="isTrue"
 						style="color: red">Date debut Invalid</span>
 
 				</div>
 
-				<div class="col-md-2">
-					<label>Date Fin : </label>
-				</div>
-				<div class="col-md-2">
-					<input class="form-control" ng-model="event.dateFin" min="{{dateMin | date:'yyyy-MM-dd'}}" max="{{dateMax | date:'yyyy-MM-dd'}}"
-						ng-change="change()"
-						ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}"
-						placeholder="date fin" type="date" /> <span ng-show="isTrue"
-						style="color: red">Date fin Invalid</span>
-				</div>
+<!-- 				<div class="col-md-2"> -->
+<!-- 					<label>Date Fin : </label> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-md-2"> -->
+<!-- 					<input class="form-control" ng-model="event.dateFin" -->
+<!-- 						min="{{dateMin | date:'yyyy-MM-dd'}}" -->
+<!-- 						max="{{dateMax | date:'yyyy-MM-dd'}}" ng-change="change()" -->
+<!-- 						ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}" -->
+<!-- 						placeholder="date fin" type="date" /> <span ng-show="isTrue" -->
+<!-- 						style="color: red">Date fin Invalid</span> -->
+<!-- 				</div> -->
 				<div class="col-md-2">
 					<label>Date Ech&eacute;ance : </label>
 				</div>
@@ -156,31 +162,115 @@
 			</div>
 			<br>
 			<div class="row">
-				<div class="col-md-2">
-					<label>Priorit&eacute; : </label>
-				</div>
-				<div class="col-md-2">
-					<input class="form-control" ng-model="event.priorite" required
-						placeholder="1 &agrave; 10 " type="text" />
-				</div>
+				
 			</div>
 		</div>
 	</div>
-	
-	<button type="submit" class="btn btn-success" >Enregister</button>
+
+	<button type="submit" class="btn btn-success">Enregister</button>
 	<button type="button" class="btn btn-primary" ng-click="retour()">Retour</button>
 	</div>
-	
-	
-	<input hidden="true" ng-model="event.delaiHjIngCumul">
-	<input hidden="true" ng-model="event.delaiHjTechCumul">
-	<input hidden="true" ng-model="event.etatAvancement">
-	<input hidden="true" ng-model="event.nbTaches">
-	
-	
+
+
+	<input hidden="true" ng-model="event.delaiHjIngCumul"> <input
+		hidden="true" ng-model="event.delaiHjTechCumul"> <input
+		hidden="true" ng-model="event.etatAvancement"> <input
+		hidden="true" ng-model="event.nbTaches">
+
+
 </form>
+	<br>
+<form ng-submit="form.$valid && saveTache()" name="form">
+	<div class="panel panel-default">
+		<div class="panel-heading">Information Tache</div>
+
+		<div class="panel-body">
+			<div class="panel-body">
+				<div class="row">
 
 
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label>Intervenant</label> <select ng-change="selectOperateur()"
+								ng-model="tache.operateur.id" style="width: 100%" class=" form-control">
+								<option ng-repeat="x in users" ng-value="x.id">{{x.name}}</option>
+							</select>
+						</div>
+					</div>
+
+
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label>Description</label> <input class="form-control"
+								ng-model="tache.description" placeholder="description "
+								type="text" />
+						</div>
+					</div>
+
+
+
+					<div class="col-lg-6"
+						ng-show="user.ingenieur && selectedUser && tache.event.delaiHjIng">
+						<div class="form-group">
+							<label>Hj ing</label> <input class="form-control"
+								ng-model="tache.hjIng" placeholder="nombre" type="number"
+								ng-change="nombreHIng()" min=0 /> <span
+								ng-show="tache.hjIng > tache.event.delaiHjIng"
+								style="color: red">max heures ingenieur depasse</span>
+						</div>
+					</div>
+
+					<div class="col-lg-6"
+						ng-show="!user.ingenieur && selectedUser && tache.event.delaiHjTech">
+						<div class="form-group">
+							<label>Hj tech</label> <input class="form-control"
+								ng-change="nombreHTech()" min=0 ng-model="tache.hjTech"
+								placeholder="nombre" type="text" /> <span
+								ng-show="tache.hjTech > tache.event.delaiHjTech"
+								style="color: red">max heures technicien depasse </span>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+
+							<label>Liaison tache</label> <select
+								ng-model="tache.tacheLie.idBd" style="width: 100%" class=" form-control">
+								<option ng-repeat="x in tachesLies" ng-value="x.idBd">{{x.idTache}}</option>
+							</select>
+
+						</div>
+					</div>
+					<div class="col-lg-2" ng-show="tache.tacheLie.idBd">
+
+						<div class="radio">
+
+							<label> <input type="radio" ng-model="tache.avantTache"
+								name="optionsRadios" id="optionsRadios3" value="true">Avant
+							</label>
+						</div>
+						<div class="radio">
+							<label> <input type="radio" ng-model="tache.apresTache"
+								name="optionsRadios" id="optionsRadios3" value="true">Apres
+							</label>
+						</div>
+					</div>
+
+
+					<input class="form-control" ng-model="tache.statut.id"
+						type="hidden" />
+
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	<br>
+	<button type="submit" class="btn btn-success">Enregister</button>
+	<button type="button" class="btn btn-primary" ng-click="retour()">Retour</button>
+
+
+</form>
 
 
 

@@ -13,6 +13,9 @@ public interface UserDao extends JpaRepository<User, Serializable> {
 	@Query("select u from User u where u.username like :login")
 	User getUserByLogin(@Param("login") String login);
 	
+	@Query("select u from User u where u.role.role = :role")
+	List<User> getChefProjet(@Param("role") String role);
+	
 	@Query("select u.ingenieur from User u where u.id like :id")
 	boolean getIsIngenieurById(@Param("id") Long id);
 }

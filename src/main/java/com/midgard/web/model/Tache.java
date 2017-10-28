@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.engine.internal.Cascade;
@@ -31,7 +32,9 @@ private Statut statut;
 @ManyToOne
 private Evenement event;
 
-@ManyToOne
+
+@ManyToOne(cascade = CascadeType.ALL)
+@JoinColumn(nullable = true)
 private Tache tacheLie;
 
 private Boolean avantTache;

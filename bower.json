@@ -12,7 +12,12 @@
   "keywords": [
     "angular",
     "angularui",
-    "select2"
+    "select2",
+    "filter",
+    "toArray",
+    "object",
+    "sort",
+    "orderBy"
   ],
   "dependencies": {
     "angular": "~1.5.0",

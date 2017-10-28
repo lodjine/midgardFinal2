@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.midgard.web.dao.PhaseDao;
 import com.midgard.web.dao.ProjetDao;
+import com.midgard.web.dao.UserDao;
 import com.midgard.web.model.Phase;
 import com.midgard.web.model.Projet;
 import com.midgard.web.model.Statut;
@@ -21,10 +22,14 @@ public class PhaseService {
 	PhaseDao phaseDao;
 	@Autowired
 	ProjetDao projetDao;
+	@Autowired
+	UserDao userDao;
 
 	@RequestMapping(value = "/phase", method = RequestMethod.POST)
 	public Phase savePhase(@RequestBody Phase phase) {
-		phaseDao.save(phase);
+		projetDao.saveAndFlush(phase.getProjet());
+		phase.setChefProjet(userDao.findOne(phase.getChefProjet().getId()));
+		phaseDao.saveAndFlush(phase);
 		return phase;
 	}
 
@@ -84,5 +89,4 @@ public class PhaseService {
 		return phase;
 	}
 
-	
 }
