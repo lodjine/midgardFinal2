@@ -4,6 +4,8 @@ modifProjetCtrl.$inject = [ '$scope', 'entrepriseService', 'projetService', '$wi
 
 function modifProjetCtrl($scope, entrepriseService, projetService, $window, $state, $stateParams, $rootScope, userService, statutService, phaseService, documentService) {
 	var login = localStorage.getItem("login");
+	$scope.isTrue2=false;
+	$scope.isTrue=false;
 	$rootScope.userConect = userService.userByLogin({
 		login : login
 	});
@@ -75,7 +77,9 @@ function modifProjetCtrl($scope, entrepriseService, projetService, $window, $sta
 		$state.go('projet');
 	}
 	$scope.updateProjet = function updateProjet() {
-		if ($scope.phase.id == null) {
+		if ($scope.phase.chefprojet==null || $scope.phase.chefProjet.id == null) {
+	
+			$scope.phase.projet.chefProjet.id = Number($scope.chefP);
 			$scope.phase.chefProjet.id = Number($scope.chefP);
 		}
 		phaseService.save($scope.phase).$promise.then(function() {});
@@ -118,7 +122,7 @@ function modifProjetCtrl($scope, entrepriseService, projetService, $window, $sta
 					id : null
 				},
 				chefProjet : {
-					id : null
+					id : 	$scope.phase.chefProjet.id
 				}
 			},
 			docs : [],
@@ -143,6 +147,23 @@ function modifProjetCtrl($scope, entrepriseService, projetService, $window, $sta
 
 
 	};
-
-}
-;
+	$scope.change2 = function() {
+		var dateFin = new Date($scope.phase.dateSoldePhase);
+		var dateDebut = new Date($scope.phase.dateDebut);
+		if (dateDebut > dateFin) {
+			$scope.isTrue2 = true;
+		} else {
+			$scope.isTrue2 = false;
+		}
+	};
+	
+	$scope.change = function() {
+		var dateFin = new Date($scope.projet.dateFin);
+		var dateDebut = new Date($scope.projet.dateDebut);
+		if (dateDebut > dateFin) {
+			$scope.isTrue = true;
+		} else {
+			$scope.isTrue = false;
+		}
+	};
+};

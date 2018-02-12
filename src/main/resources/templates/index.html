@@ -60,7 +60,7 @@
 
 
 </head>
-<body ng-app="midgApp">
+<body ng-app="midgApp" oncopy="return false" oncut="return false" onpaste="return false">
 	<nav class="navbar navbar-inverse" role="navigation">
 		<div class="navbar-header">
 			<a class="navbar-brand" ui-sref="home">Midgard</a>
@@ -103,5 +103,13 @@
 	<script th:src="@{/vendor/metisMenu/metisMenu.min.js}"></script>
 	<!-- Custom Theme JavaScript -->
 	<script th:src="@{/js/sb-admin-2.js}"></script>
+	<script type="text/javascript">
+	window.onload = function() {
+		 var myInput = document.getElementById('myInput');
+		 myInput.onpaste = function(e) {
+		   e.preventDefault();
+		 }
+		}
+	</script>
 </body>
 </html>

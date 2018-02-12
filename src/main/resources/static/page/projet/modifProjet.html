@@ -57,12 +57,10 @@
 
 						<div class="form-group">
 							<label>Date debut</label> <input class="form-control"
-								ng-disabled="flagModif" ng-model="projet.dateDebut" format-date
+								disabled="true" ng-model="projet.dateDebut" format-date
 								placeholder="date debut" type="date" ng-change="change()"
 								ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}" />
-							<span ng-show="isTrue" style="color: red">Date debut
-								Invalid</span>
-
+						
 						</div>
 
 					</div>
@@ -71,7 +69,7 @@
 						<div class="form-group">
 
 							<label>Date fin</label> <input ng-model="projet.dateFin"
-								class="form-control" ng-disabled="flagModif" format-date
+								class="form-control" ng-disabled="flagModif" format-date onkeydown="return false"
 								placeholder="date debut" type="date" ng-change="change()"
 								ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}" />
 							<span ng-show="isTrue" style="color: red">Date fin Invalid</span>
@@ -214,7 +212,7 @@
 
 						<div class="form-group">
 							<label>Phase</label> <select   class=" form-control"
-								ng-disabled="flagModif" ng-change="createIdPhase()"
+								ng-disabled="true" ng-change="createIdPhase()"
 								ng-model="phase.phase">
 								<option>PRE</option>
 								<option>DCE</option>
@@ -226,7 +224,7 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Honoraires</label> <input class="form-control"
-								ng-disabled="flagModif" ng-model="phase.honoraires"
+								ng-disabled="flagModif" ng-model="phase.honoraires" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
 								placeholder="Superstructure" type="text" />
 						</div>
 					</div>
@@ -241,7 +239,7 @@
 								ng-model="chefP" ng-disabled="flagModif"
 								 class=" form-control"  >
 								<option ng-repeat="x in usersChef" value="{{x.id}}"
-									ng-selected="chefP.id === x.id">{{x.name}}</option>
+									ng-selected="phase.chefProjet.id === x.id">{{x.name}}</option>
 							</select>
 						</div>
 					</div>
@@ -249,13 +247,13 @@
 						<div class="form-group">
 							<label>Quantification Jours Ing : </label> <input
 								ng-disabled="flagModif" class="form-control"
-								ng-model="phase.delaiHjIng" required name="ing"
+								ng-model="phase.delaiHjIng" required name="ing" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
 								placeholder="JH Ing" type="text" />
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
-							<label>Quantification Jours Tech : </label> <input
+							<label>Quantification Jours Tech : </label> <input   onkeypress='return event.charCode >= 48 && event.charCode <= 57'
 								ng-disabled="flagModif" class="form-control"
 								ng-model="phase.delaiHjTech" required name="tech"
 								placeholder="JH Tech" type="text" />
@@ -264,7 +262,9 @@
 					<div class="col-md-3">
 						<div class="form-group">
 							<label>Date debut</label> <input class="form-control" format-date
-								ng-disabled="flagModif"
+								ng-disabled="flagModif" onkeydown="return false" ng-change="change2()"
+								 min="{{phase.projet.dateDebut | date:'yyyy-MM-dd'}}"
+						           max="{{phase.projet.dateFin | date:'yyyy-MM-dd'}}"
 								ng-style="isTrue2 && {'border-color':'red'} || {'background-color': 'none'}"
 								ng-model="phase.dateDebut" placeholder="date debut" type="date" />
 							<span ng-show="isTrue2" style="color: red">Date debut
@@ -275,7 +275,9 @@
 					<div class="col-md-3">
 						<div class="form-group">
 							<label>Solde phase</label> <input class="form-control"
-								format-date ng-disabled="flagModif"
+								format-date ng-disabled="flagModif" onkeydown="return false" min="{{phase.projet.dateDebut | date:'yyyy-MM-dd'}}"
+						            max="{{phase.projet.dateFin | date:'yyyy-MM-dd'}}"
+								ng-change="change2()"
 								ng-style="isTrue2 && {'border-color':'red'} || {'background-color': 'none'}"
 								ng-model="phase.dateSoldePhase" placeholder="date debut"
 								type="date" /> <span ng-show="isTrue2" style="color: red">Solde

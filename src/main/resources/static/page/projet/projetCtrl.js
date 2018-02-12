@@ -11,6 +11,8 @@ var projetCtrl = midgApp.controller('projetCtrl', function($scope, $window,
 	$scope.usersChef=userService.getChefProjet({role:role}).$promise.then(function(data) {
 		$scope.usersChef = angular.fromJson(data);
 	});;
+	$scope.lotTest=false;
+	$scope.phaseTest=false;
 	$scope.date = Date.now();
 	var d = new Date($scope.date);
 	$scope.maxdate = d.setMonth(d.getMonth() + 2);
@@ -90,10 +92,18 @@ var projetCtrl = midgApp.controller('projetCtrl', function($scope, $window,
 	}
 
 	$scope.saveProjet = function() {
+	
+		if($scope.phase.archi||$scope.phase.grosOeuvre||$scope.phase.metal||
+				$scope.phase.metal||$scope.phase.bois||$scope.phase.voirie
+				){
+			if($scope.phase&&$scope.phase.phase&& $scope.phase.phase != null){
+			
 		$scope.phase.projet.statut.id = 1;
 		$scope.phase.statut.id = 1;
 		$scope.phase.projet.chefProjet.id = Number($scope.chefP);
 		$scope.phase.chefProjet.id = Number($scope.chefP);
+		$scope.lotTest=false;
+		$scope.phaseTest=false;
 		
 		phaseService.save($scope.phase).$promise.then(function(result) {
 
@@ -104,7 +114,13 @@ var projetCtrl = midgApp.controller('projetCtrl', function($scope, $window,
 
 
 		});
-
+		}else{
+			$scope.phaseTest=true;
+		}
+		}
+			else{console.log("erreur");
+		$scope.lotTest=true;
+		}
 	};
 
 	$scope.createIdPhase = function() {
@@ -133,10 +149,18 @@ var projetCtrl = midgApp.controller('projetCtrl', function($scope, $window,
 	$scope.change2 = function() {
 		var dateFin = new Date($scope.phase.dateSoldePhase);
 		var dateDebut = new Date($scope.phase.dateDebut);
+		var dateDebutProjet = new Date($scope.phase.projet.dateDebut);
+		var dateFinProjet= new Date($scope.phase.projet.dateDeFin);
 		if (dateDebut > dateFin) {
 			$scope.isTrue2 = true;
 		} else {
 			$scope.isTrue2 = false;
 		}
+		if(dateFin <dateDebutProjet || dateFin>dateFinProjet || dateDebut > dateFinProjet || dateDebut < dateDebutProjet){
+			$scope.isTrue2=true;
+		}else{
+			$scope.isTrue2= false;
+		}
+		
 	};
 });

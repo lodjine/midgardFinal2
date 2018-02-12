@@ -2,6 +2,8 @@ package com.midgard.web.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,9 +28,21 @@ public class PhaseService {
 	UserDao userDao;
 
 	@RequestMapping(value = "/phase", method = RequestMethod.POST)
+	@Transactional
 	public Phase savePhase(@RequestBody Phase phase) {
+		
+		if(phase.getChefProjet()==null || phase.getChefProjet().getId()==null) {
+			phase.setChefProjet(null);
+			phase.getProjet().setChefProjet(null);	
+			}
+		if(phase.getDateDebut()==null)
+			phase.setDateDebut(phase.getProjet().getDateDebut());
+		
+		if(phase.getDateSoldePhase()==null)
+			phase.setDateSoldePhase(phase.getProjet().getDateFin());
+		
+	//	phase.setChefProjet(userDao.findOne(phase.getChefProjet().getId()));
 		projetDao.saveAndFlush(phase.getProjet());
-		phase.setChefProjet(userDao.findOne(phase.getChefProjet().getId()));
 		phaseDao.saveAndFlush(phase);
 		return phase;
 	}

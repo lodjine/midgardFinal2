@@ -14,7 +14,7 @@
 						<div class="col-md-2">
 
 							<div class="form-group">
-								<label>Id projet</label> <input class="form-control"
+								<label>Id projet</label> <input class="form-control" required
 									ng-model="phase.projet.idProjet" ng-change="createIdPhase()"
 									placeholder="id" type="text" />
 
@@ -34,7 +34,7 @@
 
 							<div class="form-group">
 								<label>Date debut</label> <input class="form-control"
-									ng-change="change()" format-date
+									ng-change="change()" format-date 
 									ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}"
 									ng-model="phase.projet.dateDebut" placeholder="date debut"
 									type="date" /> <span ng-show="isTrue" style="color: red">Date
@@ -46,7 +46,7 @@
 
 							<div class="form-group">
 								<label>Date fin</label> <input class="form-control"
-									ng-change="change()" format-date
+									ng-change="change()" format-date 
 									ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}"
 									ng-model="phase.projet.dateFin" placeholder="date fin"
 									type="date" /> <span ng-show="isTrue" style="color: red">Date
@@ -91,7 +91,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Date projet</label> <input class="form-control"
+								<label>Date projet</label> <input class="form-control" onkeydown="return false"
 									ng-model="phase.projet.dateProjetMoe" placeholder="date debut"
 									type="date" />
 
@@ -194,13 +194,15 @@
 						<div class="col-md-6">
 
 							<div class="form-group">
-								<label>Phase</label> <select style="width: 100%"  class="form-control"
+								<label>Phase</label> <select style="width: 100%"  class="form-control" required
 									ng-change="createIdPhase()" ng-model="phase.phase">
 									<option>PRE</option>
 									<option>DCE</option>
 									<option>EXE</option>
 									<option>DIAG</option>
 								</select>
+								<span ng-show="phaseTest" style="color: red">phase obligatoire</span>
+								
 							</div>
 
 						</div>
@@ -208,14 +210,15 @@
 							<div class="form-group">
 								<label>Honoraires</label> <input class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
 									ng-model="phase.honoraires" placeholder="Superstructure"
-									type="text" />
+									type="number" />
+									 <span ng-show="phase.honoraires.$error.pattern" style="color: red">format incorect</span>
 							</div>
 						</div>
 
 						<div class="col-md-4">
 							<div class="form-group">
 								<label>Chef projet :</label> <select ng-model="chefP" class="form-control"
-									style="width: 100%" >
+									style="width: 100%" required >
 									<option ng-repeat="x in usersChef" ng-value="x.id"
 										ng-selected="phase.chefProjet.id == x.id">{{x.name}}
 									</option>
@@ -238,7 +241,7 @@
 						</div>
 						<div class="col-md-3">
 							<div class="form-group">
-								<label>Date debut</label> <input class="form-control"  min="{{phase.projet.dateDebut | date:'yyyy-MM-dd'}}"
+								<label>Date debut</label> <input class="form-control"   min="{{phase.projet.dateDebut | date:'yyyy-MM-dd'}}"
 						           max="{{phase.projet.dateFin | date:'yyyy-MM-dd'}}"
 									ng-change="change2()"
 									ng-style="isTrue2 && {'border-color':'red'} || {'background-color': 'none'}"
@@ -250,7 +253,7 @@
 						</div>
 						<div class="col-md-3">
 							<div class="form-group">
-								<label>Solde phase</label> <input class="form-control" min="{{phase.projet.dateDebut | date:'yyyy-MM-dd'}}"
+								<label>Solde phase</label> <input class="form-control"  min="{{phase.projet.dateDebut | date:'yyyy-MM-dd'}}"
 						            max="{{phase.projet.dateFin | date:'yyyy-MM-dd'}}"
 									ng-change="change2()"
 									ng-style="isTrue2 && {'border-color':'red'} || {'background-color': 'none'}"
@@ -296,6 +299,7 @@
 									</label>
 								</div>
 							</div>
+							<span ng-show="lotTest" style="color: red">Lot obligatoire</span>
 						</div>
 						<div class="col-md-12">
 							<label>Documents</label>
@@ -346,7 +350,7 @@
 				</div>
 
 				<button type="button" class="btn btn-success"
-					ng-click="saveProjet(documents)">Success</button>
+					ng-click="saveProjet(documents)">Ajouter</button>
 			</div>
 
 
