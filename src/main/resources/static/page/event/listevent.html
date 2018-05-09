@@ -9,16 +9,7 @@
 	</div>
 	<div class="row">
 
-	<div class="col-md-3" ng-show="userConect.role.role!='COLLAB' && userConect.role.role!='CLIENT'">
-		<button type="nouveau" class="btn btn-primary btn-block" style=" width: 100%;"
-			ui-sref="nouveauEvent">
 
-
-
-			<i class="fa fa-pencil-square" aria-hidden="true"></i> Ajouter
-				evenement et tache
-		</button>
-	</div>
 	
 <div class="col-md-1" >
 </div>
@@ -35,33 +26,51 @@
 	<br>
 	<div class="row">
 	<div class="col-md-1">
-		<label>Projet :</label>
+			<label>Projet :</label>
+		</div>
+	<div class="col-md-2">
+			<select ng-model="projet" class=" form-control">
+				<option ng-value=""></option>
+				<option ng-repeat="x in projets" ng-value="x">{{x}}
+				</option>
+			</select>
+		</div>
+		<div class="col-md-1">
+			<label>Statut :</label>
 		</div>
 		<div class="col-md-2">
-			 <select
-				ng-model="idProjetRecherche" ng-change="selectProjetRecherche()"
-				style="width: 100%" class=" form-control">
+			<select ng-model="statut" class=" form-control">
 				<option ng-value=""></option>
-				<option ng-repeat="x in projetsRecherche" ng-value="x.idbd">{{x.idProjet}}
+				<option ng-repeat="x in statutRecherche" ng-value="x.statut">{{x.statut}}
 				</option>
 			</select>
 
 		</div>
-		<div class="col-md-1">
-		<label>Phase :</label> 
+		<div class="col-md-1" style="width: 10%;">
+			<label>Chef projet :</label>
 		</div>
 		<div class="col-md-2">
-			<select ng-model="idPhase"
-				style="width: 100%" class=" form-control">
+			<select ng-model="name" class=" form-control">
 				<option ng-value=""></option>
-				<option ng-repeat="x in phasesRecherhe" ng-value="x.idPhase">{{x.idPhase}}
+				<option ng-repeat="x in usersRecherche" ng-value="x.name">{{x.name}}
 				</option>
-			</select> <br>
+			</select> </br>
 		</div>
+		
+			<div class="col-md-2" ng-show="userConect.role.role!='COLLAB' && userConect.role.role!='CLIENT'">
+		<button type="nouveau" class="btn btn-primary btn-block" style=" width: 100%;"
+			ui-sref="nouveauEvent">
+
+
+
+			<i class="fa fa-pencil-square" aria-hidden="true"></i> Ajouter
+				evenement 
+		</button>
+	</div>
 	</div>
 		<br>
-		<div class="col-md-10">
-	<table class="table table-bordered table-sm" width="80%" id="dataTable" style="text-align: center !important;"
+		<div class="col-md-12">
+	<table class="table table-striped table-bordered"id="example" style="text-align: center !important;"
 		cellspacing="0">
 		<thead>
 			<tr>
@@ -71,14 +80,13 @@
 				<th style="text-align: center !important;">Phase</th>
 				<th style="text-align: center !important;">dateDebut</th>
 				<th style="text-align: center !important;">echeance</th>
-				<th style="text-align: center !important;">dateFin</th>
-				<th style="text-align: center !important;width: :10%">Options</th>
+				<th ng-show="false" style="text-align: center !important;width: :10%">Options</th>
 			</tr>
 		</thead>
 
 		<tbody>
-			<tr ng-repeat="item in events  ">
-				<td>{{item.idPhase.idPhase}}</td>
+			<tr ng-style="{'background-color':item.ticketNonTraite ?  '#FA5858': 'none'}" ng-repeat="item in events  | filter:projet | filter:statut | filter:name" >
+				<td><a  ui-sref="detailEvent({id:item.idEvenement})">{{item.idPhase.idPhase}}</a></td>
 				<td>{{item.idEvent}}</td>
 				<td>
 					<div class="progress progress-striped active">
@@ -104,6 +112,7 @@
 							<span class="sr-only" ng-show="item.etatAvancement > 60">{{item.etatAvancement}}
 								%</span>
 						</div>
+						
 					</div>
 
 				</td>
@@ -111,13 +120,9 @@
 				<td>{{item.idPhase.phase}}</td>
 				<td>{{item.dateDebut}}</td>
 				<td>{{item.echeance}}</td>
-				<td>{{item.dateFin}}</td>
-				<td>
-							<button type="submit" class="btn btn-info btn-sm"
-								title="Consulter" 
-								ui-sref="detailEvent({id:item.idEvenement})">
-								<i class="fa fa-search" aria-hidden="true"></i>
-							</button>
+				
+				<td ng-show="false">
+						
 							<button type="submit" class="btn btn-primary btn-sm"
 								title="Ajout Ticket" 
 								ui-sref="formEventProjet({id:item.idEvenement+'/Evenement'})">
@@ -130,3 +135,4 @@
 </div>
 
 </div>
+

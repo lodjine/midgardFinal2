@@ -55,11 +55,19 @@
 						
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label>Statut</label> <select ng-disabled="flagModif" style="width: 100%" class=" form-control"
+								<label>Etat</label> <select ng-disabled="flagModif" style="width: 100%" class=" form-control"
 									ng-model="tache.statut.id" >
 									<option selected="true" ng-value="tache.statut.id">{{tache.statut.statut}}</option>
 									<option ng-repeat="x in statuts" ng-value="x.id">{{x.statut}}</option>
 								</select>
+							</div>
+						</div>
+							<div class="col-md-12">
+							<div class="form-group">
+								<label>Commentaire</label>
+								<textarea class="form-control" ng-disabled="flagModif"  rows="5" id="comment"
+									ng-model="tache.commentaire"
+									placeholder="Commentaire"></textarea>
 							</div>
 						</div>
 
@@ -108,7 +116,12 @@
 						<div class="col-lg-6" ng-show="tache.tacheLie.idBd">
 							<div class="form-group">
 
-								<label>Liaison tache</label> <input class="form-control" ng-disabled="flagModif"
+								<label>Liaison tache</label> <select   ng-show="!flagModif"
+									ng-model="tache.tacheLie.idBd" style="width: 100%"
+									class=" form-control">
+									<option ng-repeat="x in tachesLies |  filter: { idTache: '!'+tachesToFilter.idTache }" ng-value="x.idBd">{{x.idTache}}</option>
+								</select> 
+								<input class="form-control" ng-show="flagModif"
 									ng-disabled="true" ng-model="tache.tacheLie.idTache"
 									class="form-control" />
 
@@ -119,13 +132,13 @@
 
 
 							<br><br> <input type="checkbox" ng-model="tache.avantTache" ng-disabled="flagModif"
-								ng-show="tache.avantTache" ng-disabled="tache.avantTache"
+								ng-show="tache.tacheLie.idBd" 
 								name="optionsRadios" id="optionsRadios3" value="true"><label
-								ng-show="tache.avantTache">Avant</label> <input type="checkbox" ng-disabled="flagModif"
-								ng-model="tache.apresTache" ng-show="tache.apresTache"
+								ng-show="tache.tacheLie.idBd">Avant</label> <input type="checkbox" ng-disabled="flagModif"
+								ng-model="tache.apresTache" ng-show="tache.tacheLie.idBd"
 								ng-disabled="tache.apresTache" name="optionsRadios"
 								id="optionsRadios3" value="true"> <label
-								ng-show="tache.apresTache">Apres</label>
+								ng-show="tache.tacheLie.idBd">Apres</label>
 
 						</div>
 

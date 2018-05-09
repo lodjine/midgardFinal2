@@ -1,102 +1,104 @@
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-lg-12">
-			<h1 class="page-header">Liste projets</h1>
+
+<form>
+
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Liste projets</h1>
+			</div>
 		</div>
+
+		<!-- /.row -->
+		<br>
+		<div class="row">
+			<div class="col-md-1">
+				<label>Projet :</label>
+			</div>
+			<div class="col-md-2">
+				<select ng-model="projet" class=" form-control">
+					<option ng-value=""></option>
+					<option ng-repeat="x in projets" ng-value="x.idProjet">{{x}}
+					</option>
+				</select>
+			</div>
+			<div class="col-md-1">
+				<label>Etat :</label>
+			</div>
+			<div class="col-md-2">
+				<select ng-model="statut" class=" form-control">
+					<option ng-value=""></option>
+					<option ng-repeat="x in statutRecherche" ng-value="x.statut">{{x.statut}}
+					</option>
+				</select>
+
+			</div>
+			<div class="col-md-1" style="width: 10%;">
+				<label>Chef projet :</label>
+			</div>
+			<div class="col-md-2">
+				<select ng-model="name" class=" form-control">
+					<option ng-value=""></option>
+					<option ng-repeat="x in usersChef" ng-value="x.name">{{x.name}}
+					</option>
+				</select> </br>
+			</div>
+
+			<div class="col-md-2" ng-show="userConect.role.role !='COLLAB'">
+				<button type="nouveau" class="btn btn-primary btn-block"
+					ui-sref="formProjet">
+
+					<i class="fa fa-pencil-square" aria-hidden="true"></i> Ajouter
+					projet
+				</button>
+			</div>
+		</div>
+
+		<br>
+
+		<div class="row">
+			<div class="col-lg-12">
+
+
+
+				<table class="table  table-bordered" style="width: 100%">
+					<thead>
+						<tr>
+
+							<th scope="col">Id</th>
+							<th scope="col">Nom Projet</th>
+							<th scope="col">Chef Projet</th>
+							<th scope="col">Etat</th>
+							<th scope="col">Date debut</th>
+							<th scope="col">Date solde</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr
+							ng-style="{'background-color':item.projet.ticketNonTraite ?  '#FA5858': 'none'}"
+							ng-repeat="item in phases  | filter:projet | filter:statut | filter:name">
+							<td ng-show="false">{{item.projet.idProjet}}</td>
+							<td><a
+								ui-sref="detailProjet({id:item.projet.idbd+'/'+item.idphas})">{{item.idPhase}}</a>
+							</td>
+							<td>{{item.projet.nomProjet}}</td>
+							<td>{{item.chefProjet.name}}</td>
+							<td>{{item.statut.statut}}</td>
+							<td>{{item.dateDebut| date:'yyyy-MM-dd'}}</td>
+							<td>{{item.dateSoldePhase | date:'yyyy-MM-dd'}}</td>
+
+
+
+						</tr>
+					</tbody>
+
+				</table>
+				<div class="pagination" ng-show="false" data-pagination="" data-num-pages="numOfPages()"
+					data-current-page="curPage" data-max-size="maxSize"
+					data-boundary-links="true"></div>
+			</div>
+
+		</div>
+
 	</div>
-
-	<!-- /.row -->
-	<div class="row">
-		<div class="col-lg-2" ng-show="userConect.role.role !='COLLAB'">
-			<button type="nouveau" class="btn btn-primary btn-block"
-				ui-sref="formProjet">
-
-				<i class="fa fa-pencil-square" aria-hidden="true"></i> Ajouter
-				projet
-			</button>
-		</div>
-	</div>
-	<br>
-	<div class="row">
-		<div class="col-md-1">
-			<label>Projet :</label>
-		</div>
-		<div class="col-md-2">
-			<select ng-model="projet"  class=" form-control">
-			    <option ng-value=""></option>
-				<option ng-repeat="x in projets" ng-value="x.idProjet">{{x.idProjet}}
-				</option>
-			</select>
-		</div>
-		<div class="col-md-1">
-			<label>Statut :</label>
-		</div>
-		<div class="col-md-2">
-			<select ng-model="statut" class=" form-control" >
-			    <option ng-value=""></option>
-				<option ng-repeat="x in statutRecherche" ng-value="x.statut">{{x.statut}}
-				</option>
-			</select>
-
-		</div>
-		<div class="col-md-2" style="width: 10%;">
-			<label>Chef projet :</label>
-		</div>
-		<div class="col-md-2">
-			<select ng-model="name" class=" form-control" >
-			    <option ng-value=""></option>
-				<option ng-repeat="x in usersChef" ng-value="x.name">{{x.name}}
-				</option>
-			</select> </br>
-		</div>
-	</div>
-
-	<br>
-
-	<div class="row">
-		<div class="col-lg-10">
-			<table class="table table-bordered table-sm" width="70%"
-				id="dataTable" style="text-align: center;" cellspacing="0"">
-				<thead>
-					<tr>
-						<th style="text-align: center;">Id</th>
-						<th style="text-align: center;">Nom Projet</th>
-						<th style="text-align: center;">Chef Projet</th>
-						<th style="text-align: center;">Statut</th>
-						<th style="text-align: center;">Date debut</th>
-						<th style="text-align: center;">Date solde</th>
-						<th style="text-align: center; width: 10%">Options</th>
-
-
-					</tr>
-				</thead>
-
-				<tbody>
-					<tr ng-repeat="item in phases  | filter:projet | filter:statut | filter:name">
-					    <td ng-show="false" >{{item.projet.idProjet}}</td>
-						<td>{{item.idPhase}}</td>
-						<td>{{item.projet.nomProjet}}</td>
-						<td>{{item.chefProjet.name}}</td>
-						<td>{{item.statut.statut}}</td>
-						<td>{{item.dateDebut| date:'yyyy-MM-dd'}}</td>
-						<td>{{item.dateSoldePhase | date:'yyyy-MM-dd'}}</td>
-
-						<td><button type="submit" class="btn btn-info btn-sm"
-								title="Consulter" title="Consulter"
-								ui-sref="detailProjet({id:item.projet.idbd+'/'+item.idphas})">
-								<i class="fa fa-search" aria-hidden="true"></i>
-							</button>
-
-							<button type="submit" class="btn btn-primary btn-sm"
-								title="Ajout Ticket"
-								ui-sref="formTicketProjet({id:item.projet.idbd+'/Projet'})">
-								<i class="fa fa-plus" aria-hidden="true"></i>
-							</button></td>
-
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-	</div>
-</div>
+</form>

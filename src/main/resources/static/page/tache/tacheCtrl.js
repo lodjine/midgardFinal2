@@ -27,6 +27,13 @@ function tacheCtrl($scope, $window, tacheService, userService,
 		}
 	}
 	
+
+	$scope.selectTache=function(){
+		if($scope.tache.tacheLie.idBd==0){
+			$scope.tache.tacheLie=null;
+		}
+	};
+	
 	
 	$scope.events = eventService.query();
 	
@@ -69,17 +76,20 @@ function tacheCtrl($scope, $window, tacheService, userService,
 	};
 
 	$scope.saveTache = function() {
+		
+		 testTAche();
+		 if(!$scope.showErreurTache){
 		$scope.event.nbTaches = $scope.event.nbTaches + 1;
 		$scope.tache.idTache = $scope.event.idEvent + 'T'
 				+ $scope.event.nbTaches;
 		$scope.tache.statut.id = 1;
 	
 		
-		if($scope.tache.hjTech!='undefined'){
-			$scope.tache.event.delaiHjTechCumul=$scope.tache.event.delaiHjTechCumul+$scope.tache.hjTech;
+		if($scope.tache.hjTech!=undefined){
+			$scope.event.delaiHjTechCumul=$scope.event.delaiHjTechCumul+$scope.tache.hjTech;
 			}
-			if($scope.tache.hjIng!='undefined'){
-			$scope.tache.event.delaiHjIngCumul=$scope.tache.event.delaiHjIngCumul+$scope.tache.hjIng;
+			if($scope.tache.hjIng!=undefined){
+			$scope.event.delaiHjIngCumul=$scope.event.delaiHjIngCumul+$scope.tache.hjIng;
 			}
 		
 		tacheService.save($scope.tache).$promise.then(function(){
@@ -92,6 +102,7 @@ function tacheCtrl($scope, $window, tacheService, userService,
           }).then(function() {
         	  $state.go('listTache');
           });
+		 }
 		}
 	
 	
@@ -123,6 +134,53 @@ function tacheCtrl($scope, $window, tacheService, userService,
 			id : $scope.tache.operateur.id});
 	
 	};
+	
+	$scope.selectOperateur = function selectOperateur() {
+		$scope.selectedUser = true;
+		$scope.user = $scope.users.find(function(element) {
+			  return element.id== $scope.tache.operateur.id;
+			});
+	};
+	
+	function isNumeric(n) {
+		  return !isNaN(parseFloat(n)) && isFinite(n);
+		}
+	
+	function testTAche(){
+		$scope.messageErreurTache=[];
+		$scope.showErreurTache=false;
+		if(!$scope.tache.event || !$scope.tache.event.idEvenement || $scope.tache.event.idEvenement==''){
+			$scope.messageErreurTache.push("\r\n * evenement obligatoire");
+		}
+		if(!$scope.tache.description || $scope.tache.description =='' )
+		{
+			$scope.messageErreurTache.push("\r\n * déscription obligatoire");
+		}
+			if(!$scope.tache.operateur || !$scope.tache.operateur.id || !isNumeric($scope.tache.operateur.id))
+				$scope.messageErreurTache.push("\r\n * operateur obligatoire");
+			else{
+				if($scope.user.ingenieur && !isNumeric($scope.tache.hjIng))
+					$scope.messageErreurTache.push("\r\n * heures/j ingénieur obligatoire");
+				else if($scope.user.ingenieur && isNumeric($scope.tache.hjIng) && $scope.tache.hjIng > $scope.event.delaiHjIng)
+					$scope.messageErreurTache.push("\r\n * max heures ingénieur depassé");
+				
+				
+				if(!$scope.user.ingenieur && !isNumeric($scope.tache.hjTech))
+					$scope.messageErreurTache.push("\r\n * heures/j technicien obligatoire");
+				else if(!$scope.user.ingenieur && isNumeric($scope.tache.hjTech) && $scope.tache.hjTech > $scope.event.delaiHjTech)
+					$scope.messageErreurTache.push("\r\n * max heures technicien depassé");
+			}
+		
+			
+			if($scope.messageErreurTache.length==0){
+				$scope.showErreurTache=false;
+			}
+			else{
+				$scope.showErreurTache=true;
+			}
+			$scope.withTache=true;
+		
+	}
 	
 };
 

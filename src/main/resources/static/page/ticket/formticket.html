@@ -1,3 +1,8 @@
+<br></br>
+<div   class="alert alert-danger" 
+	style="position: fixed; right: 0; padding-right:10px;
+    width: 250px; z-index: 1;" ng-show="showErreurTicket" role="alert">
+   <div ng-repeat="msg in messageErreurTicket">{{msg}}</div> </div>
 
 <div class="container-fluid">
 	<div class="row">
@@ -18,7 +23,7 @@
 					<label>Type Ticket : </label>
 				</div>
 				<div class="col-md-3">
-					<select required="required" style="width: 100%" ui-select2
+					<select  style="width: 100%" ui-select2
 						ng-change="selectType(typeTicket)" ng-model="typeTicket">
 						<option>choisir type</option>
 						<option>Projet</option>
@@ -31,11 +36,11 @@
 					<label>Projet :</label>
 				</div>
 				<div class="col-md-3">
-					<select ng-change="selectEvent()" ng-model="ticket.projet.idbd"
+					<select ng-change="selectEvent()" ng-model="ticket.projet.idProjet"
 						style="width: 100%" ui-select2>
 						<option ng-selected="true" ng-value="">Selectionner un
 							projet</option>
-						<option ng-repeat="x in projets" ng-value="x.idbd">{{x.idProjet}}</option>
+						<option ng-repeat="x in projets" ng-value="x">{{x}}</option>
 					</select>
 				</div>
 			</div>
@@ -92,7 +97,7 @@
 				</div>
 				<div class="col-md-2">
 					<input class="form-control" ng-model="ticket.priorite" required
-						placeholder="1 &agrave; 10 " type="text" />
+						placeholder="1 &agrave; 10 " type="number" max=10 min=0 />
 				</div>
 			</div>
 			<br></br>
@@ -107,22 +112,7 @@
 						type="date" />
 
 				</div>
-				<div class="col-md-2">
-					<label>Etat : </label>
-				</div>
-				<div class="col-md-3">
-
-
-					<select required="required" style="width: 100%" ui-select2
-						ng-model="ticket.etat">
-						<option>choisir un &eacute;tat</option>
-						<option>Non trait&eacute;</option>
-						<option>En cours</option>
-						<option>Arr&ecirc;t</option>
-						<option>Rejet&eacute;</option>
-						<option>Trait&eacute;</option>
-					</select>
-				</div>
+			
 			</div>
 		</div>
 	</div>

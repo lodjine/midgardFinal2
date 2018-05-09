@@ -9,17 +9,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.springframework.data.annotation.Transient;
+
 @Entity
 public class Projet {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long idbd;
-	@Column(unique=true)
 	private Long idProjet;
 	private String nomProjet;
 	private Date dateDebut;
 	private Date dateFin;
-	private String nomProj;
 	private Date dateProjetMoe;
 	private String maitreDouvrage;
 	private String maitreDoeuvre;
@@ -37,11 +37,25 @@ public class Projet {
 	
 	@ManyToOne 
 	private User chefProjet;
+	@Transient
+	private Boolean ticketNonTraite;
 	
 	public Projet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	public Boolean getTicketNonTraite() {
+		return ticketNonTraite;
+	}
+
+
+	public void setTicketNonTraite(Boolean ticketNonTraite) {
+		this.ticketNonTraite = ticketNonTraite;
+	}
+
+
 	public Long getIdbd() {
 		return idbd;
 	}
@@ -152,11 +166,6 @@ public class Projet {
 	public void setNomEntreprise(String nomEntreprise) {
 		this.nomEntreprise = nomEntreprise;
 	}
-	public String getNomProj() {
-		return nomProj;
-	}
-	public void setNomProj(String nomProj) {
-		this.nomProj = nomProj;
-	}
+
 	
 }

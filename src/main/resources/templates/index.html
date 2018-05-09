@@ -6,6 +6,9 @@
 <title>Midgard</title>
 <!-- Bootstrap Core CSS -->
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/bower_components/DataTables/datatables.min.js}"></script>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/bower_components/DataTables/datatables.min.css}" />
 <link rel="stylesheet" type="text/css"
 	th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
 <link rel="stylesheet" type="text/css"
@@ -14,6 +17,7 @@
 	th:href="@{/css/sb-admin-2.min.css}" />
 <script th:src="@{/bower_components/angular/angular.min.js}"></script>
 <script th:src="@{/bower_components/angular/angular.js}"></script>
+
 <script
 	th:src="@{/bower_components/angular-ui-router/release/angular-ui-router.min.js}"></script>
 <script
@@ -24,6 +28,11 @@
 	th:href="@{/bower_components/select2/select2.css}" />
 <script th:src="@{/bower_components/select2/select2.js}"></script>
 <script th:src="@{/bower_components/angular-ui-select2/src/select2.js}"></script>
+<script th:src="@{/bower_components/calendar/moment.js}"></script>
+<script th:src="@{/bower_components/calendar/fullcalendar.js}"></script>
+<script th:src="@{/bower_components/calendar/ui.calendar.js}"></script>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/bower_components/calendar/fullcalendar.css}" />
 <script th:src="@{/app/midgApp.js}"></script>
 <script th:src="@{/service/projetService.js}"></script>
 <script th:src="@{/service/entrepriseService.js}"></script>
@@ -51,6 +60,9 @@
 <script th:src="@{/page/ticket/ticketController.js}"></script>
 <script th:src="@{/page/ticket/modifTicket.js}"></script>
 <script th:src="@{/page/ticket/ticketProEvTach.js}"></script>
+<link data-require="bootstrap-css@2.3.2" data-semver="2.3.2" rel="stylesheet"
+	 th:src="@{/vendor/pagination/bootstrap-combined.min.css}"/>
+<script data-require="angular-ui-bootstrap@0.3.0" data-semver="0.3.0" th:src="@{/vendor/pagination/ui-bootstrap-tpls-0.3.0.min.js}"></script>
 
 <!-- <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js}"></script> -->
 <!-- <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js}"></script> -->
@@ -61,7 +73,7 @@
 
 </head>
 <body ng-app="midgApp" oncopy="return false" oncut="return false" onpaste="return false">
-	<nav class="navbar navbar-inverse" role="navigation">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="navbar-header">
 			<a class="navbar-brand" ui-sref="home">Midgard</a>
 		</div>
@@ -90,6 +102,9 @@
 					Se d&eacute;connecter</a></li>
 		</ul>
 	</nav>
+	<br></br>
+	<br></br>
+	
 	<!-- MAIN CONTENT -->
 	<div class="container">
 		<!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
@@ -103,13 +118,6 @@
 	<script th:src="@{/vendor/metisMenu/metisMenu.min.js}"></script>
 	<!-- Custom Theme JavaScript -->
 	<script th:src="@{/js/sb-admin-2.js}"></script>
-	<script type="text/javascript">
-	window.onload = function() {
-		 var myInput = document.getElementById('myInput');
-		 myInput.onpaste = function(e) {
-		   e.preventDefault();
-		 }
-		}
-	</script>
+	
 </body>
 </html>

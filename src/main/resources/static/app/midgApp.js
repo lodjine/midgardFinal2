@@ -1,4 +1,4 @@
-var midgApp = angular.module('midgApp', ['ui.router','ngResource','ui.select2']);
+var midgApp = angular.module('midgApp', ['ui.router','ngResource','ui.bootstrap','ui.select2','ui.calendar']);
 
 
 

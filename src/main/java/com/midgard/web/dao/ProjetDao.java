@@ -12,6 +12,8 @@ import com.midgard.web.model.Tache;
 
 public interface ProjetDao extends JpaRepository<Projet, Serializable> {
 	@Query("select t from Projet t where t.idProjet = :x")
-	Projet getProjetByIdFunct(@Param("x") Long ref);
+	List<Projet> getProjetByIdFunct(@Param("x") Long ref);
+	
+	
 
 }

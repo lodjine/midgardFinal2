@@ -42,7 +42,12 @@
 				method : 'GET',
 				isArray : false,
 				url : '/progressionEvent/:id'
-			}
+			},
+            'saveHist': {
+                method: 'GET',
+                isArray : false,
+                url: '/evenementHisto/:id'
+              }
 
 		});
 

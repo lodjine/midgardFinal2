@@ -28,6 +28,11 @@ function detailTacheCtrl($scope, userService, tacheService, statutService, event
 			id : idTache
 		}).$promise.then(function(data) {
 			$scope.tache = angular.fromJson(data);
+			$scope.tachesLies = tacheService.getByIdEvent({
+				id : $scope.tache.event.idEvenement
+			});
+			$scope.tachesToFilter = $scope.tache;
+			console.log($scope.tachesToFilter.idTache);
 		});
 
 	}
@@ -67,6 +72,9 @@ function detailTacheCtrl($scope, userService, tacheService, statutService, event
 
 
 	$scope.saveTache = function() {
+		
+//		$scope.tache.event.delaiHjIngCumul=Number($scope.tache.event.delaiHjIngCumul)+(Number($scope.tache.hjIng)-Number($scope.oldHjIng));
+//		$scope.tache.event.delaiHjTechCumul=Number($scope.tache.event.delaiHjTechCumul)+(Number($scope.tache.hjTech)-Number($scope.oldHjTech));
 
 		if ($scope.tache.operateur.ingenieur)
 			$scope.tache.hjTech = 0;
@@ -74,10 +82,15 @@ function detailTacheCtrl($scope, userService, tacheService, statutService, event
 			$scope.tache.hjIng = 0;
 		tacheService.save($scope.tache);
 
-		eventService.save($scope.tache.event);
+		eventService.save($scope.tache.event).$promise.then(function(data) {
+			tacheService.saveHist({
+				id : $scope.tache.idBd
+			});
+		});
 		eventService.progressionEvent({
 			id : $scope.tache.event.idEvenement
 		});
+
 		$state.go('listTache');
 
 

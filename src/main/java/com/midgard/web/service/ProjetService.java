@@ -13,7 +13,7 @@ import com.midgard.web.dao.ProjetDao;
 import com.midgard.web.model.Projet;
 
 @RestController
-public class projetService {
+public class ProjetService {
 
 	@Autowired
 	private ProjetDao projetDao;
@@ -32,7 +32,10 @@ public class projetService {
 
 	@RequestMapping(value = "/projet", method = RequestMethod.GET)
 	public List<Projet> getBatiments() {
-		return projetDao.findAll();
+		
+		List<Projet> projets = projetDao.findAll();
+
+		return projets;
 	}
 
 	@RequestMapping(value = "/projet/{id}", method = RequestMethod.GET)

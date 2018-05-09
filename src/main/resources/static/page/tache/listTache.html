@@ -1,3 +1,4 @@
+
 <div class="container-fluid" ng-init="initFunc()">
 	<div class="row">
 		<div class="col-lg-12">
@@ -15,16 +16,16 @@
 	</div>
 	<br /> <br />
 <input hidden="true"  ng-model="userConect.name">
-	<table class="table table-bordered table-sm" width="80%"
-				id="dataTable" style="text-align: center !important;" cellspacing="0">
+	<table class="table  table-bordered"  style="text-align: center !important;" cellspacing="0">
 		<thead>
 			<tr>
 				<th style="text-align: center !important;">Id tache</th>
 				<th style="text-align: center !important;">Id evenement</th>
 				<th style="text-align: center !important;">Description</th>
+				<th style="text-align: center !important;">Etat</th>
 				<th style="text-align: center !important;">Progression</th>
 				<th style="text-align: center !important;">Operateur</th>
-				<th style="text-align: center !important;width: 10%">Options</th>
+				<th ng-show="userConect.role.role!='CHEFP' && userConect.role.role!='COLLAB' && false" style="text-align: center !important;width: 10%">Options</th>
 
 
 			</tr>
@@ -32,9 +33,10 @@
 
 		<tbody ng-show="userConect.role.role=='CHEFP'||userConect.role.role=='COLLAB'">
 			<tr ng-repeat="item in taches | filter : userConect.name">
-				<td>{{item.idTache}}</td>
-				<td>{{item.event.idEvenement}}</td>
-				<td>{{item.description}}</td>	
+				<td><a ui-sref="detailTache({id:item.idBd})">{{item.idTache}}</a></td>
+				<td>{{item.event.idEvent}}</td>
+				<td>{{item.description}}</td>
+				<td>{{item.statut.statut}}</td>	
 				<td>
 			<div class="progress progress-striped active">
 										<div class="progress-bar progress-bar-danger" ng-show="item.etatAavancement<=20"
@@ -56,18 +58,17 @@
 				
 				</td>
 				<td>{{item.operateur.name}}</td>
-				<td><button type="submit" class="btn btn-info btn-sm" ui-sref="detailTache({id:item.idBd})" title="">
-						<i class="fa fa-search  " aria-hidden="true"></i> 
-					</button></td>
+				
 			</tr>
 		</tbody>
 		
 		
 		<tbody ng-show="userConect.role.role!='CHEFP' && userConect.role.role!='COLLAB'">
 			<tr ng-repeat="item in taches">
-				<td>{{item.idTache}}</td>
-				<td>{{item.event.idEvenement}}</td>
+				<td><a ui-sref="detailTache({id:item.idBd})">{{item.idTache}}</a></td>
+				<td>{{item.event.idEvent}}</td>
 				<td>{{item.description}}</td>
+				<td>{{item.statut.statut}}</td>	
 				<td>
 
 					<div class="progress progress-striped active">
@@ -98,9 +99,7 @@
 				</td>
 
 				<td>{{item.operateur.name}}</td>
-				<td><button type="submit" class="btn btn-info btn-sm" ui-sref="detailTache({id:item.idBd})">
-						<i class="fa fa-search  " aria-hidden="true"></i> 
-					</button>
+				<td ng-show="false">
 					<button type="submit" class="btn btn-primary btn-sm"
 						ui-sref="formTicketProjet({id:item.idBd+'/Tache'})">
 						<i class="fa fa-search  " aria-hidden="true"></i>

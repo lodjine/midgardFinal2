@@ -1,4 +1,7 @@
+
+
 <div class="container-fluid">
+
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">Liste des Tickets</h1>
@@ -15,7 +18,7 @@
 	</div>
 	<br /> <br />
 
-	<table class="table table-bordered table-sm" style="text-align: center !important;" width="80%" id="dataTable"
+	<table class="table  table-bordered"  style="text-align: center !important;"
 		cellspacing="0">
 		<thead>
 			<tr>
@@ -24,39 +27,33 @@
 				<th style="text-align: center !important;">Emetteur</th>
 				<th style="text-align: center !important;">Destinataire</th>
 				<th style="text-align: center !important;">Date Echeance</th>
-				<th style="text-align: center !important;">Etat</th>
-				<th style="text-align: center !important;width: 10%">Options</th>
+				<th style="text-align: center !important;">Statut</th>
+				
 
 			</tr>
 		</thead>
 
 		<tbody ng-show="userConect.role.role=='CHEFP'||userConect.role.role=='COLLAB'||userConect.role.role=='CLIENT'">
 			<tr ng-repeat="item in tickets | filter: userConect.name">
-				<td>{{item.idTicket}}</td>
+				<td><a ui-sref="modifTicket({id:item.iddbTicket})">{{item.idTicket}}</a></td>
 				<td>{{item.typeTicket}}</td>
 				<td>{{item.emetteur.name}}</td>
-				<td> <output ng-repeat=" item2 in item.destinataire"> {{item2.name}} </output> </td>
+				<td><output ng-repeat=" item2 in item.destinataire">{{item2.name}} </output></td>
 				<td>{{item.dateEchance | date:'yyyy-MM-dd'}}</td>
-				<td>{{item.etat}}</td>
-				<td><button type="submit" class="btn btn-primary btn-block"
-						ui-sref="modifTicket({id:item.iddbTicket})">
-						<i class="fa fa-search  " aria-hidden="true"></i> Consulter
-					</button></td>
+				<td>{{item.statut.statut}}</td>
+	
 			</tr>
 		</tbody>
 		
 		<tbody ng-show="userConect.role.role=='ADMIN'">
 			<tr ng-repeat="item in tickets">
-				<td>{{item.idTicket}}</td>
+				<td><a ui-sref="modifTicket({id:item.iddbTicket})">{{item.idTicket}}</a></td>
 				<td>{{item.typeTicket}}</td>
 				<td>{{item.emetteur.name}} {{item.emetteur.lastName}}</td>
 				<td><output ng-repeat=" item2 in item.destinataire">{{item2.name}} </output></td>
 				<td>{{item.dateEchance | date:'yyyy-MM-dd'}}</td>
-				<td>{{item.etat}}</td>
-				<td><button type="submit" class="btn btn-primary btn-sm"
-						ui-sref="modifTicket({id:item.iddbTicket})">
-						<i class="fa fa-search  " aria-hidden="true"></i> 
-					</button></td>
+				<td>{{item.statut.statut}}</td>
+
 			</tr>
 		</tbody>
 	</table>

@@ -23,7 +23,11 @@ public interface EvenementDao extends JpaRepository<Evenement, Long> {
 	Long getheurTechCumul(@Param("x") Long ref);
  
 
-	@Query("select e from Evenement e where e.idPhase.projet.idbd = :x")
+	@Query("select e from Evenement e where e.idPhase.projet.idProjet = :x")
 	List<Evenement> getEventByProjet(@Param("x") Long id);
+	
+	
+	@Query("select t.idEvenement from Evenement t where t.idEvenement  in (select t.idEvenement.idEvenement from Ticket t where t.statut.statut = :y) ")
+	List<Long> getListTacheProjetNonTraiter(@Param("y") String etat);
 
 }

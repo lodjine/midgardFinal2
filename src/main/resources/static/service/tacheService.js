@@ -15,7 +15,11 @@
                 method: 'GET',
                 isArray: true,
                 url: '/tachesByEvent/:id'
-              }
+              },
+              'saveHist': {
+                  method: 'GET',
+                  url: '/tacheHisto/:id'
+                }
     	});
     	
     

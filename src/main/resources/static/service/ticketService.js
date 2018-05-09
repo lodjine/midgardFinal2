@@ -18,7 +18,13 @@
     		'deleteTacheDestByTicketId' : {
 				method : 'GET',
 				url : '/deleteTacheDestByTicketId/:id'
-			}
+			},
+            'saveHist': {
+                method: 'GET',
+                isArray : false,
+                url: '/ticketHisto/:id',
+                
+              }
     	});
     	
     

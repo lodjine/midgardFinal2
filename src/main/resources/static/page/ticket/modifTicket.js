@@ -8,17 +8,17 @@
 	angular.module('midgApp').controller('modifTicket', modifTicket);
 	modifTicket.$inject = [ '$scope', '$state', '$rootScope', 'ticketService',
 			'tacheService', 'projetService', 'eventService', 'userService',
-			'$stateParams' ];
+			'$stateParams' , 'statutService'];
 
 	function modifTicket($scope, $state, $rootScope, ticketService,
 			tacheService, projetService, eventService, userService,
-			$stateParams) {
+			$stateParams,statutService) {
 
 		$scope.usersSelected = [];
 		$scope.ticket = {
 			destinataire : []
 		};
-
+		$scope.statuts = statutService.query();
 		var login = localStorage.getItem("login");
 		$rootScope.userConect = userService.userByLogin({
 			login : login
@@ -58,6 +58,7 @@
 									$scope.users = angular.fromJson(result);
 								}).then(function() {
 							$scope.userList = $scope.ticket.destinataire;
+							console.log($scope.ticket);
 						});
 
 					});
@@ -65,6 +66,8 @@
 		}
 
 		$scope.saveTicket = function() {
+			 validateTicket();
+			 if(!$scope.showErreurTicket){
 			ticketService.deleteTacheDestByTicketId({
 				id : $scope.ticket.iddbTicket
 			}).$promise.then(
@@ -82,13 +85,61 @@
 						});
 					}).then(function() {
 
-				ticketService.save($scope.ticket);
-			}).then(function() {
-
-				$state.go('listticket');
-			});;
-
+				ticketService.save($scope.ticket).$promise.then(function(data) {
+					ticketService.saveHist({
+						id : $scope.ticket.iddbTicket
+					});
+					$state.go('listticket');
+				});
+			
+			});	
+			 }
 		};
+		
+		
+		function isNumeric(n) {
+			  return !isNaN(parseFloat(n)) && isFinite(n);
+			}
+		function validateTicket(){ 
+			$scope.messageErreurTicket=[];
+			$scope.showErreurTicket=false;
+			
+			
+		
+			if(!$scope.ticket.emetteur||!isNumeric($scope.ticket.emetteur.id)){
+				$scope.messageErreurTicket.push("\r\n * emetteur obligatoire");
+			}
+			if($scope.userList2.length==0){
+				$scope.userList2=$scope.userList.map(user => user.id);
+				if($scope.userList2.length==0){
+				$scope.messageErreurTicket.push("\r\n * destinataire obligatoire");
+				}
+			}
+			if(!$scope.ticket.sujet||$scope.ticket.sujet==null||$scope.ticket.sujet==''){
+				$scope.messageErreurTicket.push("\r\n * sujet obligatoire");
+			}
+			
+			if(!$scope.ticket.priorite||!isNumeric($scope.ticket.priorite)||$scope.ticket.priorite<0||$scope.ticket.priorite>10){
+				$scope.messageErreurTicket.push("\r\n * sujet obligatoire ( de 0 à 10 )");
+			}
+			
+			
+         if(!$scope.ticket.dateEchance){
+      	   $scope.messageErreurTicket.push("\r\n * date d'echeance obligatoire ");
+         }
+         
+         if(!isNumeric($scope.ticket.statut.id)){
+      	   $scope.messageErreurTicket.push("\r\n * etat obligatoire ");
+         }
+         
+         if($scope.messageErreurTicket.length==0){
+				$scope.showErreurTicket=false;
+			}
+			else{
+				$scope.showErreurTicket=true;
+			}
+         			
+		}
 
 		$scope.retour = function() {
 			$state.go('listticket');

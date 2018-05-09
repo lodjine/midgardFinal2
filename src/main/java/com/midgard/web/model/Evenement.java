@@ -1,7 +1,9 @@
 package com.midgard.web.model;
 
 import java.sql.Date;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Evenement {
@@ -49,9 +52,30 @@ public class Evenement {
 	private Long nbTaches;
 	
 	private Long etatAvancement;
+	
+	private boolean archi;
+	private boolean grosOeuvre;
+	private boolean metal;
+	private boolean bois;
+	private boolean voirie;
 
 	@ManyToOne
 	private Statut statut;
+	
+	private Boolean ticketNonTraite;
+	
+	@Column(length = 255)
+	private String commentaire;
+	@Transient
+	private List<HistoriqueETT> historique;
+
+
+	public String getCommentaire() {
+		return commentaire;
+	}
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
 
 	public Long getIdEvenement() {
 		return idEvenement;
@@ -237,4 +261,60 @@ public class Evenement {
 		this.etatAvancement = etatAvancement;
 	}
 
+	public boolean isArchi() {
+		return archi;
+	}
+
+	public void setArchi(boolean archi) {
+		this.archi = archi;
+	}
+
+	public boolean isGrosOeuvre() {
+		return grosOeuvre;
+	}
+
+	public void setGrosOeuvre(boolean grosOeuvre) {
+		this.grosOeuvre = grosOeuvre;
+	}
+
+	public boolean isMetal() {
+		return metal;
+	}
+
+	public void setMetal(boolean metal) {
+		this.metal = metal;
+	}
+
+	public boolean isBois() {
+		return bois;
+	}
+
+	public void setBois(boolean bois) {
+		this.bois = bois;
+	}
+
+	public boolean isVoirie() {
+		return voirie;
+	}
+
+	public void setVoirie(boolean voirie) {
+		this.voirie = voirie;
+	}
+
+	public Boolean getTicketNonTraite() {
+		return ticketNonTraite;
+	}
+
+	public void setTicketNonTraite(Boolean ticketNonTraite) {
+		this.ticketNonTraite = ticketNonTraite;
+	}
+	public List<HistoriqueETT> getHistorique() {
+		return historique;
+	}
+	public void setHistorique(List<HistoriqueETT> historique) {
+		this.historique = historique;
+	}
+
+	
+	
 }

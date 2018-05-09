@@ -4,14 +4,14 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -38,11 +38,22 @@ public class Ticket {
 	@ManyToMany
 	private Set<User> destinataire = new HashSet<User>();
 
+	@Column(length = 255)
+	private String commentaire;
+
+
+	public String getCommentaire() {
+		return commentaire;
+	}
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
 	private String idTicket;
 	private String Sujet;
 	private Date dateEchance;
 	private String priorite;
-	private String etat;
+	@ManyToOne
+	private Statut statut;
 	
 	private String typeTicket;
 
@@ -102,14 +113,14 @@ public class Ticket {
 		this.priorite = priorite;
 	}
 
-	public String getEtat() {
-		return etat;
-	}
+	
 
-	public void setEtat(String etat) {
-		this.etat = etat;
+	public Statut getStatut() {
+		return statut;
 	}
-
+	public void setStatut(Statut statut) {
+		this.statut = statut;
+	}
 	public Projet getProjet() {
 		return projet;
 	}

@@ -1,6 +1,5 @@
 package com.midgard.web.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import org.hibernate.engine.internal.Cascade;
 
 @Entity
 public class Tache {
@@ -33,7 +30,7 @@ private Statut statut;
 private Evenement event;
 
 
-@ManyToOne(cascade = CascadeType.ALL)
+@ManyToOne
 @JoinColumn(nullable = true)
 private Tache tacheLie;
 
@@ -43,7 +40,16 @@ private Boolean apresTache;
 
 private Long delaiEntreTache;
 
+@Column(length = 255)
+private String commentaire;
 
+
+public String getCommentaire() {
+	return commentaire;
+}
+public void setCommentaire(String commentaire) {
+	this.commentaire = commentaire;
+}
 public Long getIdBd() {
 	return idBd;
 }

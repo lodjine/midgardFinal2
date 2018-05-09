@@ -1,3 +1,8 @@
+<br></br>
+<div   class="alert alert-danger" 
+	style="position: fixed; right: 0; padding-right:10px;
+    width: 250px; z-index: 1;" ng-show="showErreur" role="alert">
+   <div ng-repeat="msg in messageErreur">{{msg}}</div> </div>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-12">
@@ -37,7 +42,7 @@
 
 						<div class="form-group">
 							<label>Id projet</label> <input class="form-control"
-								ng-disabled="true" ng-model="projet.idProjet" placeholder="id"
+								ng-disabled="true" ng-model="phase.projet.idProjet" placeholder="id"
 								type="text" />
 
 						</div>
@@ -46,8 +51,8 @@
 					<div class="col-lg-4">
 
 
-						<label>Nom Projet</label> <input class="form-control"
-							ng-disabled="flagModif" ng-model="projet.nomProjet"
+						<label>Nom Projet <span style="color: red">*</span></label> <input class="form-control"
+							ng-disabled="flagModif" ng-model="phase.projet.nomProjet"
 							placeholder="Nom" type="text" />
 
 
@@ -57,7 +62,7 @@
 
 						<div class="form-group">
 							<label>Date debut</label> <input class="form-control"
-								disabled="true" ng-model="projet.dateDebut" format-date
+								disabled="true" ng-model="phase.projet.dateDebut" format-date
 								placeholder="date debut" type="date" ng-change="change()"
 								ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}" />
 						
@@ -68,9 +73,9 @@
 
 						<div class="form-group">
 
-							<label>Date fin</label> <input ng-model="projet.dateFin"
-								class="form-control" ng-disabled="flagModif" format-date onkeydown="return false"
-								placeholder="date debut" type="date" ng-change="change()"
+							<label>Date fin <span style="color: red">*</span></label> <input ng-model="phase.projet.dateFin"
+								class="form-control" ng-disabled="flagModif" format-date
+								placeholder="date fin" type="date" ng-change="change()"
 								ng-style="isTrue && {'border-color':'red'} || {'background-color': 'none'}" />
 							<span ng-show="isTrue" style="color: red">Date fin Invalid</span>
 
@@ -85,7 +90,7 @@
 						<div class="form-group">
 							<label>Entreprise</label> <input class="form-control"
 								ng-disabled="flagModif" ng-model="phase.projet.nomEntreprise"
-								placeholder="Entreprise" type="text" />
+								placeholder="Nom" type="text" />
 
 						</div>
 
@@ -95,7 +100,7 @@
 
 					<div class="col-lg-6">
 						<div class="form-group">
-							<label>Statut</label> <select ng-disabled="flagModif"
+							<label>Etat <span style="color: red">*</span></label> <select ng-disabled="flagModif"
 								ng-model="projet.statut.id" class="form-control">
 								<option selected="true" ng-value="phase.statut.id">{{projet.statut.statut}}</option>
 								<option ng-repeat="x in statuts" ng-value="x.id">{{x.statut}}</option>
@@ -116,7 +121,7 @@
 
 					<div class="col-lg-6">
 						<div class="form-group">
-							<label>Date projet</label> <input ng-model="projet.dateProjetMoe"
+							<label>Date projet</label> <input ng-model="phase.projet.dateProjetMoe"
 								class="form-control" ng-disabled="flagModif" format-date
 								placeholder="date debut" type="date" />
 
@@ -126,35 +131,35 @@
 					<div class="col-lg-6">
 						<div class="form-group">
 							<label>Maitre d'ouvrage</label> <input class="form-control"
-								ng-disabled="flagModif" ng-model="projet.maitreDouvrage"
+								ng-disabled="flagModif" ng-model="phase.projet.maitreDouvrage"
 								placeholder="Nom" type="text" />
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<div class="form-group">
 							<label>Maitre d'oeuvre</label> <input class="form-control"
-								ng-disabled="flagModif" ng-model="projet.maitreDoeuvre"
+								ng-disabled="flagModif" ng-model="phase.projet.maitreDoeuvre"
 								placeholder="Nom" type="text" />
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<div class="form-group">
 							<label>Architecte</label> <input class="form-control"
-								ng-disabled="flagModif" ng-model="projet.architect"
+								ng-disabled="flagModif" ng-model="phase.projet.architect"
 								placeholder="Nom" type="text" />
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<div class="form-group">
 							<label>Geotechnicien</label> <input class="form-control"
-								ng-disabled="flagModif" ng-model="projet.geotechnicien"
+								ng-disabled="flagModif" ng-model="phase.projet.geotechnicien"
 								placeholder="Nom" type="text" />
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<div class="form-group">
-							<label>CT</label> <input class="form-control"
-								ng-disabled="flagModif" ng-model="projet.ct" placeholder="Nom"
+							<label>Controleur Technique</label> <input class="form-control"
+								ng-disabled="flagModif" ng-model="phase.projet.ct" placeholder="Nom"
 								type="text" />
 
 						</div>
@@ -173,7 +178,7 @@
 
 						<div class="form-group">
 							<label>Infrastructure</label> <input class="form-control"
-								ng-disabled="flagModif" ng-model="projet.modeInfra"
+								ng-disabled="flagModif" ng-model="phase.projet.modeInfra"
 								placeholder="Infrastructure" type="text" />
 
 						</div>
@@ -183,7 +188,7 @@
 
 						<div class="form-group">
 							<label>Superstructure</label> <input class="form-control"
-								ng-disabled="flagModif" ng-model="projet.modeSuperstructure"
+								ng-disabled="flagModif" ng-model="phase.projet.modeSuperstructure"
 								placeholder="Superstructure" type="text" />
 						</div>
 					</div>
@@ -211,7 +216,7 @@
 					<div class="col-md-6">
 
 						<div class="form-group">
-							<label>Phase</label> <select   class=" form-control"
+							<label>Phase <span style="color: red">*</span></label> <select   class=" form-control"
 								ng-disabled="true" ng-change="createIdPhase()"
 								ng-model="phase.phase">
 								<option>PRE</option>
@@ -223,7 +228,7 @@
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label>Honoraires</label> <input class="form-control"
+							<label>Honoraires <span style="color: red">*</span></label> <input class="form-control"
 								ng-disabled="flagModif" ng-model="phase.honoraires" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
 								placeholder="Superstructure" type="text" />
 						</div>
@@ -235,7 +240,7 @@
 						<!-- 								ng-disabled="flagModif" ng-model="phase.chefProjet.name" /> -->
 						<!-- 						</div> -->
 						<div class="form-group">
-							<label>Chef projet :</label> <select
+							<label>Chef projet <span style="color: red">*</span></label> <select
 								ng-model="chefP" ng-disabled="flagModif"
 								 class=" form-control"  >
 								<option ng-repeat="x in usersChef" value="{{x.id}}"
@@ -245,7 +250,7 @@
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
-							<label>Quantification Jours Ing : </label> <input
+							<label>Quantification Jours Ing <span style="color: red">*</span></label> <input
 								ng-disabled="flagModif" class="form-control"
 								ng-model="phase.delaiHjIng" required name="ing" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
 								placeholder="JH Ing" type="text" />
@@ -253,7 +258,7 @@
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
-							<label>Quantification Jours Tech : </label> <input   onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+							<label>Quantification Jours Tech <span style="color: red">*</span></label> <input   onkeypress='return event.charCode >= 48 && event.charCode <= 57'
 								ng-disabled="flagModif" class="form-control"
 								ng-model="phase.delaiHjTech" required name="tech"
 								placeholder="JH Tech" type="text" />
@@ -261,10 +266,9 @@
 					</div>
 					<div class="col-md-3">
 						<div class="form-group">
-							<label>Date debut</label> <input class="form-control" format-date
-								ng-disabled="flagModif" onkeydown="return false" ng-change="change2()"
-								 min="{{phase.projet.dateDebut | date:'yyyy-MM-dd'}}"
-						           max="{{phase.projet.dateFin | date:'yyyy-MM-dd'}}"
+							<label>Date debut <span style="color: red">*</span></label> <input class="form-control" format-date
+								ng-disabled="flagModif"  ng-change="change()"
+								
 								ng-style="isTrue2 && {'border-color':'red'} || {'background-color': 'none'}"
 								ng-model="phase.dateDebut" placeholder="date debut" type="date" />
 							<span ng-show="isTrue2" style="color: red">Date debut
@@ -274,29 +278,20 @@
 					</div>
 					<div class="col-md-3">
 						<div class="form-group">
-							<label>Solde phase</label> <input class="form-control"
-								format-date ng-disabled="flagModif" onkeydown="return false" min="{{phase.projet.dateDebut | date:'yyyy-MM-dd'}}"
-						            max="{{phase.projet.dateFin | date:'yyyy-MM-dd'}}"
-								ng-change="change2()"
+							<label>Solde phase <span style="color: red">*</span></label> <input class="form-control"
+								format-date ng-disabled="flagModif"  
+								ng-change="change()"
 								ng-style="isTrue2 && {'border-color':'red'} || {'background-color': 'none'}"
 								ng-model="phase.dateSoldePhase" placeholder="date debut"
 								type="date" /> <span ng-show="isTrue2" style="color: red">Solde
 								phase Invalid</span>
 						</div>
 					</div>
-					<!-- 					<div class="col-md-6"> -->
-					<!-- 						<div class="form-group"> -->
-					<!-- 							<label>Solde phase</label> <input class="form-control" -->
-					<!-- 								ng-disabled="flagModif" format-date -->
-					<!-- 								ng-model="phase.dateSoldePhase" -->
-					<!-- 								placeholder="Informations additionnel" type="date" /> -->
-					<!-- 						</div> -->
-					<!-- 					</div> -->
 
 
 					<div class="col-md-5">
 						<div class="form-group">
-							<label>Lot a traiter </label> <br /> <label
+							<label>Lot a traiter <span style="color: red">*</span></label> <br /> <label
 								class="checkbox-inline"> <input ng-disabled="flagModif"
 								ng-model="phase.grosOeuvre" type="checkbox">Gros oeuvre
 							</label> <label class="checkbox-inline"> <input

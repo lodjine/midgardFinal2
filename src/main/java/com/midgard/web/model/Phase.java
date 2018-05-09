@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +21,7 @@ public class Phase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idphas;
+	@Column(unique=true)
 	private String idPhase;
 	private String phase;
 	private Date dateDebut;
@@ -46,6 +48,8 @@ public class Phase {
 	private String etat;
 	private Long delaiHjIng;
 	private Long delaiHjTech;
+	private Long delaiHjIngCumul;
+	private Long delaiHjTechCumul;
 
 	public Long getId() {
 		return idphas;
@@ -219,5 +223,23 @@ public class Phase {
 	public void setNbrEvent(Long nbrEvent) {
 		this.nbrEvent = nbrEvent;
 	}
+
+	public Long getDelaiHjIngCumul() {
+		return delaiHjIngCumul;
+	}
+
+	public void setDelaiHjIngCumul(Long delaiHjIngCumul) {
+		this.delaiHjIngCumul = delaiHjIngCumul;
+	}
+
+	public Long getDelaiHjTechCumul() {
+		return delaiHjTechCumul;
+	}
+
+	public void setDelaiHjTechCumul(Long delaiHjTechCumul) {
+		this.delaiHjTechCumul = delaiHjTechCumul;
+	}
+	
+	
 
 }
